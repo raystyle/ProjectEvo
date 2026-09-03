@@ -19,7 +19,7 @@
 |--------|------|------|
 | git init + 首版 tag + 远端发布 | 已完成 | 2026-09-03:公开仓 raystyle/ProjectEvo,main + v0.1.0 tag 已推,Release 已发;update 版本探测闭环实测(已是最新,exit 0)[实证] |
 | 项目级安装通道验证 | 已完成 | 2026-09-03 remotex 首装实测:init 补 6 件跳 5 件(含 AGENTS.MD 大写碰撞安全跳过)、check 8 PASS/4 FAIL(FAIL 均为存量文档真实差距)、skill 双落位 + gitignore 幂等;全程未改既有内容文件 [实证] |
-| 与 skill 规范仓 `project` skill 的分工说明 | 未开始 | project=元文件/文档四类规范;project-evo=结构源仓 全骨架与工作流,互补关系写清 |
+| 与其他 skill 的分工说明 | 已拒绝 | 用户裁定(2026-09-03):project-evo 是独立项目,不与其他 skill 划分边界 |
 
 ## 阶段三:延伸(未开始)
 

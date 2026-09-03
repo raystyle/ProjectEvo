@@ -3,7 +3,7 @@
 > project-evo skill 开发规范。
 
 > 唯一权威源。`CLAUDE.md` 仅一行 `@AGENTS.md` 桥接,不重复维护。
-> 本仓库规范以 [agentskills 官方 spec](https://agentskills.io/specification) 为**硬标准**,布局参照 \skill 规范仓 同源约定。
+> 本仓库规范以 [agentskills 官方 spec](https://agentskills.io/specification) 为**硬标准**。
 
 ## 一、SKILL 硬性规范
 
@@ -74,14 +74,13 @@ ProjectEvo/
 1. **单一权威源**:skill 内容只在 `skills/project-evo/` 维护;引用其项目的文档体系规则以该 skill 为准,本文件不重复。[经验: 双份漂移踩坑]
 2. **proven 语义**:proven = **完全成功的 plan 方案归档**(立项建方案、完成回填),不是里程碑/成果列表——用户 2026-09-03 明确裁定,写入 skill。[经验: 用户纠正]
 3. **双层机器可读**:目录与文件名以 rg 检索为先(类别前缀+主题词);文档内部结构以 mq 提取为先(标题层级/代码块/表格)。[经验: 用户裁定 2026-09-03]
-4. **变更完整性**:只改 skill 不同步 SKILL.md 索引/references/CHANGELOG = 变更不完整。[经验: skill 规范仓 同款]
+4. **变更完整性**:只改 skill 不同步 SKILL.md 索引/references/CHANGELOG = 变更不完整。[经验]
 5. **禁止 emoji**;mermaid 画流程图。[经验: 渲染错乱踩坑]
 6. **先读文档再执行**:操作前先查 references/索引,禁止凭记忆重写删减版。[经验: 「文档在、执行者没查」踩坑]
 
 ## 五、环境事实
 
 - 平台:Windows · PowerShell 7(禁 powershell.exe 5.1 与 cmd)
-- 参照仓:\skill 规范仓(agentskills spec 落地范本)
 - skill 提炼源:D:\reader 仓、D:\PVE 仓、浏览器工具仓(家族骨架三仓)
 - 当前阶段:v0.1.0 已发布(2026-09-03,raystyle/ProjectEvo 公开仓 + Release);部署 = uv tool install git+https://github.com/raystyle/ProjectEvo
 - 项目状态与待办见 `ROADMAP.md`,不再在本文维护
