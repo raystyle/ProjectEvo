@@ -8,6 +8,8 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
+from .mdfix import file_violations
+
 ROOT_PRIMITIVES = ["AGENTS.md", "PRD.md", "GOAL.md", "PLAN.md", "TODO.md", "INDEX.md"]
 DOC_DIRS = ["proven", "diary", "research", "references", "guide", "mistakes"]
 _EMOJI = re.compile(
@@ -121,14 +123,16 @@ def check(root: Path) -> tuple[list[tuple[str, str, str]], bool]:
     r.append(("PE-11", "FAIL" if badh else "PASS",
               f"标题含括号: {', '.join(badh[:5])}" if badh else "标题无括号"))
 
-    # PE-12 emoji 禁令
+    # PE-12 四类禁字(emoji/破折号/箭头/中文半角标点;豁免区感知,与 scan 同源)
     em: list[str] = []
     cands12 = [root / f for f in (*ROOT_PRIMITIVES, "README.md", "CHANGELOG.md", "ROADMAP.md")] + list((root / "docs").rglob("*.md"))
     for p in [p for p in cands12 if p.exists()]:
-        if _EMOJI.search(_read(p)):
-            em.append(p.name)
+        v = file_violations(_read(p))
+        if v:
+            first = min(v)
+            em.append(f"{p.name}:{first}({'+'.join(v[first])})")
     r.append(("PE-12", "FAIL" if em else "PASS",
-              f"含 emoji: {', '.join(em[:5])}" if em else "无 emoji"))
+              f"含禁字: {', '.join(em[:5])}" if em else "无四类禁字"))
 
     # PE-13 INDEX 反引号路径断链粗检
     dead: list[str] = []

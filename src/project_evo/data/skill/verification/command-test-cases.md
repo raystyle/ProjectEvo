@@ -1,7 +1,7 @@
-# project-evo 命令行为验证用例集((1) 工具/命令行为评估)
+# project-evo 命令行为验证用例集（（1） 工具/命令行为评估）
 
-> project-evo 是文档体系 skill,无外部命令;本文件用「规范检查命令」验证一个项目是否遵守 project-evo 骨架。
-> 用例均参数化 `$ProjectRoot`(默认指向本仓库自身,也能指向任意目标项目复用)。
+> project-evo 是文档体系 skill，无外部命令；本文件用「规范检查命令」验证一个项目是否遵守 project-evo 骨架。
+> 用例均参数化 `$ProjectRoot`（默认指向本仓库自身，也能指向任意目标项目复用）。
 > 每条可直接复制复验。
 
 ---
@@ -66,7 +66,7 @@ rg -l "\[实证:|\[推断:|\[经验:|\[假设:" docs
 rg -n "^#+ .*[()]" docs AGENTS.md README.md
 # 预期: 空结果(引用块 > 与正文不算)
 
-# [PE-12] emoji 禁令
+# [PE-12] 四类禁字(emoji/破折号/箭头;豁免区感知)
 rg -n "[\x{2600}-\x{27BF}\x{1F000}-\x{1FAFF}\x{2705}\x{26A0}]" AGENTS.md README.md CHANGELOG.md ROADMAP.md docs skills -g "*.md"
 # 预期: 空结果
 ```
@@ -84,7 +84,7 @@ $misses
 
 ## 复验前提
 
-- **pwsh 7 跨平台**(Windows/Linux/macOS 均可装);rg(ripgrep)在 PATH。本用例集以 pwsh 书写,三平台同跑;纯 bash 环境按语义转写(`Test-Path`→`test -f`,数组遍历→`for`,rg 用法不变)
-- 用例对「最小集」项目:PE-06/PE-10 在对应目录为空时跳过不算失败
-- 目标项目若裁剪(如 research 缓建):PE-02 相应目录豁免,须在项目 AGENTS 注明裁剪决定
-- 平台差异(路径分隔符、大小写敏感文件系统)以目标项目 G001 声明的路径写法为准(见 env-platform.md 三节)
+- **pwsh 7 跨平台**（Windows/Linux/macOS 均可装）；rg（ripgrep）在 PATH。本用例集以 pwsh 书写，三平台同跑；纯 bash 环境按语义转写（`Test-Path`到`test -f`，数组遍历到`for`，rg 用法不变）
+- 用例对「最小集」项目：PE-06/PE-10 在对应目录为空时跳过不算失败
+- 目标项目若裁剪（如 research 缓建）：PE-02 相应目录豁免，须在项目 AGENTS 注明裁剪决定
+- 平台差异（路径分隔符、大小写敏感文件系统）以目标项目 G001 声明的路径写法为准（见 env-platform.md 三节）

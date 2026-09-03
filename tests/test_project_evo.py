@@ -111,6 +111,43 @@ def test_latest_release_offline_returns_none(monkeypatch):
     assert cur == __version__ and latest is None and newer is False
 
 
+def _git(cwd: Path, *args: str) -> None:
+    import subprocess
+    subprocess.run(["git", "-C", str(cwd), *args], check=True, capture_output=True,
+                   env={**__import__("os").environ, "GIT_AUTHOR_NAME": "t", "GIT_AUTHOR_EMAIL": "t@t",
+                        "GIT_COMMITTER_NAME": "t", "GIT_COMMITTER_EMAIL": "t@t"})
+
+
+def test_scan_finds_secret_in_history(tmp_path: Path):
+    from project_evo.scanner import run_scan, scan_history_secrets
+    _git(tmp_path, "init", "-b", "main")
+    (tmp_path / "cfg.txt").write_text("token = ghp_0123456789abcdefghijklmnop\n", encoding="utf-8")
+    _git(tmp_path, "add", "-A"); _git(tmp_path, "commit", "-m", "leak")
+    (tmp_path / "cfg.txt").unlink()
+    _git(tmp_path, "add", "-A"); _git(tmp_path, "commit", "-m", "remove")
+    finds = scan_history_secrets(tmp_path)
+    assert any(f["rule"] == "GitHub token" for f in finds), "历史中的 token 应被抓到"
+    _, clean = run_scan(tmp_path)
+    assert not clean
+    # 报告脱敏:不回显完整 token
+    joined = " ".join(f["snippet"] for f in finds)
+    assert "ghp_0123456789abcdefghijklmnop" not in joined
+
+
+def test_scan_md_reports_file_and_line(tmp_path: Path):
+    from project_evo.scanner import run_scan
+    (tmp_path / "A.md").write_text(
+        "# 标题\n\n规则:登记到立项——执行“完”\n\n```text\n# 注释(豁免)—— →\n```\n",
+        encoding="utf-8",
+    )
+    finds, clean = run_scan(tmp_path, history=False)
+    assert not clean
+    md = [f for f in finds if f["kind"] == "md"]
+    assert md and md[0]["file"] == "A.md" and md[0]["line"] == 3, "标注文件与行号"
+    assert any("破折号" in f["rule"] for f in md) and any("智能引号" in f["rule"] for f in md)
+    assert all(f["line"] != 6 for f in md), "围栏内豁免"
+
+
 def test_cli_check_exit_codes(tmp_path: Path, capsys):
     generate(tmp_path, "demo")
     assert main(["check", str(tmp_path)]) == 0

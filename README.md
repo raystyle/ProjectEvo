@@ -1,6 +1,6 @@
 # ProjectEvo
 
-> 一句话定位:project-evo skill 的开发与维护仓——一个渐进知识库型 Agent skill,指导为项目建立需求驱动、留痕沉淀、持续进化的文档体系(四原语 + docs 六目录 + 五步工作流),按意图路由检索内置 references,定位内容不需要读全文。
+> 一句话定位：project-evo skill 的开发与维护仓，一个渐进知识库型 Agent skill，指导为项目建立需求驱动、留痕沉淀、持续进化的文档体系（四原语 + docs 六目录 + 五步工作流），按意图路由检索内置 references，定位内容不需要读全文。
 
 ## 快速开始
 
@@ -42,12 +42,12 @@ ProjectEvo/
 
 ## 核心概念
 
-- **渐进知识库**:SKILL.md 只做意图路由与速览;完整知识在 references,按「rg 定位文件名 + mq 提取节/代码块」渐进检索
-- **三层检索接口**:目录名定类别、文件名定主题(类别前缀 + 主题词)、标题定节(h2 一节一事)
-- **四原语**:PRD 要什么 / GOAL 要达成什么 / PLAN 怎么做 / TODO 做到哪;需求经追问链澄清,禁止静默假设
-- **docs 六目录**:proven(完全成功的 plan 方案归档)/ diary / research / references(现役流程)/ guide(规范禁令)/ mistakes;分界口诀:方案进 proven、流程进 references、禁令进 guide
-- **五步工作流**:登记 → 立项 → 执行 → 验收 → 归档;过程内自修正闭环,一次只推进一个目标
-- **六态标记**:事实断言必标 [实证/推断/经验/记忆/假设/直觉];没验证不得写成已验证
+- **渐进知识库**：SKILL.md 只做意图路由与速览；完整知识在 references，按「rg 定位文件名 + mq 提取节/代码块」渐进检索
+- **三层检索接口**：目录名定类别、文件名定主题（类别前缀 + 主题词）、标题定节（h2 一节一事）
+- **四原语**：PRD 要什么 / GOAL 要达成什么 / PLAN 怎么做 / TODO 做到哪；需求经追问链澄清，禁止静默假设
+- **docs 六目录**：proven（完全成功的 plan 方案归档）/ diary / research / references（现役流程）/ guide（规范禁令）/ mistakes；分界口诀：方案进 proven、流程进 references、禁令进 guide
+- **五步工作流**：登记 到 立项 到 执行 到 验收 到 归档；过程内自修正闭环，一次只推进一个目标
+- **六态标记**：事实断言必标 [实证/推断/经验/记忆/假设/直觉]；没验证不得写成已验证
 
 ## 常用命令
 
@@ -76,7 +76,7 @@ uv run project-evo update -y            # git 模式:干净仓 ff-only pull;安�
 | 文档 | 讲什么 | 何时看 |
 |------|--------|--------|
 | `AGENTS.md` | 开发协作规则唯一权威源 | 写/改任何文件前 |
-| `skills/project-evo/SKILL.md` | skill 本体(意图路由) | 使用/修改 skill 前 |
+| `skills/project-evo/SKILL.md` | skill 本体（意图路由） | 使用/修改 skill 前 |
 | `skills/project-evo/references/README.md` | 参考知识库渐进索引 | 找参考文档时先看 |
 | `skills/project-evo/verification/command-test-cases.md` | 骨架规范检查命令 | 验证目标项目合规时 |
 | `docs/README.md` | 全仓文档地图 | 找任何文档时 |
@@ -85,6 +85,6 @@ uv run project-evo update -y            # git 模式:干净仓 ff-only pull;安�
 
 ## 环境前提
 
-- skill 本体纯 Markdown,无运行时依赖;配套 CLI 零第三方依赖;部署 `uv tool install git+https://github.com/raystyle/ProjectEvo`(bh 同款 git 直装),升级走 `project-evo update`
-- 检索与验证命令:PowerShell 7.6.5 实测;ripgrep 15.2.0 实测;reader 0.4.0 实测(mq 提取)
-- 平台:Windows 主开发;文档与用例按三平台适配撰写(见 references/env-platform.md)
+- skill 本体纯 Markdown，无运行时依赖；配套 CLI 零第三方依赖；部署 `uv tool install git+https://github.com/raystyle/ProjectEvo`（bh 同款 git 直装），升级走 `project-evo update`
+- 检索与验证命令：PowerShell 7.6.5 实测；ripgrep 15.2.0 实测；reader 0.4.0 实测（mq 提取）
+- 平台：Windows 主开发；文档与用例按三平台适配撰写（见 references/env-platform.md)
