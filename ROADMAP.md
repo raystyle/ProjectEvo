@@ -17,7 +17,7 @@
 
 | 里程碑 | 状态 | 说明 |
 |--------|------|------|
-| git init + 首版 tag | 已完成 | 2026-09-03 初始化并打 v0.1.0;远端待建 |
+| git init + 首版 tag + 远端发布 | 已完成 | 2026-09-03:公开仓 raystyle/ProjectEvo,main + v0.1.0 tag 已推,Release 已发;update 版本探测闭环实测(已是最新,exit 0)[实证] |
 | 项目级安装通道验证 | 进行中 | project-evo skill 命令已实现;找真实项目首装实测 |
 | 与 skill 规范仓 `project` skill 的分工说明 | 未开始 | project=元文件/文档四类规范;project-evo=结构源仓 全骨架与工作流,互补关系写清 |
 

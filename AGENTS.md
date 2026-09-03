@@ -83,5 +83,5 @@ ProjectEvo/
 - 平台:Windows · PowerShell 7(禁 powershell.exe 5.1 与 cmd)
 - 参照仓:\skill 规范仓(agentskills spec 落地范本)
 - skill 提炼源:D:\reader 仓、D:\PVE 仓、浏览器工具仓(家族骨架三仓)
-- 当前阶段:v0.1.0 已定版并 git 初始化 + tag(2026-09-03);远端仓待建推送
+- 当前阶段:v0.1.0 已发布(2026-09-03,raystyle/ProjectEvo 公开仓 + Release);部署 = uv tool install git+https://github.com/raystyle/ProjectEvo
 - 项目状态与待办见 `ROADMAP.md`,不再在本文维护
