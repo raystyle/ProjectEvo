@@ -2,6 +2,12 @@
 
 本文件记录 project-evo skill 及本仓库的所有可交付变更。格式:新增/变更/修复/移除 + 日期;先写 `[Unreleased]`,发布时转版本(git tag)。
 
+## [Unreleased]
+
+### 实测(2026-09-03,v0.1.0 后)
+
+- 真实项目首装(remotex,已有部分体系的存量仓):init 建 6 跳 5(幂等含 Windows 大小写碰撞保护)、check 诊断 8 PASS / 4 FAIL(均为存量文档真实差距:references 未登记新 INDEX、AGENTS 缺义务表、research 无六态、存量文档含 emoji)、skill 双落位安装 + gitignore 追加幂等;未触碰既有内容文件、未提交(目标仓自主裁决)
+
 ## [0.1.0] - 2026-09-03
 
 首个版本,双形态交付:
