@@ -1,0 +1,25 @@
+[project]
+name = "project-evo"
+version = "0.1.0"
+description = "项目进化:文档骨架脚手架与合规检查(四原语 + docs 六目录 + 五步工作流,ohmyagents 家族骨架)"
+requires-python = ">=3.12"
+dependencies = []
+license = { text = "MIT" }
+authors = [{ name = "ray" }]
+keywords = ["agent", "skill", "scaffold", "documentation"]
+
+[project.scripts]
+project-evo = "project_evo.cli:main"
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/project_evo"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,21 @@
+# === 智能体配置文件(运行时状态,不入库) ===
+.claude/
+.codex/
+.reasonix/
+.rmux_tasks/
+
+# === 密钥与凭据(宁可多忽略,不可漏忽略) ===
+.env
+*.pem
+*.key
+credentials.json
+
+# === 衍生垃圾文件 ===
+.venv/
+__pycache__/
+*.pyc
+node_modules/
+dist/
+build/
+*.tmp
+.pytest_cache/
