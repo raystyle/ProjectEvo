@@ -1,6 +1,6 @@
 [project]
 name = "project-evo"
-version = "0.1.0"
+version = "0.1.1"
 description = "项目进化:文档骨架脚手架与合规检查(四原语 + docs 六目录 + 五步工作流,ohmyagents 家族骨架)"
 requires-python = ">=3.12"
 dependencies = []
