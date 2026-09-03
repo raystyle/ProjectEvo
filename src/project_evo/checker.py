@@ -137,7 +137,7 @@ def check(root: Path) -> tuple[list[tuple[str, str, str]], bool]:
     # PE-13 INDEX 反引号路径断链粗检
     dead: list[str] = []
     for m in re.finditer(r"`([\w\-\\/\.]+\.(?:md|py|rs|toml|ts))`", index_text):
-        rel = m.group(1)
+        rel = m.group(1).replace("\\", "/")
         if not (root / rel).exists():
             dead.append(rel)
     r.append(("PE-13", "FAIL" if dead else "PASS",

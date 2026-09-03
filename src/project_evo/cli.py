@@ -106,6 +106,9 @@ def _cmd_skill(args: argparse.Namespace) -> int:
 
 
 def main(argv: list[str] | None = None) -> int:
+    for stream in (sys.stdout, sys.stderr):
+        if stream.encoding and stream.encoding.lower().replace("-", "") != "utf8":
+            stream.reconfigure(encoding="utf-8")
     parser = argparse.ArgumentParser(
         prog="project-evo", description="项目进化:结构安装、诊断、安全扫描与 SKILL 安装"
     )
