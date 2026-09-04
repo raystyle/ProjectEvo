@@ -9,7 +9,7 @@
 > 信源:SpecterOps/skills 市场仓组织维护形式实地调研(README/CONTRIBUTING/justfile/根双市场清单/插件双 manifest/catalog 机制原文取回核对)。用户裁定:放弃 uv CLI 分发,转插件市场仓,保留 git 历史原地重构;Codex 双面纳入;命令面全量(斜杠命令+hook)。六命令归宿:skill 安装与 update 随分发模式消亡(插件通道原生替代),init/check/scan 等价迁出,llms 降为 CI 冒烟。
 
 - 目录:skills/project-evo 迁至 plugins/project-evo/skills/project-evo,模板迁至 skills/project-evo/assets/templates(均 git mv 保沿革)
-- 双市场清单(.claude-plugin/marketplace.json 与 .agents/plugins/marketplace.json)+ 插件双 manifest(.claude-plugin/.codex-plugin,name/version/description 同步受测试守卫;Codex 面结构抄既证模板,行为未本仓实测 [推断])
+- 双市场清单(.claude-plugin/marketplace.json 与 .agents/plugins/marketplace.json)+ 插件双 manifest(.claude-plugin/.codex-plugin,name/version/description 同步受测试守卫;Codex 面实弹验收:codex-cli 0.149.1 本机 `marketplace add` + `plugin add` 成功,缓存按 manifest 版本 0.2.0 归位,51 文件全树随装 [实证])
 - 三脚本下沉 skill:scripts/{init,check,scan}.py(PEP 723 零依赖,逻辑原味迁自 CLI 模块);mdrules.py 立为禁字规则唯一权威(check PE-12/scan/md-guard 三面同源);md-guard.py 自包含化(PEP 723)随 skill 分发,plugin hook、.claude/settings.json、githooks 三处共用一份
 - Claude 面:commands/{init,check,scan}.md 斜杠命令 + hooks/hooks.json PostToolUse 挡板($CLAUDE_PLUGIN_ROOT);Codex 面走 skill 本体与双 manifest
 - 移除:src/project_evo 全树(六命令 CLI;update 自升级闭环、skill 双落位安装随分发模式消亡)、data/skill 内嵌副本(双漂移守卫随之取消,单源化)、.tools/md-guard.py(并入 plugin scripts)
