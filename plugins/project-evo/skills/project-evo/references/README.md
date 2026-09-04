@@ -45,7 +45,7 @@
 
 - [tool-project.md](tool-project.md) - 项目工具：`.tools/` uv 运行时 Python 脚本约定（PEP 723）、归档规则、沉淀铁律、外部工具路由
 - [tool-selection.md](tool-selection.md) - 依赖选型与探查：最小实现阶梯 2 到 5 档数据源（仓内/标准库/平台原生/已装依赖）、发现层（awesome 清单与官方库搜索）、五栈三通道对照（crates.io/PyPI/Gallery/npm）、稳度四信号、GitHub 通道、锁定与决策树
-- [tool-cli-agents.md](tool-cli-agents.md) - agent-native CLI 设计：双用户公理与 token 经济学、发现三通道（skills add/mcp add/--llms）、TOON 紧凑输出与 CTA、四面 schema、管道代码逃生舱（零 import 集成运行时）、脚本 workspace 集中归档（同 exec 运行时、apps 即命令、domain-skills 知识层）、定义一次多面暴露（Agent Plugins 三层）、行为 oracle 对齐、落地清单
+- [tool-cli-agents.md](tool-cli-agents.md) - agent-native CLI 设计：双用户公理与 token 经济学、发现三通道（skills add/mcp add/--llms）、市场分发协议（双客户端 add 形态、git 双协议、简写默认协议相反、钉版、source 七型）、TOON 紧凑输出与 CTA、四面 schema、管道代码逃生舱（零 import 集成运行时）、脚本 workspace 集中归档（同 exec 运行时、apps 即命令、domain-skills 知识层）、定义一次多面暴露（Agent Plugins 三层）、行为 oracle 对齐、落地清单
 - [tool-gh.md](tool-gh.md) - 搜索代码和项目仓库（release 管理其次）：定位决策表、两级 sha 链、搜索陷阱
 - [tool-git.md](tool-git.md) - 本地 clone 研究代码仓库（版本控制其次）：拉取策略、pickaxe/blame/bisect、平台坑
 - [tool-browser-harness.md](tool-browser-harness.md) - 搜索引擎和网页抓取：helper 面、AX 树定位、坐标点击、后台 tab 坑

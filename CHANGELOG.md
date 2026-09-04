@@ -4,6 +4,16 @@
 
 ## [Unreleased]
 
+### 新增（2026-09-04，第三十批:市场分发协议沉淀,tool-cli-agents 第二节增补）
+
+> 信源:Claude Code 官方文档原文取回(code.claude.com/docs 插件市场页)+ Codex 本机实弹(codex-cli 0.149.1:简写/SSH/HTTPS+钉版三形态逐一如实跑通)。用户问「marketplace add 应该支持 https 和 ssh 两种?」触发调研,裁定沉淀。
+
+- tool-cli-agents.md 第二节新增「市场分发:add 形态与 git 协议(双客户端)」小节:双客户端 add 形态/简写默认协议(SSH vs HTTPS,相反)/私库认证(标准 git 机制,Claude 后台更新禁 helper)/钉版(@ref、#ref、--ref)/marketplace.json 插件级 source 七型(./、github、url、git-subdir、npm、archive、command;url 双协议;marketplace 级只 ref 无 sha)/裸 json 不可作分发载体
+- 方法论一条:同一简写跨客户端解析不同,分发文档按客户端分别给实证 [经验]
+- 同文件第八节同构表修正:双漂移守卫已在第二十八批随单源化消亡,该行改指清单一致性守卫
+- README「快速开始」重写为「安装与部署」:四通道矩阵(Claude Code 插件/Codex 插件/本地市场开发态/裸脚本)+ 协议与钉版通用事实
+- references/README 条目描述同步
+
 ### 修复（2026-09-04，第二十九批:init 脚手架语义,目标目录不存在则创建）
 
 > 同日两犯升格:本地 e2e 与 CI 三系统冒烟(ubuntu/macos)各踩一次「目标目录不存在 exit 2」。裁定:init 是脚手架,建目标目录属其本性;check/scan 为只读诊断,保留存在性保护。

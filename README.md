@@ -2,26 +2,37 @@
 
 > 一句话定位：project-evo 插件市场仓。唯一交付 project-evo 插件：一个渐进知识库型 Agent skill，指导为项目建立需求驱动、留痕沉淀、持续进化的文档体系（根原语 + docs 六目录 + 五步工作流），按意图路由检索内置 references，附 init/check/scan 零依赖脚本与 md 禁字会话挡板。
 
-## 快速开始
+## 安装与部署
+
+四条通道,按客户端与环境选;前两条得到完整插件(skill + 斜杠命令 + md 禁字会话挡板),后两条按需取子集:
 
 ```text
-# 1. Claude Code 安装(推荐通道)
-/plugin marketplace add raystyle/ProjectEvo
-/plugin install project-evo@projectevo
-# 斜杠命令 /project-evo:init|check|scan 与 PostToolUse 禁字挡板随插件生效
+通道一 Claude Code 插件(推荐)
+  /plugin marketplace add raystyle/ProjectEvo
+  /plugin install project-evo@projectevo
+  得到:skill 意图路由 + /project-evo:init|check|scan 斜杠命令 + PostToolUse 禁字挡板
 
-# 2. Codex 安装
-codex plugin marketplace add raystyle/ProjectEvo
+通道二 Codex 插件
+  codex plugin marketplace add raystyle/ProjectEvo
+  之后在 Codex 的 /plugins 界面安装 project-evo
+  得到:skill 本体与 Codex manifest 面
+
+通道三 本地市场(开发态;指向工作树,改动即生效,免推送)
+  /plugin marketplace add D:\ProjectEvo          (Claude Code,路径换实际仓根)
+  codex plugin marketplace add D:\ProjectEvo     (Codex)
+
+通道四 裸脚本(任何环境;免插件免客户端,PEP 723 零依赖)
+  uv run plugins/project-evo/skills/project-evo/scripts/init.py <目标项目> --name <项目名>   # 安装骨架(幂等)
+  uv run plugins/project-evo/skills/project-evo/scripts/check.py <目标项目>                  # 诊断 PE-01 至 PE-13
+  uv run plugins/project-evo/skills/project-evo/scripts/scan.py <目标项目> [--no-history]    # secrets + md 禁字扫描
+  等价 PowerShell 用例集:plugins\project-evo\skills\project-evo\verification\command-test-cases.md
 ```
 
-脚本可独立使用(免插件,PEP 723 零依赖,uv run 或系统 python 直跑):
+协议与钉版(双客户端通用事实):
 
-```powershell
-uv run plugins/project-evo/skills/project-evo/scripts/init.py <目标项目> --name <项目名>   # 安装骨架(幂等不覆盖)
-uv run plugins/project-evo/skills/project-evo/scripts/check.py <目标项目>                  # 诊断 PE-01 至 PE-13(退出码 0/1/2)
-uv run plugins/project-evo/skills/project-evo/scripts/scan.py <目标项目> [--no-history]    # secrets + md 禁字扫描
-# 等价 PowerShell 用例集:plugins\project-evo\skills\project-evo\verification\command-test-cases.md
-```
+- 两客户端都接受 HTTPS 与 SSH git URL;GitHub 简写的默认协议**相反**:Claude Code 简写走 SSH(设 `CLAUDE_CODE_PLUGIN_PREFER_HTTPS=1` 切 HTTPS,官方文档),Codex 简写走 HTTPS(本机 0.149.1 实测)
+- 钉版:Claude Code `raystyle/ProjectEvo@v0.2.0` 或 URL 尾 `#v0.2.0`;Codex 加 `--ref v0.2.0`
+- 私有仓认证走标准 git 凭据(credential helper 或 ssh-agent),与终端 git 行为一致
 
 ## 目录结构
 

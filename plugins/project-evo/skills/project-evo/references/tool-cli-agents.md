@@ -1,6 +1,6 @@
 # agent-native CLI 设计：人与 agent 双用户契约
 
-> 本篇 = 目标项目造 CLI（或给存量 CLI 补面）时，把 agent 当第二类用户的设计契约：发现怎么被找到、输出怎么省 token、输入怎么稳、自由代码怎么逃生、任务脚本怎么归档、多面怎么同源。与 base-init.md 的 agent-native SKILL.md 模式（骨架层：根 SKILL.md 怎么写）互补；是否引入具体框架走 tool-selection.md 稳度判据。提炼自 wevm/incur（TS 原作）与 douglance/incurs（Rust 移植）两仓 README [实证: 2026-09-04 两仓 README 原文取回核对]；契约方法论框架无关，两仓是样本实现。
+> 本篇 = 目标项目造 CLI（或给存量 CLI 补面）时，把 agent 当第二类用户的设计契约：发现怎么被找到、输出怎么省 token、输入怎么稳、自由代码怎么逃生、任务脚本怎么归档、多面怎么同源。与 base-init.md 的 agent-native SKILL.md 模式（骨架层：根 SKILL.md 怎么写）互补；是否引入具体框架走 tool-selection.md 稳度判据。提炼自 wevm/incur（TS 原作）与 douglance/incurs（Rust 移植）两仓 README [实证: 2026-09-04 两仓 README 原文取回核对]；契约方法论框架无关，两仓是样本实现。第二节市场分发小节另源:Claude Code 官方文档原文 + Codex 本机实弹(0.149.1)[实证: 2026-09-04]。
 
 ## 一、双用户公理与 token 经济学
 
@@ -35,6 +35,23 @@
 - **skill 按命令组拆分**：单一大 skill 是发现层最贵形态（11489 token）；按命令组拆文件后 agent 只加载相关组（387） [实证: 信源 README 数字]
 - **--llms 双形态**：markdown 给 agent 读，JSON schema 给程序消费；一族工具同构时 agent 换工具零学习
 - 家族同款：browser-harness `--llms` 紧凑索引 [实证]；本仓 v0.2.0 起转插件市场形态,发现契约由 marketplace.json 承担、命令面收敛为 skill 内 scripts（旧 `project-evo llms` 随转型退役）[实证: 第二十八批]；reader `reader skill` 生成根 SKILL.md [经验: base-init 跨项目适配表]
+
+### 市场分发:add 形态与 git 协议(双客户端)
+
+插件市场形态下,分发与发现即 `marketplace add`。双客户端对照:
+
+| 能力 | Claude Code `/plugin marketplace add` | Codex `codex plugin marketplace add` |
+| --- | --- | --- |
+| add 参数形态 | `owner/repo[@ref]`、带 scheme 的 git URL(`#ref`)、直指 marketplace.json 的 URL、本地路径 | 本地路径、`owner/repo[@ref]`、HTTPS URL、SSH URL(git 源另有 `--ref`/`--sparse`) |
+| 简写默认协议 | **SSH**;`CLAUDE_CODE_PLUGIN_PREFER_HTTPS=1` 切 HTTPS [实证: 官方文档取回] | **HTTPS**(简写实测解析为 https 克隆) [实证: codex-cli 0.149.1 本机] |
+| 私库认证 | 标准 git 机制:credential helper(推荐 `gh auth setup-git`)或 known_hosts+ssh-agent;后台自动更新禁用 helper(SSH 不受影响) | 同 git 机制 |
+| 钉版 | 简写尾 `@v0.2.0` 或 URL 尾 `#v0.2.0` | `--ref v0.2.0` |
+
+要点:
+
+- **同一简写,跨客户端解析不同**(一面 SSH 一面 HTTPS):分发文档按客户端分别给实证,不假设「简写即 https」 [经验: 本仓 v0.2.0 双面验收]
+- marketplace.json 插件级 source 七型:`./` 开头相对路径(相对市场根,非 `.claude-plugin/`)、`github`(repo+可选 ref/sha,sha 须 40 位完整值)、**`url`**(git 仓,https 与 `git@` 两式都收)、`git-subdir`(url+path,另收简写与 SSH)、`npm`、`archive`(https zip+sha256)、`command`;marketplace 级 git source 只支持 ref 不支持 sha [实证: 官方文档取回 2026-09-04]
+- 直指单个 json 文件的 URL 只 fetch 该文件,市场内相对路径插件 source 无法解析:市场分发用仓,不用裸 json [实证: 官方文档取回]
 
 ## 三、输出契约：紧凑可解析与下一步建议
 
@@ -117,7 +134,7 @@ incurs 方法：vendored 上游 TS 实现为**行为 oracle**，其 1062 条测�
 | oracle 法组件 | 本仓同构 |
 | --- | --- |
 | 行为 oracle（参考实现即标准） | 黄金文件（flow-testing.md） |
-| parity gate（双实现比输出） | 双漂移守卫（data/skill 与 skills/ 逐文件一致） |
+| parity gate（双实现比输出） | 清单一致性守卫(双 manifest 字段与市场版本同步,pytest 常驻) |
 | 清单与 schema 溯源 | llms 冒烟（CI 门禁） |
 
 ## 九、脚本 workspace：集中归档与同运行时复用
