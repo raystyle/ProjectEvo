@@ -39,9 +39,11 @@ ProjectEvo/
 ├── skills/
 │   └── project-evo/     # 唯一交付 skill:项目进化(结构源仓 文档骨架)
 │       ├── SKILL.md     # 意图路由 + 体系速览 + 知识库检索方法
-│       ├── references/  # 分类扁平参考目录(前缀分组 17 篇,README 渐进索引路由)
+│       ├── references/  # 分类扁平参考目录(前缀分组 21 篇,README 渐进索引路由)
 │       ├── verification/# 命令行为验证用例(规范检查命令,参数化 ProjectRoot)
 ├── src/project_evo/     # uv Python 工具(CLI:init/check/llms/skill;data/ 内嵌 SKILL 副本受双漂移守卫)
+├── .tools/              # uv 运行时门禁脚本(md-guard:md 禁字挡板,集成约束形态二)
+├── githooks/            # git 提交钩子(pre-commit 挡板,形态三;git config core.hooksPath githooks)
 ├── tests/               # pytest(含 SKILL 双漂移守卫)
 ├── pyproject.toml       # uv 项目定义(零运行时依赖)
 ├── docs/                # 本仓库自身文档(地图见 docs/README.md)
@@ -77,6 +79,7 @@ ProjectEvo/
 4. **变更完整性**：只改 skill 不同步 SKILL.md 索引/references/CHANGELOG = 变更不完整。[经验]
 5. **禁止 emoji**;mermaid 画流程图。[经验： 渲染错乱踩坑]
 6. **先读文档再执行**：操作前先查 references/索引，禁止凭记忆重写删减版。[经验： 「文档在、执行者没查」踩坑]
+7. **吸收即提炼**：外部信源与家族实践进库前剔除无用与冗余，只留最准确精练的可复用表达；新增不是堆料，每篇自省可再删。[经验： 用户裁定 2026-09-04]
 
 ## 五、环境事实
 

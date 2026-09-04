@@ -61,6 +61,7 @@ rg -c "D01" PRD.md; rg -c "D01|建立" GOAL.md
 # [PE-10] 六态标记在研究/方案文档中出现(有此类文档时)
 rg -l "\[实证:|\[推断:|\[经验:|\[假设:" docs
 # 预期: 非空(research/proven 至少一篇带标记)
+# 注记: 中转态(假设/推断/记忆)是否带验证路径与复核点、收尾是否处置悬空条目,属语义判断,机检不做,收尾手检(见 base-writing-standards.md 六态红线)
 
 # [PE-11] 标题禁括号(正文 markdown 标题行)
 rg -n "^#+ .*[()]" docs AGENTS.md README.md

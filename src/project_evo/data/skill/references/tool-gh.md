@@ -33,7 +33,7 @@
 | `--json` 字段硬校验 | `--json nope` 到 exit 1 | 用 `--help` 列出的字段 |
 | search 与 view 字段名不同 | `stargazerCount`(view)/`stargazersCount`(search） | 区分命令 |
 
-选型双通道口径：gh search（code 实证）+ crates.io/PyPI 元数据，结论标六态 [经验： reader 仓 R002 选型细则同款]。定位后 `gh repo clone` 本地深读（交给 tool-git.md 零节）。
+选型双通道口径：gh search（code 实证）+ crates.io/PyPI 元数据，结论标六态（五栈数据源与稳度判据见 tool-selection.md） [经验： reader 仓 R002 选型细则同款]。定位后 `gh repo clone` 本地深读（交给 tool-git.md 零节）。
 
 ## 一、认证与状态
 

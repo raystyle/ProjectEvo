@@ -1,6 +1,6 @@
 # browser-harness - 浏览器直控操作指南
 
-> 定位：**搜索引擎与网页抓取**（用户裁定）：google_search/bing_search 走真实浏览器搜引擎，web-fetch/extract 抓正文；亦覆盖自动化、JS 渲染、登录态页面。**普通 HTTP 能拿到的页面不要用它**（fetch/curl 优先）。本机 CLI v0.6.8 [实证： 2026-09-03 `browser-harness --version`]。
+> 定位：**搜索引擎与网页抓取**（用户裁定）：google_search/bing_search 走真实浏览器搜引擎，web-fetch/extract 抓正文；亦覆盖自动化、JS 渲染、登录态页面。**普通 HTTP 能拿到的页面不要用它**（fetch/curl 优先）。本机 CLI v0.6.12 [实证： 2026-09-04 `browser-harness --version` + 搜索/抓取实弹复验]。
 
 ## 零、搜索与抓取（首要场景）
 
@@ -25,7 +25,7 @@ browser-harness web-fetch "https://x.com/home" --browser          # 需会话/JS
 
 | 类别 | 函数 |
 | --- | --- |
-| 导航/标签 | `new_tab` `goto_url` `wait_for_load` `list_tabs` `current_tab` `switch_tab` `activate_tab` `ensure_real_tab` |
+| 导航/标签 | `new_tab` `goto_url` `wait_for_load` `wait_for_render` `list_tabs` `current_tab` `switch_tab` `activate_tab` `ensure_real_tab` |
 | 页面读写 | `page_info` `js` `cdp` `click_at_xy` `capture_screenshot` |
 | 抓取/搜索 | `extract_url_content` `extract_page_content` `web_fetch` `google_search` `bing_search` `http_get`(agent_helpers) |
 | 工程桥 | `run_app`（子命令桥） `setup_browser_apps` `start_recording`/`stop_recording` |
@@ -38,8 +38,8 @@ browser-harness browsers         # 实例列表(agent/user 标记、tab 绑定)
 browser-harness current          # 当前 attach 的目标
 ```
 
-- 默认 daemon 钉在**隔离 agent Chrome**（端口 9223，标题带马形标记），永不碰用户自己的 Chrome [实证： 2026-09-03 browsers 输出确认隔离]
-- agent Chrome 未起时 `ensure_daemon` 自动拉起；**冷启动首条命令可能 5s 超时**，等 `browser_ready: true` 后重试即成功 [实证： 2026-09-03 实测]
+- 默认 daemon 钉在**隔离 agent Chrome**（端口 9223，标题带马形标记），永不碰用户自己的 Chrome [实证： 2026-09-03 browsers 输出确认隔离]；0.6.10 起支持**任务级浏览器隔离**（每任务独立浏览器 + `Browser.close` 优雅关闭） [实证: 上游 CHANGELOG]
+- agent Chrome 未起时 `ensure_daemon` 自动拉起；**冷启动首条命令可能超时**，等 `browser_ready: true` 后重试即成功 [实证： 2026-09-03 实测]
 
 ## 二、脚本模式（管道喂 Python)
 
@@ -96,7 +96,8 @@ capture_screenshot()                                # 返回 PNG 路径(非 base
 
 | 症状 | 根因 | 处理 | 状态 |
 | --- | --- | --- | --- |
-| 首条命令 `_IPCResponseTimeout` | agent Chrome 冷启动中 | 查 doctor，`browser_ready: true` 后重试一次 | [实证： 2026-09-03] |
+| 首条命令 `_IPCResponseTimeout` | agent Chrome 冷启动中 | 查 doctor，`browser_ready: true` 后重试一次；0.6.10 起三档超时可配（`BH_IPC_TIMEOUT` 普通往返 5s / `BH_NAVIGATE_TIMEOUT` 导航 30s / `BH_SCREENSHOT_TIMEOUT` 60s），导航按三态事件判定（成功/失败/unknown 如实上报，绝不把「还没回来」伪装成「拿不到」） | [实证： 2026-09-03;Issue #3 于上游 0.6.10 修复] |
+| `web-fetch` 子命令输出经 PowerShell 管道中文塌码 | stdout 编码链坏 | 管道脚本模式写 UTF-8 文件再读，不走子命令 stdout 管道 | [实证： 2026-09-04 两踩] |
 | 隐藏 tab 上 `click_at_xy` 无效果 | 后台 tab 渲染暂停 | `activate_tab(current_tab())` 后重试同一点击 | [实证： 2026-09-03] |
 | `Runtime.evaluate` 超时 | 页面正在跳转 | 属正常瞬态；稍后重读 `page_info()` | [实证： 2026-09-03] |
 | AX 树 role/name 取不到 | 字段是 property object，嵌套随版本变 | 用归一化函数逐层取 value | [实证： 2026-09-03] |

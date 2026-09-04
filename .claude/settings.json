@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run --project \"$CLAUDE_PROJECT_DIR\" \"$CLAUDE_PROJECT_DIR/.tools/md-guard.py\"",
+            "timeout": 60,
+            "statusMessage": "md 禁字门禁"
+          }
+        ]
+      }
+    ]
+  }
+}

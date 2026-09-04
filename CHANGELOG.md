@@ -4,6 +4,113 @@
 
 ## [Unreleased]
 
+### 新增（2026-09-04，第二十七批：agent-native CLI 设计指南,双用户契约、自由代码面与脚本 workspace 吸收）
+
+> 信源:wevm/incur(TS 原作)与 douglance/incurs(Rust 移植)两仓 README 原文取回核对;叠加家族 browser-harness 与云 CLI 仓 管道代码逃生舱、browser-harness browser-workspace 脚本归档设计实证(用户裁定纳入)。契约方法论框架无关,两仓为样本实现。
+
+- 新增 `references/tool-cli-agents.md`(第 21 篇),十节:双用户公理与 token 经济学(MCP/单 skill/agent-native 三形态会话成本对照,数字为信源建模未本仓复验);发现契约三通道(skills add/mcp add/--llms,skill 按命令组拆分,发现层 11489 到 387);输出契约(TOON 紧凑格式/--format 面/CTA/输出策略两档);输入契约(四面 schema/类型即文档一份多渲染/弃用全通道同步);**自由代码面**(管道代码逃生舱:here-string/heredoc 喂代码、内置库函数零 import 直集成运行时、helper 双通道;incurs Code Mode 为产品化形态,审批生命周期);人机分叉(agent 检测/全局 flag 契约);定义一次多面暴露(共享命令图 + Agent Plugins 1.0 三层:Prompt Artifact/Tool Binding/Tool Runtime);行为 oracle 对齐法(1062 测试 parity gate,映射黄金文件/双漂移守卫/llms 冒烟);**脚本 workspace**(browser-workspace 实证:agent 拥有的运行时目录非包源码、钉数据根与代码根解耦、两类产物两个口(browser_helpers.py merge 覆写 + apps/<名>.py 即成一级命令 APP_ARGS)、apps 与管道代码同一 exec 运行时零 import 互见、包薄核 + 插件增量供给本地永不删、domain-skills 站点知识层、包管稳定内核 workspace 管长尾演化);落地清单九问(含逃生舱与归档两问)
+- 接线:SKILL.md 意图路由加行、description 加触发词、篇数 20 改 21;references/README 三层同步(全量 22 篇);AGENTS 仓库地图 references 篇数 17 改 21(滞后校正)
+- data/skill 副本同步(双漂移守卫)
+
+### 变更（2026-09-04，第二十六批：browser-harness 0.6.12 复验与事实刷新）
+
+> 上游 D:\browser-harness 更新至 v0.6.12(装态同版本);实弹复验搜索与抓取全过(google_search 3 条、example.com 抓取、维基 Feedback 78KB 正文一次过,此前四度超时的同页,新版导航 30s 预算生效)。
+
+- tool-browser-harness.md:版本 0.6.9 到 0.6.12;helper 面补 `wait_for_render`(渲染态判官);连接模型补任务级浏览器隔离;坑表首行按 Issue #3 修复改写(三档超时 env 可配:BH_IPC_TIMEOUT 5s/BH_NAVIGATE_TIMEOUT 30s/BH_SCREENSHOT_TIMEOUT 60s;导航三态事件判定,unknown 如实上报不伪装)
+- 注记:上游修复原则「事件驱动判状态(成功/失败/未知),超时只做无事件时的死锁兜底」与本仓第二十批事件驱动模型同构 [实证: 上游 CHANGELOG 0.6.10]
+- env-environment.md 版本快照同步;data/skill 副本同步
+
+### 变更（2026-09-04，第二十五批：环环相扣收口,体系骨架显式化 + 断链工具沉淀）
+
+> 用户验收标准:skill 要形成环环相扣的框架体系。机械层:交叉引用断链扫描 0;结构层:骨架显式化为 SKILL.md 七层环扣表。
+
+- SKILL.md 体系速览新增「体系骨架(七层环扣)」表:认知(六态+知行合一)/对话(双向问答)/流程(五步+阶梯)/探查(选型+工具管线)/执行(事件+超时)/验证(测试门禁+PE)/沉淀(分治+集成约束),与传动句「执行产事件、验证产反馈,沉淀转资产,资产生复利;吸收即提炼是入库口径」;核心思想补代谢链一句
+- exp-sedimentation 集成约束节挂 flow-testing 交叉引用(约束与门禁同源)
+- 新增 `.tools/md-ref-scan.py`(PEP 723 零依赖断链扫描,断链检查手拼二犯升格,沉淀铁律);pre-commit 接入(git 提交挡板 = md-guard --staged + md-ref-scan);.tools/README 登记
+- ROADMAP 阶段三「断链扫描工具适配」翻已完成
+- data/skill 副本同步
+
+### 变更（2026-09-04，第二十四批：tool-selection 增发现层,awesome 清单与官方库搜索）
+
+> 用户裁定:补各开发环境各领域的 awesome 清单与各语言官方库、GitHub 搜索方法,即「不知道叫什么」的发现层。
+
+- tool-selection.md 新增「三、发现层」:awesome 清单用法(总索引 sindresorhus/awesome,领域清单 gh search 拿;**扫清单拿候选名再回三通道核稳度,清单是发现不是裁决**,清单自身也看 pushedAt)与官方库搜索表(Rust docs.rs/Python docs/Node api+MDN/pwsh Get-Command+Learn/Go pkg.go.dev);原三至五节顺延,决策树首行改走 awesome 入口
+- references/README 条目描述同步;data/skill 副本同步
+
+### 新增（2026-09-04，第二十三批：依赖选型探查手册,阶梯的落地方法）
+
+> 用户裁定:阶梯是知,「怎么查到每一档」是行,没有探查方法阶梯空转;五栈(rust/python/powershell/node/typescript)大量库与仓可搜索研究。提炼自家族选型手册四篇:结构源仓 R005(Rust crates.io+GitHub 双通道)、R008(PyPI)、R009(PowerShell Gallery)、云 CLI 仓 R004(npm),骨架同构。
+
+- 新增 `references/tool-selection.md`(第 20 篇):阶梯 2 到 5 档数据源表(本仓 rg/标准库文档/平台原生/已装清单);五栈三通道能力对照(差异即方法:PyPI 关键词仅网页、Gallery CLI 恒带显式仓、cargo search 镜像须 --registry);稳度四信号(下载/发版/维护者/License,启发式非门禁);GitHub 通道四步;防仿冒与单锁纪律;结论落 S 文档双通道各一条证据、装后跑最小用例(反馈)
+- 接线:flow-workflow 阶梯 bullet 挂指针;tool-gh 选型双通道挂指针;SKILL.md 意图路由加行、篇数 20;references/README 三层同步(全量 21 篇);data/skill 副本同步
+
+### 变更（2026-09-04，第二十二批：吸收 ponytail 最小实现阶梯）
+
+> 信源:DietrichGebert/ponytail README 全文(raw 取回)。其基准数字经一次社区纠偏(#126,单发基线虚高)后自我修正为诚实口径(均值 54% 减码、安全 100%),与六态实证纪律同气。
+
+- flow-workflow.md 拆步骤标准加两行:**最小实现阶梯**(不需要就跳过/本仓已有就复用/标准库、平台原生、已装依赖有就用/一行就一行/皆否才写够用的最小;小因为必要不是高尔夫)+ **阶梯两护栏**(懒于解不懒于读=反冥行妄作;最小不削安全,验证/错误处理/安全/无障碍不上砧板)
+- 与既有体系映射确认:阶梯是「验证过的直接复用」的执行形态,未新增文件;references/README flow-workflow 条目描述同步
+- data/skill 副本同步
+
+### 变更（2026-09-04，第二十一批：全库自省,残留清剿与事实复验）
+
+> 执行第二十批「吸收即提炼」裁定的自省后续:全 20 篇参考 + SKILL 通读复查,四查(冗余/啰嗦/跨文件重复/事实过时)。
+
+- 扁平化残留三处:tool-project「references/tools/」与 flow-release 两处「tools/tool-*」改为扁平路径(第六批扁平化漏网)
+- 版本事实复验(五工具实测):browser-harness 0.6.8 到 0.6.9、reader 0.4.0 到 0.5.0 刷新;gh 2.98.0/git 2.55.0/aria2 1.37.0/ome 0.1.0 复验无变化;tool-reader 篇内细节断言按六态诚实标注「0.4.0 版实证,待复验」
+- tool-browser-harness 坑表补一行:web-fetch 子命令输出过 PowerShell 管道中文塌码,处理=管道脚本写 UTF-8 文件再读(本日两踩)
+- 指针补齐:base-init 追问链指向 flow-inquiry;flow-workflow「先读文档再执行」改「纪律」(硬规则编号是本仓语境,对目标项目读者悬空)
+- 通读结论:base-init/base-docs-directories/base-primitives/env-platform/flow-release/exp-pitfalls 及五工具篇密度合格,不动
+
+### 新增（2026-09-04，第二十批：事件驱动模型吸收 + 吸收即提炼裁定与全库自省）
+
+> 用户裁定(2026-09-04):吸收是提炼,大量无用与冗余信息须剔除,保最准确精练的上下文表达;立为硬规则并对全部文档自省。信源:熔断器维基全文、let-it-crash 原文(支付服务三返回态例证);EDP 维基与超时专文四度撞冷启动超时未取正文(题录级)。
+
+- 新增 `references/flow-events.md`(第 19 篇):三态事件(成功/失败/未知,未知最危险且不等于失败);let it crash 监督者模式(未知态处理从业务代码剥离到监督层);超时兜底三选(幂等重试一次/换路径/放弃并记录);熔断三态(Closed/Open/Half-open,防重试风暴);与六态接口(成功=实证渠道、失败=错误路径、未知=中转态)
+- 接线:flow-workflow 拆步骤标准加「等待有上限」;SKILL.md 意图路由加行、篇数 19;references/README 三层同步(全量 20 篇);data/skill 副本同步
+- 硬规则 7「吸收即提炼」立规(AGENTS.md);base-writing-standards 写完自查加第 6 条;全库自省瘦身(flow-events/flow-testing/base-writing-standards 四节等剔除重复表述)
+
+### 新增（2026-09-04，第十九批：测试流程规范吸收,双轴分层与五层正名）
+
+> 提炼源:本地九仓实测(reader 仓 G006 六层体系、ome 源仓 R004 黄金文件与真机对齐、结构源仓 R004 双轴雏形、浏览器工具仓 R003 四层、云 CLI 仓冒烟矩阵与真钥验收、虚拟化仓 Pester 结构冒烟与 DryRun、主机环境仓 verify/heal 闭环与假绿防线、PVE 仓 dryrun 闸门、远端接入仓 doctor 哨兵);四路并行调研,文档引句与测试实盘双核对。
+
+- 新增 `references/flow-testing.md`(第 18 篇):**双轴模型**(地基层=框架原生单元/集成/文档测试,意图层=冒烟/回归/验收/A-B 目的流程,两轴正交);五层正名表(每层归属轴、回答的问题、载体、时机);断言纪律七条(期望值独立来源禁重言式、只断稳定字段、正负例成对、错误路径覆盖等,家族各仓 AGENTS 逐字一致);跨栈载体速查(Rust/Python/TS/PowerShell 四栈);门禁时机谱(本地三件到批次到 CI 三系统到发版三路到 verify/heal 收尾,含假绿防线);特色机制八项(黄金文件 oracle、快照纪律、回归生长律、防漂移、DryRun 沙箱、A-B、验收即对照、六态衔接);AGENTS「写测试时」摘要条款
+- 接线:flow-workflow 验收口径加测试分层调度行;base-primitives 义务表「写测试」行指向;SKILL.md 意图路由加行、篇数 18;references/README 三层同步(全量 19 篇)
+- data/skill 内嵌副本同步(双漂移守卫)
+
+### 新增（2026-09-04，第十八批：集成约束四形态落地,禁字二犯升格）
+
+> 用户裁定(2026-09-04):重复犯的错误除规则与文档记录外必须有集成约束:Agent 的各种 HOOK 阻断或提醒、项目强制执行的 uv 运行时 python 脚本工具、git 提交事件的 HOOK 提醒、转换的回归测试用例。规则是知,约束是行。触发案:第十六/十七批新增文本连犯破折号禁字(各被 scan 当场抓住)。
+
+- 教义:exp-sedimentation.md 升格节加「集成约束(二犯以上必配)」四形态与验收清单第 5 条;SKILL.md 意图路由、references/README 条目同步;data/skill 副本同步
+- 形态一(agent hook):`.claude/settings.json` PostToolUse hook(Edit|Write|MultiEdit 到 `.tools/md-guard.py`,违规 exit 2 回传提醒);本会话实弹验证触发;.gitignore 改为忽略 `.claude/*` 但放行 `settings.json`(约束资产入库,其余仍为运行时状态)
+- 形态二(uv 脚本门禁):`.tools/md-guard.py`(stdin hook 模式与 --staged 挡板模式;规则唯一权威在 `project_evo.mdfix`,与 scan/check PE-12 同源)+ `.tools/README.md` 清单
+- 形态三(git 钩子):`githooks/pre-commit` 调 md-guard --staged,不过不进库;`git config core.hooksPath githooks` 已设;实测违规模板被挡(exit 1)、干净放行
+- 形态四(回归测试):`tests/test_repo_md_clean.py` 仓内全量 md 禁字清零回归,CI 常驻;安装态自动跳过
+- AGENTS.md 仓库地图补 `.tools/` 与 `githooks/` 两行;提交时 githooks/pre-commit 需 `git update-index --chmod=+x`(Windows 下保 exec 位)
+
+### 变更（2026-09-04，第十七批：双向问答协议定型,吸收 grilling 拷问机制）
+
+> 用户裁定(2026-09-04):对话模式定型为两式:你问我答(agent 拷问用户,收敛决策)与我问你答(用户咨询 agent,以问为种子扩充整理)。信源:mattpocock/skills 的 grilling SKILL.md(raw 取回,模板占位符经 blob 渲染页核对)。
+
+- 新增 `references/flow-inquiry.md`(第 17 篇):你问我答四机制(设计树、前沿轮次=前置已定问题整轮齐问附推荐答案、事实/决策/实验三分流、无静默假设终止判据)+ 我问你答扩充式整理(用户裁定:以问为种子不断扩充追加所有关联详情,整理三步=种子扩散/人类组织/落位回写;自检三条=先读文档再答/答必六态/信源核实)+ 闭环 mermaid(两通道汇于方案,实验类走 PoC);实验三分与落位义务为超出 grilling 原文的扩展(原文只有事实/决策二分)
+- flow-workflow.md:登记步追问链挂接拷问模式;base-primitives.md:文档义务表「追问链澄清」行注记(你问我答+轮次算法指向)
+- SKILL.md:description 加双向问答触发词、意图路由加行、篇数 16 改 17;references/README.md:快速路由+场景索引+全量清单 18 篇同步
+- data/templates/AGENTS.md:对话节补「对话分两式」摘要行(细则唯一权威在 skill)
+- data/skill 内嵌副本同步(双漂移守卫)
+
+### 变更（2026-09-04，第十六批：知行合一植入,六态理论升级与工作纪律落地）
+
+> 理论裁定（用户 2026-09-04）:六态是知行合一的工程化,实证=知行合一态;五态为中转态,为进入实证服务;实证与经验循环,迭代复利;阳明术语（冥行妄作/悬空思索/着实去做/事上磨炼）进正式词汇。信源:王阳明知行合一双源核对（光明日报/人民网理论频道 + 中文维基,后者参考节引前者,独立性部分打折;核心引句双源吻合）。
+
+- base-writing-standards.md:六态节重构为「知行合一的工程化」;两级结构（实证态一/中转态五）+ mermaid 六态流转图;用法升红线级:中转态标注义务（假设/推断附验证动作、记忆附复核点,不写即未完成）与收尾处置纪律（悬空升实证/留 research/注销,禁止滞留）;写完自查同步
+- flow-workflow.md:新增「三、知行合一工作纪律」（反冥行妄作=不查不验就动手、反悬空思索=研究做完不落地（PoC 必落 poc\ 目录）、着实去做、事上磨炼）,原三至八节顺延重编号;验收通用口径补两条（悬空中转态处置、研究类目标验收看 PoC 产物）
+- exp-sedimentation.md:成功经验链下新增「实证与经验的循环（迭代复利）」小节（mermaid + references 为循环固化形态）
+- exp-pitfalls.md:P6 六态标记滥用补第三误读（中转态长期滞留）与正解同步
+- SKILL.md:description 加知行合一触发词;意图路由与体系速览同步;references/README.md 三条目描述同步;verification PE-10 加手检注记（验证路径属语义判断,机检不做）
+- data/skill 内嵌副本同步（双漂移守卫）;G001 模板六态节补一行
+- 不动:checker/cli 不加新 PE 检查;AGENTS 硬规则与 ROADMAP 无涉
+
 ### 实测（2026-09-03,v0.1.0 后）
 
 - 真实项目首装（remotex，已有部分体系的存量仓）：init 建 6 跳 5（幂等含 Windows 大小写碰撞保护）、check 诊断 8 PASS / 4 FAIL（均为存量文档真实差距：references 未登记新 INDEX、AGENTS 缺义务表、research 无六态、存量文档含 emoji）、skill 双落位安装 + gitignore 追加幂等；未触碰既有内容文件、未提交（目标仓自主裁决）

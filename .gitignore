@@ -1,6 +1,8 @@
-# === 智能体配置文件(运行时状态,不入库) ===
-.claude/
+# === 智能体配置文件(运行时状态,不入库;settings.json 例外:集成约束资产) ===
+.claude/*
+!.claude/settings.json
 .codex/
+.ohmyagents/
 .reasonix/
 .rmux_tasks/
 
