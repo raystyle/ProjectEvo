@@ -1,6 +1,6 @@
 # project-evo 命令行为验证用例集（（1） 工具/命令行为评估）
 
-> project-evo 是文档体系 skill；机检形态为 skill 内 `scripts/check.py`（PEP 723 零依赖，`uv run check.py <项目>` 直跑，退出码 0/1/2），本文件是其等价 PowerShell 用例集，验证一个项目是否遵守 project-evo 骨架。
+> project-evo 是文档体系插件(核心 skill 为 evo)；机检形态为 skill 内 `scripts/check.py`（PEP 723 零依赖，`uv run check.py <项目>` 直跑，退出码 0/1/2），本文件是其等价 PowerShell 用例集，验证一个项目是否遵守 project-evo 骨架。
 > 用例均参数化 `$ProjectRoot`（默认指向本仓库自身，也能指向任意目标项目复用）。
 > 每条可直接复制复验。
 

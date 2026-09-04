@@ -4,6 +4,15 @@
 
 ## [Unreleased]
 
+### 变更（2026-09-04，第三十一批：skill 改名 evo,消除插件名与 skill 名重叠）
+
+> 用户指出市场安装后显示 Skill(project-evo:project-evo) 双名重叠;裁定:插件名、市场安装标识、`/project-evo:*` 斜杠命令前缀不动(品牌与安装兼容优先),skill 目录与 name 改为 evo,显示收敛为 project-evo:evo。
+
+- 目录:plugins/project-evo/skills/project-evo git mv 至 plugins/project-evo/skills/evo;SKILL.md frontmatter name 同步 evo(硬规则:name 与目录名一致)
+- 仓内路径引用全量同步:README(含反斜杠命令示例)、docs/README、AGENTS(规范导语/name 规则/地图/分层原则/硬规则 1)、插件 README 与三斜杠命令、hooks.json($CLAUDE_PLUGIN_ROOT 面)、.claude/settings.json、githooks/pre-commit、.tools/md-ref-scan 默认根、CI 冒烟、tests 两处路径;CHANGELOG 历史批次记载保留原路径不改
+- verification 引言措辞修正:project-evo 定位为文档体系插件,核心 skill 为 evo
+- 插件名、双市场清单、双 manifest、安装通道均不变;已安装用户插件更新即得新路径,无需重装
+
 ### 新增（2026-09-04，第三十批:市场分发协议沉淀,tool-cli-agents 第二节增补）
 
 > 信源:Claude Code 官方文档原文取回(code.claude.com/docs 插件市场页)+ Codex 本机实弹(codex-cli 0.149.1:简写/SSH/HTTPS+钉版三形态逐一如实跑通)。用户问「marketplace add 应该支持 https 和 ssh 两种?」触发调研,裁定沉淀。

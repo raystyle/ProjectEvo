@@ -15,7 +15,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
 PLUGIN = REPO / "plugins" / "project-evo"
-SCRIPTS = PLUGIN / "skills" / "project-evo" / "scripts"
+SCRIPTS = PLUGIN / "skills" / "evo" / "scripts"
 
 
 def _load(name: str):
@@ -153,7 +153,7 @@ def test_marketplace_catalog_consistency():
     entry = next(p for p in claude_mkt["plugins"] if p["name"] == "project-evo")
     assert entry["version"] == claude_man["version"], "市场清单版本与 manifest 漂移"
 
-    skill = PLUGIN / "skills" / "project-evo"
+    skill = PLUGIN / "skills" / "evo"
     assert (skill / "SKILL.md").is_file()
     assert (skill / "references").is_dir() and (skill / "assets" / "templates").is_dir()
     for s in ("init.py", "check.py", "scan.py", "mdrules.py", "md-guard.py"):

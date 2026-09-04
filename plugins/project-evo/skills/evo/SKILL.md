@@ -1,5 +1,5 @@
 ---
-name: project-evo
+name: evo
 description: >-
   项目进化(project evolution)渐进知识库:指导建立与治理项目的文档结构和规则(家族骨架),
   并以需求驱动的循环推动项目持续进化。根原语 AGENTS/PRD/GOAL/PLAN/TODO/INDEX + docs 六目录
@@ -10,7 +10,7 @@ description: >-
 compatibility: 通用(不限语言/平台);提炼自 Rust CLI、Python 基础设施 harness、Python CLI+daemon 三类仓实践。
 ---
 
-# project-evo - 项目进化指南
+# evo - project-evo 项目进化指南
 
 **渐进知识库型 skill**：本文件只做两件事，**意图路由**（你要做的事 到 该查哪篇参考）与**体系速览**（一层概览）；完整知识在 `references/` 分类扁平目录（前缀 base/flow/env/tool/exp 分组，21 篇自包含），按「rg 定位文件 + mq 提取结构」渐进检索，不要求一次读完。
 

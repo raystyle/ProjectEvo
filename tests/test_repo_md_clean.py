@@ -12,7 +12,7 @@ from pathlib import Path
 import pytest
 
 REPO = Path(__file__).resolve().parent.parent
-_MDRULES = REPO / "plugins" / "project-evo" / "skills" / "project-evo" / "scripts" / "mdrules.py"
+_MDRULES = REPO / "plugins" / "project-evo" / "skills" / "evo" / "scripts" / "mdrules.py"
 
 _spec = importlib.util.spec_from_file_location("pevo_mdrules", _MDRULES)
 mdrules = importlib.util.module_from_spec(_spec)

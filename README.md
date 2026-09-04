@@ -22,10 +22,10 @@
   codex plugin marketplace add D:\ProjectEvo     (Codex)
 
 通道四 裸脚本(任何环境;免插件免客户端,PEP 723 零依赖)
-  uv run plugins/project-evo/skills/project-evo/scripts/init.py <目标项目> --name <项目名>   # 安装骨架(幂等)
-  uv run plugins/project-evo/skills/project-evo/scripts/check.py <目标项目>                  # 诊断 PE-01 至 PE-13
-  uv run plugins/project-evo/skills/project-evo/scripts/scan.py <目标项目> [--no-history]    # secrets + md 禁字扫描
-  等价 PowerShell 用例集:plugins\project-evo\skills\project-evo\verification\command-test-cases.md
+  uv run plugins/project-evo/skills/evo/scripts/init.py <目标项目> --name <项目名>   # 安装骨架(幂等)
+  uv run plugins/project-evo/skills/evo/scripts/check.py <目标项目>                  # 诊断 PE-01 至 PE-13
+  uv run plugins/project-evo/skills/evo/scripts/scan.py <目标项目> [--no-history]    # secrets + md 禁字扫描
+  等价 PowerShell 用例集:plugins\project-evo\skills\evo\verification\command-test-cases.md
 ```
 
 协议与钉版(双客户端通用事实):
@@ -46,7 +46,7 @@ ProjectEvo/
     README.md                        插件说明(状态/前置/安装/用法/敏感产物/发布)
     commands/                        斜杠命令 init|check|scan(Claude 面)
     hooks/hooks.json                 PostToolUse md 禁字挡板(Claude 面)
-    skills/project-evo/
+    skills/evo/
       SKILL.md                       意图路由 + 体系速览 + 知识库检索法
       references/                    分类扁平知识库 21 篇(前缀 base/flow/env/tool/exp)
       verification/                  骨架规范检查命令(PE-01 至 PE-13,参数化目标项目)
@@ -74,12 +74,12 @@ ProjectEvo/
 
 ```powershell
 # 检索(只读)
-rg -n "<关键词>" plugins\project-evo\skills\project-evo\references\README.md   # 索引导航
-rg -n "<关键词>" plugins\project-evo\skills\project-evo\references\            # 全文搜
+rg -n "<关键词>" plugins\project-evo\skills\evo\references\README.md   # 索引导航
+rg -n "<关键词>" plugins\project-evo\skills\evo\references\            # 全文搜
 reader query <文件> ".h2"                                                      # 抽节目录(mq)
 
 # 诊断(对目标项目只读;退出码 0/1/2)
-uv run plugins/project-evo/skills/project-evo/scripts/check.py <目标项目>
+uv run plugins/project-evo/skills/evo/scripts/check.py <目标项目>
 
 # 升级:插件通道原生管理(/plugin 或 codex plugin 面更新),或重跑 marketplace add 刷新
 ```
@@ -89,9 +89,9 @@ uv run plugins/project-evo/skills/project-evo/scripts/check.py <目标项目>
 | 文档 | 讲什么 | 何时看 |
 |------|--------|--------|
 | `AGENTS.md` | 开发协作规则唯一权威源 | 写/改任何文件前 |
-| `plugins/project-evo/skills/project-evo/SKILL.md` | skill 本体（意图路由） | 使用/修改 skill 前 |
-| `plugins/project-evo/skills/project-evo/references/README.md` | 参考知识库渐进索引 | 找参考文档时先看 |
-| `plugins/project-evo/skills/project-evo/verification/command-test-cases.md` | 骨架规范检查命令 | 验证目标项目合规时 |
+| `plugins/project-evo/skills/evo/SKILL.md` | skill 本体（意图路由） | 使用/修改 skill 前 |
+| `plugins/project-evo/skills/evo/references/README.md` | 参考知识库渐进索引 | 找参考文档时先看 |
+| `plugins/project-evo/skills/evo/verification/command-test-cases.md` | 骨架规范检查命令 | 验证目标项目合规时 |
 | `plugins/project-evo/README.md` | 插件说明与安装 | 安装/分发插件时 |
 | `docs/README.md` | 全仓文档地图 | 找任何文档时 |
 | `ROADMAP.md` | 阶段与里程碑状态 | 看进度时 |
