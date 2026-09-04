@@ -4,6 +4,14 @@
 
 ## [Unreleased]
 
+### 修复（2026-09-04，第二十九批:init 脚手架语义,目标目录不存在则创建）
+
+> 同日两犯升格:本地 e2e 与 CI 三系统冒烟(ubuntu/macos)各踩一次「目标目录不存在 exit 2」。裁定:init 是脚手架,建目标目录属其本性;check/scan 为只读诊断,保留存在性保护。
+
+- scripts/init.py:目标目录 mkdir(parents) 替代报错退出;docstring 同步
+- tests 增 test_init_creates_missing_target(嵌套不存在路径,期望 0 且 PRD.md 生成)
+- CI 冒烟步无需预建目录,顺带即测新语义
+
 ### 变更（2026-09-04，第二十八批：插件市场转型,uv CLI 分发通道退役）
 
 > 信源:SpecterOps/skills 市场仓组织维护形式实地调研(README/CONTRIBUTING/justfile/根双市场清单/插件双 manifest/catalog 机制原文取回核对)。用户裁定:放弃 uv CLI 分发,转插件市场仓,保留 git 历史原地重构;Codex 双面纳入;命令面全量(斜杠命令+hook)。六命令归宿:skill 安装与 update 随分发模式消亡(插件通道原生替代),init/check/scan 等价迁出,llms 降为 CI 冒烟。

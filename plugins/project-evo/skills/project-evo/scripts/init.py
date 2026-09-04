@@ -6,7 +6,7 @@
 
 用法: uv run init.py <目标项目> [--name 项目名]
 模板外置于同 skill 的 ../assets/templates/(markdown,受写作规范管辖);此处只做装载与变量渲染。
-纪律:已有文件一律跳过不覆盖(幂等);每份文件带真实初始内容,不产空壳。
+纪律:已有文件一律跳过不覆盖(幂等);每份文件带真实初始内容,不产空壳;目标目录不存在则创建(脚手架语义,二犯升格)。
 退出码: 0 成功 / 2 出错(错误走 stderr)。
 """
 
@@ -65,9 +65,7 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     target = Path(args.path).resolve()
-    if not target.is_dir():
-        print(f"error: 目标目录不存在:{target}", file=sys.stderr)
-        return 2
+    target.mkdir(parents=True, exist_ok=True)  # 脚手架语义:目标项目目录不存在则创建(同日两犯升格)
     created, skipped = generate(target, args.name)
     for rel in created:
         print(f"created  {rel}")

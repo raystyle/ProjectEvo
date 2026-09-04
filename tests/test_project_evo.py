@@ -112,6 +112,15 @@ def test_scan_md_reports_file_and_line(tmp_path: Path):
     assert all(f["line"] != 6 for f in md), "围栏内豁免"
 
 
+def test_init_creates_missing_target(tmp_path: Path):
+    """脚手架语义:目标目录不存在则创建(同日两犯升格:本地 e2e 与 CI 冒烟各踩一次)。"""
+    target = tmp_path / "nested" / "demo"
+    r = subprocess.run([sys.executable, str(SCRIPTS / "init.py"), str(target), "--name", "demo"],
+                       capture_output=True, text=True, encoding="utf-8")
+    assert r.returncode == 0, r.stderr
+    assert (target / "PRD.md").is_file()
+
+
 def test_check_script_exit_codes(tmp_path: Path):
     """子进程直跑:PEP 723 零依赖,系统 python 即可;退出码 0/1。"""
     init_mod.generate(tmp_path, "demo")
