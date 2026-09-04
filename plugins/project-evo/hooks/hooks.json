@@ -6,7 +6,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "uv run --no-project \"$CLAUDE_PROJECT_DIR/plugins/project-evo/skills/project-evo/scripts/md-guard.py\"",
+            "command": "uv run --no-project \"$CLAUDE_PLUGIN_ROOT/skills/project-evo/scripts/md-guard.py\"",
             "timeout": 60,
             "statusMessage": "md 禁字门禁"
           }

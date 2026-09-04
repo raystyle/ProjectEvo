@@ -1,0 +1,19 @@
+{
+  "name": "projectevo",
+  "owner": {
+    "name": "raystyle"
+  },
+  "metadata": {
+    "description": "项目进化:agent skill 与插件市场(文档骨架、合规诊断、安全扫描)",
+    "pluginRoot": "./plugins"
+  },
+  "plugins": [
+    {
+      "name": "project-evo",
+      "source": "./plugins/project-evo",
+      "description": "项目进化:建立需求驱动、留痕沉淀、持续进化的文档体系(四原语+docs 六目录+五步工作流);含 init/check/scan 零依赖脚本",
+      "version": "0.2.0",
+      "category": "productivity"
+    }
+  ]
+}

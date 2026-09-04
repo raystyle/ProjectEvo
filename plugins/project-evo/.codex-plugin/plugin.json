@@ -1,0 +1,35 @@
+{
+  "name": "project-evo",
+  "version": "0.2.0",
+  "description": "项目进化:建立需求驱动、留痕沉淀、持续进化的文档体系(根原语+docs 六目录+五步工作流+六态标记);渐进知识库型 skill,含 init/check/scan 零依赖脚本",
+  "author": {
+    "name": "raystyle"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/raystyle/ProjectEvo/tree/main/plugins/project-evo",
+  "repository": "https://github.com/raystyle/ProjectEvo",
+  "keywords": [
+    "agent",
+    "skill",
+    "documentation",
+    "scaffold",
+    "workflow",
+    "markdown",
+    "llm"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Project Evo",
+    "shortDescription": "项目进化:文档体系的建立与治理。",
+    "longDescription": "指导为项目建立需求驱动、留痕沉淀、持续进化的文档体系:根原语(AGENTS/PRD/GOAL/PLAN/TODO/INDEX)与 docs 六目录骨架、P/S/R/G/M/D 编号、五步工作流、六态事实标记;附 init/check/scan 零依赖脚本与 markdown 禁字挡板。",
+    "developerName": "raystyle",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "用 project-evo 为这个项目初始化文档骨架。"
+    ]
+  }
+}

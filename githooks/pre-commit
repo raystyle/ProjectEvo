@@ -1,4 +1,4 @@
 #!/bin/sh
 # 集成约束形态三:提交挡板,不过不进库(细则见 .tools/README.md)
 # 启用:git config core.hooksPath githooks
-uv run .tools/md-guard.py --staged && uv run .tools/md-ref-scan.py
+uv run plugins/project-evo/skills/project-evo/scripts/md-guard.py --staged && uv run .tools/md-ref-scan.py

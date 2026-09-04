@@ -4,7 +4,7 @@
 # ///
 """md-ref-scan: skills 树内 markdown 交叉引用断链扫描。
 
-用法: uv run .tools/md-ref-scan.py [根目录,默认 skills/project-evo]
+用法: uv run .tools/md-ref-scan.py [根目录,默认 plugins/project-evo/skills/project-evo]
 退出码: 0 无断链 / 1 有断链 / 2 出错。
 规则: 提取 <路径前缀/ ><名>.md 引用,按「本文件目录、根、根/references」三级解析;
 目标项目的固定文件名(CLAUDE/AGENTS/template 等)与命令示例(notes.md/a.md)跳过。
@@ -38,7 +38,7 @@ def scan(root: Path) -> list[str]:
 
 
 def main(argv: list[str]) -> int:
-    root = Path(argv[0]) if argv else Path("skills/project-evo")
+    root = Path(argv[0]) if argv else Path("plugins/project-evo/skills/project-evo")
     if not root.is_dir():
         print(f"md-ref-scan: 目录不存在 {root}", file=sys.stderr)
         return 2

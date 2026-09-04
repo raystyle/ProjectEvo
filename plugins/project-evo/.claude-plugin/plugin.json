@@ -1,0 +1,20 @@
+{
+  "name": "project-evo",
+  "version": "0.2.0",
+  "description": "项目进化:建立需求驱动、留痕沉淀、持续进化的文档体系(根原语+docs 六目录+五步工作流+六态标记);渐进知识库型 skill,含 init/check/scan 零依赖脚本",
+  "author": {
+    "name": "raystyle"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/raystyle/ProjectEvo/tree/main/plugins/project-evo",
+  "repository": "https://github.com/raystyle/ProjectEvo",
+  "keywords": [
+    "agent",
+    "skill",
+    "documentation",
+    "scaffold",
+    "workflow",
+    "markdown",
+    "llm"
+  ]
+}

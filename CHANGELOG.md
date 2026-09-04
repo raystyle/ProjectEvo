@@ -4,6 +4,19 @@
 
 ## [Unreleased]
 
+### 变更（2026-09-04，第二十八批：插件市场转型,uv CLI 分发通道退役）
+
+> 信源:SpecterOps/skills 市场仓组织维护形式实地调研(README/CONTRIBUTING/justfile/根双市场清单/插件双 manifest/catalog 机制原文取回核对)。用户裁定:放弃 uv CLI 分发,转插件市场仓,保留 git 历史原地重构;Codex 双面纳入;命令面全量(斜杠命令+hook)。六命令归宿:skill 安装与 update 随分发模式消亡(插件通道原生替代),init/check/scan 等价迁出,llms 降为 CI 冒烟。
+
+- 目录:skills/project-evo 迁至 plugins/project-evo/skills/project-evo,模板迁至 skills/project-evo/assets/templates(均 git mv 保沿革)
+- 双市场清单(.claude-plugin/marketplace.json 与 .agents/plugins/marketplace.json)+ 插件双 manifest(.claude-plugin/.codex-plugin,name/version/description 同步受测试守卫;Codex 面结构抄既证模板,行为未本仓实测 [推断])
+- 三脚本下沉 skill:scripts/{init,check,scan}.py(PEP 723 零依赖,逻辑原味迁自 CLI 模块);mdrules.py 立为禁字规则唯一权威(check PE-12/scan/md-guard 三面同源);md-guard.py 自包含化(PEP 723)随 skill 分发,plugin hook、.claude/settings.json、githooks 三处共用一份
+- Claude 面:commands/{init,check,scan}.md 斜杠命令 + hooks/hooks.json PostToolUse 挡板($CLAUDE_PLUGIN_ROOT);Codex 面走 skill 本体与双 manifest
+- 移除:src/project_evo 全树(六命令 CLI;update 自升级闭环、skill 双落位安装随分发模式消亡)、data/skill 内嵌副本(双漂移守卫随之取消,单源化)、.tools/md-guard.py(并入 plugin scripts)
+- tests 重写:脚本按路径加载(无安装态包);新增市场清单一致性守卫(双市场收录一致/source 可达/双 manifest 字段与版本同步/命令面与脚本在位);仓内禁字回归改指 mdrules.py;10 测全绿
+- 接线:AGENTS(地图/分层原则/硬规则 1/环境事实)、README(安装与结构全重写)、SKILL.md 配套面、base-writing-standards 与 tool-cli-agents 措辞、verification 引言、docs/README 路径、CI 冒烟(init+check 实跑 + 五 JSON 解析)、.tools/README、md-ref-scan 默认根、pyproject(package=false 降维护栈)
+- 安装通道变化:uv tool install git+ 退役;新通道 Claude Code `/plugin marketplace add raystyle/ProjectEvo` + `/plugin install project-evo@projectevo`,Codex `codex plugin marketplace add raystyle/ProjectEvo`
+
 ### 新增（2026-09-04，第二十七批：agent-native CLI 设计指南,双用户契约、自由代码面与脚本 workspace 吸收）
 
 > 信源:wevm/incur(TS 原作)与 douglance/incurs(Rust 移植)两仓 README 原文取回核对;叠加家族 browser-harness 与云 CLI 仓 管道代码逃生舱、browser-harness browser-workspace 脚本归档设计实证(用户裁定纳入)。契约方法论框架无关,两仓为样本实现。

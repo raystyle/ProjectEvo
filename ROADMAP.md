@@ -18,6 +18,7 @@
 | 里程碑 | 状态 | 说明 |
 |--------|------|------|
 | git init + 首版 tag + 远端发布 | 已完成 | 2026-09-03：公开仓 raystyle/ProjectEvo,main + v0.1.0 tag 已推，Release 已发；update 版本探测闭环实测（已是最新，exit 0）[实证] |
+| 插件市场转型(v0.2.0) | 已完成 | 2026-09-04 第二十八批:SpecterOps/skills 既证形态(双市场清单+双 manifest+commands/hooks);三脚本 PEP 723 化下沉 skill,uv CLI 分发通道退役;双漂移守卫随单源化取消,清单一致性守卫接棒;Codex 面结构抄既证模板、行为未本仓实测(无环境)[推断] |
 | 项目级安装通道验证 | 已完成 | 2026-09-03 remotex 首装实测：init 补 6 件跳 5 件（含 AGENTS.MD 大写碰撞安全跳过）、check 8 PASS/4 FAIL（FAIL 均为存量文档真实差距）、skill 双落位 + gitignore 幂等；全程未改既有内容文件 [实证] |
 | 与其他 skill 的分工说明 | 已拒绝 | 用户裁定（2026-09-03):project-evo 是独立项目，不与其他 skill 划分边界 |
 
