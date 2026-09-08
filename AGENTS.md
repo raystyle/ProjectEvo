@@ -53,7 +53,7 @@ ProjectEvo/
 │   │       └── scripts/   # init/check/scan/md-guard/mdrules(PEP 723 零依赖)
 │   ├── super-research/  # 超级研究插件(skill research)
 │   ├── secret-scan/     # 密钥隐私扫描插件(skill secrets)
-│   └── office-pro/      # OfficeCLI 专业面(skill office-pro)
+│   └── office-pro/      # OfficeCLI 专业面(skill office)
 ├── .tools/              # uv 运行时门禁脚本(md-ref-scan:断链扫描)
 ├── githooks/            # git 提交钩子(pre-commit 挡板,形态三;git config core.hooksPath githooks)
 ├── tests/               # pytest(脚本行为 + 清单一致性守卫 + 仓内禁字回归)
@@ -66,7 +66,7 @@ ProjectEvo/
 ├── README.md            # 标准入口
 ```
 
-> 文档体系 skill 在 `plugins/project-evo/skills/evo/`；资料检索 skill 在 `plugins/super-research/skills/research/`；密钥扫描 skill 在 `plugins/secret-scan/skills/secrets/`；Office 文件 skill 在 `plugins/office-pro/skills/office-pro/`。分发走插件市场（根双清单 + 各插件双 manifest）。
+> 文档体系 skill 在 `plugins/project-evo/skills/evo/`；资料检索 skill 在 `plugins/super-research/skills/research/`；密钥扫描 skill 在 `plugins/secret-scan/skills/secrets/`；Office 文件 skill 在 `plugins/office-pro/skills/office/`。分发走插件市场（根双清单 + 各插件双 manifest）。
 
 ## 三、文档索引
 
@@ -78,7 +78,7 @@ ProjectEvo/
 | `plugins/project-evo/skills/evo/references/README.md` | 参考知识体系渐进索引（快速路由到场景到全量） | 找参考文档时 |
 | `plugins/project-evo/skills/evo/verification/command-test-cases.md` | 规范检查命令 | 验证某项目是否符合骨架 |
 | `plugins/secret-scan/skills/secrets/SKILL.md` | 密钥与隐私扫描 | 扫本地 git 或 GitHub 泄露时 |
-| `plugins/office-pro/skills/office-pro/SKILL.md` | OfficeCLI 专业面 | 改 docx/xlsx/pptx、幻灯片偏位、稿面事实核查时 |
+| `plugins/office-pro/skills/office/SKILL.md` | OfficeCLI 专业面 | 改 docx/xlsx/pptx、幻灯片偏位、稿面事实核查时 |
 | `docs/README.md` | 文档地图 | 找文档时 |
 | `ROADMAP.md` | 阶段与里程碑状态 | 看进度时 |
 | `CHANGELOG.md` | 变更日志 | 查历史时 |
@@ -87,7 +87,7 @@ ProjectEvo/
 
 > 每条硬规则带六态来源标注。
 
-1. **单一权威源**：文档体系只在 `plugins/project-evo/skills/evo/`；资料检索只在 `plugins/super-research/skills/research/`；密钥扫描只在 `plugins/secret-scan/skills/secrets/`；Office 文件只在 `plugins/office-pro/skills/office-pro/`。本文件不重复。[经验： 双份漂移踩坑]
+1. **单一权威源**：文档体系只在 `plugins/project-evo/skills/evo/`；资料检索只在 `plugins/super-research/skills/research/`；密钥扫描只在 `plugins/secret-scan/skills/secrets/`；Office 文件只在 `plugins/office-pro/skills/office/`。本文件不重复。[经验： 双份漂移踩坑]
 2. **proven 语义**：proven = **完全成功的 plan 方案归档**（立项建方案、完成回填），不是里程碑/成果列表，用户 2026-09-03 明确裁定，写入 skill。[经验： 用户纠正]
 3. **双层机器可读**：目录与文件名以 rg 检索为先（类别前缀+主题词）；文档内部结构以 mq 提取为先（标题层级/代码块/表格）。[经验： 用户裁定 2026-09-03]
 4. **变更完整性**：只改 skill 不同步 SKILL.md 索引/references/CHANGELOG = 变更不完整。[经验]

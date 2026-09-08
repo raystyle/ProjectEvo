@@ -4,7 +4,7 @@ argument-hint: [which|smoke]
 allowed-tools: Bash
 ---
 
-对 OfficeCLI 做定位或冒烟。脚本在本插件 `skills/office-pro/scripts/`（定位不到就 rg --files 搜 which.py）。
+对 OfficeCLI 做定位或冒烟。脚本在本插件 `skills/office/scripts/`（定位不到就 rg --files 搜 which.py）。
 
 $ARGUMENTS 缺省或为 `which`：跑 `which.py`（找到退出 0，未找到退出 2）。
 $ARGUMENTS 为 `smoke`：跑 `smoke.py`（无二进制退出 2）。

@@ -4,6 +4,15 @@
 
 ## [Unreleased]
 
+### 变更（2026-09-09，第四十批：office-pro skill 改名 office,消除双名重叠）
+
+> 用户指出市场安装后显示 Skill(office-pro:office-pro) 双名重叠;同第三十一批裁定:插件名、市场安装标识不动,skill 目录与 name 改为 office,显示收敛为 office-pro:office;斜杠命令同名避让,office 改 office-cli。
+
+- 目录:plugins/office-pro/skills/office-pro git mv 至 plugins/office-pro/skills/office;SKILL.md frontmatter name 同步 office
+- 斜杠命令 commands/office.md 改名 office-cli.md,避免与 skill `/office-pro:office` 同名再重叠
+- 仓内路径引用全量同步:README、docs/README、AGENTS、插件 README、命令、install/smoke 参考、S007、evo SKILL 交叉引用、tests;CHANGELOG 历史批次记载保留原样
+- 已安装用户 `/plugin marketplace update projectevo` 后卸载重装 office-pro 即得
+
 ### 新增（2026-09-08，第三十九批：office-pro 插件）
 
 > 信源：S007 烟测 + 既有 pptx 纠偏/换文案/事实核查实弹。用户裁定把该过程沉淀为市场插件。钉资产，不跑 `install.ps1`，不 `officecli install`。

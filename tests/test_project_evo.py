@@ -190,7 +190,7 @@ def test_marketplace_catalog_consistency():
         assert o_claude[k] == o_codex[k], f"office-pro {k} 双 manifest 漂移"
     o_entry = next(p for p in claude_mkt["plugins"] if p["name"] == "office-pro")
     assert o_entry["version"] == o_claude["version"]
-    assert (office / "skills" / "office-pro" / "SKILL.md").is_file()
-    assert (office / "skills" / "office-pro" / "scripts" / "which.py").is_file()
-    assert (office / "skills" / "office-pro" / "scripts" / "smoke.py").is_file()
-    assert (office / "commands" / "office.md").is_file()
+    assert (office / "skills" / "office" / "SKILL.md").is_file()
+    assert (office / "skills" / "office" / "scripts" / "which.py").is_file()
+    assert (office / "skills" / "office" / "scripts" / "smoke.py").is_file()
+    assert (office / "commands" / "office-cli.md").is_file()

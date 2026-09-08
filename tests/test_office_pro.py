@@ -8,7 +8,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
 PLUGIN = REPO / "plugins" / "office-pro"
-SKILL = PLUGIN / "skills" / "office-pro"
+SKILL = PLUGIN / "skills" / "office"
 SCRIPTS = SKILL / "scripts"
 
 
@@ -16,13 +16,13 @@ def test_skill_layout():
     text = (SKILL / "SKILL.md").read_text(encoding="utf-8")
     assert text.startswith("---")
     fm = text.split("---", 2)[1]
-    assert "name: office-pro" in fm
+    assert "name: office" in fm
     assert "version:" not in fm
     assert len(text.splitlines()) <= 500
     for name in ("install.md", "cli.md", "edit.md", "facts.md", "README.md"):
         assert (SKILL / "references" / name).is_file(), name
     assert (SKILL / "verification" / "smoke.md").is_file()
-    assert (PLUGIN / "commands" / "office.md").is_file()
+    assert (PLUGIN / "commands" / "office-cli.md").is_file()
 
 
 def test_which_and_optional_smoke():

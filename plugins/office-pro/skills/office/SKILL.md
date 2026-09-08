@@ -1,5 +1,5 @@
 ---
-name: office-pro
+name: office
 description: >-
   用 OfficeCLI 专业读写 .docx/.xlsx/.pptx：钉 GitHub 资产安装、DOM 路径增删改查、
   既有稿几何纠偏、写入前事实核查。不跑官方 install.ps1、不 officecli install 喷 skill。
@@ -8,7 +8,7 @@ description: >-
 compatibility: 需本机 OfficeCLI 二进制（Windows 默认 %LOCALAPPDATA%\OfficeCLI\officecli.exe）
 ---
 
-# office-pro - OfficeCLI 专业面
+# office - OfficeCLI 专业面
 
 本文件只做意图路由与硬规则。安装、命令契约、改稿循环、事实核查分见 `references/`。选型与烟测见仓内 `docs/research/S007-OfficeCLI-agent原生Office套件.md`。
 
@@ -16,7 +16,7 @@ OfficeCLI 是 OpenXML CLI，不是 Microsoft Office，不要求本机装 Word/Ex
 
 ## 一、何时用
 
-改已有或新建 `.docx` / `.xlsx` / `.pptx`，且要用可脚本化、可 `--json` 的命令而不是 GUI。客户端自带的 docx/pptx 技能仍可用；本 skill 管 OfficeCLI 通道与本仓实证过的纪律。斜杠命令 `/office-pro:office [which|smoke]`。
+改已有或新建 `.docx` / `.xlsx` / `.pptx`，且要用可脚本化、可 `--json` 的命令而不是 GUI。客户端自带的 docx/pptx 技能仍可用；本 skill 管 OfficeCLI 通道与本仓实证过的纪律。斜杠命令 `/office-pro:office-cli [which|smoke]`。
 
 ## 二、意图路由
 
@@ -57,7 +57,7 @@ $bin = "$env:LOCALAPPDATA\OfficeCLI\officecli.exe"
 & $bin close $file
 ```
 
-定位二进制：`uv run plugins/office-pro/skills/office-pro/scripts/which.py`
+定位二进制：`uv run plugins/office-pro/skills/office/scripts/which.py`
 
 ```mermaid
 flowchart TD

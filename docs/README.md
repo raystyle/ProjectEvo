@@ -13,7 +13,7 @@
 | `research/S005-git密钥隐私扫描skill选型.md` | 密钥扫描 skill 选型 | 改 secret-scan 规则或对照 gitleaks 前 |
 | `research/S006-secret-scan-AB对照.md` | secret-scan 对 evo scan 的 A/B 实跑 | 裁决规则面差异时 |
 | `research/S007-OfficeCLI-agent原生Office套件.md` | OfficeCLI 是什么、怎么给 agent 用、本机钉资产安装与烟测 | 选型或本机安装 Office 自动化 CLI 时 |
-| `../plugins/office-pro/skills/office-pro/SKILL.md` | OfficeCLI 专业面（钉资产、改稿、事实核查） | 改 docx/xlsx/pptx、幻灯片偏位、稿面数字核验时 |
+| `../plugins/office-pro/skills/office/SKILL.md` | OfficeCLI 专业面（钉资产、改稿、事实核查） | 改 docx/xlsx/pptx、幻灯片偏位、稿面数字核验时 |
 | `../plugins/secret-scan/skills/secrets/SKILL.md` | 密钥与隐私扫描命令面 | 扫 git/GitHub 泄露时 |
 | `../plugins/project-evo/skills/evo/SKILL.md` | skill 本体概览层 | 使用/修改 skill 前 |
 | `../plugins/project-evo/skills/evo/references/README.md` | 参考知识体系渐进索引（快速路由到场景到全量） | 找任何参考时先看 |

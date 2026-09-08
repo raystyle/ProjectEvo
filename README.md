@@ -1,6 +1,6 @@
 # ProjectEvo
 
-> 一句话定位：ProjectEvo 插件市场仓。交付四插件：`project-evo`（文档骨架 skill `evo`）、`super-research`（资料检索 skill `research`）、`secret-scan`（密钥隐私扫描 skill `secrets`）、`office-pro`（OfficeCLI 专业面 skill `office-pro`）。
+> 一句话定位：ProjectEvo 插件市场仓。交付四插件：`project-evo`（文档骨架 skill `evo`）、`super-research`（资料检索 skill `research`）、`secret-scan`（密钥隐私扫描 skill `secrets`）、`office-pro`（OfficeCLI 专业面 skill `office`）。
 
 ## 安装与部署
 
@@ -57,7 +57,7 @@ ProjectEvo/
       scripts/                       init/check/scan/md-guard/mdrules(PEP 723 零依赖)
   plugins/super-research/            资料检索(skill research)
   plugins/secret-scan/               密钥扫描(skill secrets)
-  plugins/office-pro/                OfficeCLI 专业面(skill office-pro)
+  plugins/office-pro/                OfficeCLI 专业面(skill office)
   .tools/                            md-ref-scan 断链扫描(仓内维护)
   githooks/                          pre-commit 挡板(md-guard --staged + md-ref-scan)
   tests/                             pytest(脚本行为 + 清单一致性守卫 + 仓内禁字回归)
@@ -99,7 +99,7 @@ uv run plugins/project-evo/skills/evo/scripts/check.py <目标项目>
 | `plugins/project-evo/skills/evo/references/README.md` | 参考知识库渐进索引 | 找参考文档时先看 |
 | `plugins/project-evo/skills/evo/verification/command-test-cases.md` | 骨架规范检查命令 | 验证目标项目合规时 |
 | `plugins/project-evo/README.md` | 插件说明与安装 | 安装/分发插件时 |
-| `plugins/office-pro/skills/office-pro/SKILL.md` | OfficeCLI 专业面 | 改 docx/xlsx/pptx 时 |
+| `plugins/office-pro/skills/office/SKILL.md` | OfficeCLI 专业面 | 改 docx/xlsx/pptx 时 |
 | `docs/README.md` | 全仓文档地图 | 找任何文档时 |
 | `ROADMAP.md` | 阶段与里程碑状态 | 看进度时 |
 | `CHANGELOG.md` | 变更日志 | 查历史时 |
