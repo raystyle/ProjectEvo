@@ -25,6 +25,13 @@ aria2c --header="Authorization: Bearer <token>" -m 5 --retry-wait=3 -d . -o f.bi
 
 # 批量:从文件读 URL 清单,并行 N 个
 aria2c -i urls.txt -j 3
+
+# 论文 PDF（arxiv 直链）
+aria2c -x 8 -s 8 -c -d $env:TEMP\pevo-dl-test -o 2104.00142.pdf "https://arxiv.org/pdf/2104.00142"
+
+# 只下官方种子文件，禁止跟着下 ISO
+aria2c --follow-torrent=false -c -d $env:TEMP\pevo-dl-test -o ubuntu.torrent "https://releases.ubuntu.com/noble/ubuntu-24.04.4-desktop-amd64.iso.torrent"
+aria2c -S ubuntu.torrent
 ```
 
 ## 三、参数表（全部实证自 `aria2c --help=#all`，2026-09-03)
@@ -66,6 +73,7 @@ aria2c -i urls.txt -j 3
 | PowerShell 引号吞 URL 参数 | URL 加引号；含 `&` 必须引号 | [经验] |
 | GitHub release 私有资产 401 | `--header="Authorization: Bearer $(gh auth token)"` | [记忆] |
 | `-k 1M` 默认值导致小文件不分片 | 大文件显式 `-s 16 -k 1M` 以上 | [实证： 默认值出自 --help=#all] |
+| HTTP 下 `.torrent` 默认 `follow-torrent` 并预分配载荷 | 加 `--follow-torrent=false`；先 `-S` 看体积；多 GB 须用户点头再下 | [实证： 2026-09-08 Ubuntu 24.04.4 desktop 种子 508KB，未关 follow 时 prealloc 6.1GiB] |
 
 ## 六、复验命令
 

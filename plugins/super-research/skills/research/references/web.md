@@ -1,6 +1,6 @@
 # browser-harness - 浏览器直控操作指南
 
-> 定位：**搜索引擎与网页抓取**（用户裁定）：google_search/bing_search 走真实浏览器搜引擎，web-fetch/extract 抓正文；亦覆盖自动化、JS 渲染、登录态页面。**普通 HTTP 能拿到的页面不要用它**（fetch/curl 优先）。本机 CLI v0.6.12 [实证： 2026-09-04 `browser-harness --version` + 搜索/抓取实弹复验]。
+> 定位：**搜索引擎与网页抓取**。现役入口是 `bh`（https://github.com/raystyle/browser-harness，0.6.0，含无头 `engine`）。普通 HTTP 能拿到的页面用 fetch/aria2c，不必开浏览器。
 
 ## 零、搜索与抓取（首要场景）
 
@@ -66,6 +66,7 @@ EOF
 
 - helpers 预导入；后续导航用 `goto_url`，不要每次 `new_tab`
 - 一任务一工作 tab；先 `list_tabs()`/`switch_tab()` 复用，不开重复 tab
+- **工位复用是硬规则**（用户 2026-09-08 裁定）：全程钉 1 到 2 个已有 tab，禁止为每次搜索或抓取再开新 tab。Chrome Allow 按 WebSocket 连接弹，新开附着等于再授权。细则见第七节（TS `bh`）与 S001
 
 ## 三、元素定位与点击（标准工作流）
 
@@ -108,7 +109,40 @@ capture_screenshot()                                # 返回 PNG 路径(非 base
 - 长驻监控（X 抓推等）走 rmux 会话（`browser-harness rmux ...`），不占前台
 - Chrome 144+ 首连可能有「允许远程调试」弹窗：提示用户点 Allow，勿轮询重试
 
-## 七、复验命令
+## 七、bh（现役：0.6.0，含无头引擎）
+
+> 仓 https://github.com/raystyle/browser-harness 现为 TypeScript `bh`。本机 0.6.0 [实证: 2026-09-08 `bh --version` + `bh engine start/status/stop`]。旧 Python `browser-harness` 本机 PATH 已不在；不要再当现役入口。
+
+两条浏览器面，研究任务优先无头：
+
+| 面 | 命令 | 何时用 |
+| --- | --- | --- |
+| 无头引擎 | `bh engine start` 后 `bh web-fetch <url> --engine`；或 `BH_NAME=engine bh '<js>'` | 不碰用户 Chrome、不要 Allow、临时 profile 用完即杀 |
+| 用户 Chrome | `bh doctor` 后复用 1 到 2 个 tab | 要登录态、或用户已经开着搜索页 |
+
+```powershell
+bh engine start                 # 自起 --headless=new，临时 user-data-dir，port 0
+bh engine status                # running + pid + port + daemon 版本
+bh web-fetch "https://example.org/" --text --engine
+bh engine stop                  # 杀进程树并删临时目录
+# 需要某站登录态再:
+bh engine start --cookies example.org
+```
+
+无头实证：`bh engine start` 得 pid 与 `ws://127.0.0.1:<port>/devtools/browser/...`；`web-fetch --engine` 抽出 Example Domain；`bh engine stop` 后 status 为 not started。[实证: 2026-09-08]
+
+用户 Chrome 面仍守工位复用（S001）：只 `switch_tab`，禁止 `--new-tab` / 为自愈 `bh --restart`。引擎面不要去 switch 用户 tab。
+
+```powershell
+bh google-search "<q>" --top 5
+bh google-search pluck gs_search
+bh medium-search "<q>" --top 5
+bh medium-search pluck ms_search
+bh web-fetch "<url>" --text           # HTTP 优先
+bh web-fetch "<url>" --text --engine  # JS/墙且不碰用户浏览器
+```
+
+## 八、复验命令
 
 ```powershell
 browser-harness --version

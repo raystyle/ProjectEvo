@@ -7,7 +7,7 @@
 | 档 | 数据源 | 查法 |
 | --- | --- | --- |
 | 本仓已有 | 代码库 + INDEX | `rg` 搜函数名/功能词；INDEX 索引；proven 找先例 |
-| 标准库 | 官方文档 | Rust std 与 docs.rs、Python docs、Node 与 MDN、pwsh `Get-Command`/`About_*` |
+| 标准库 | 官方文档 | Rust std 与 docs.rs、Python docs、Node >=22 内置（WebSocket/fetch/sqlite/child_process/test）与 MDN、pwsh `Get-Command`/`About_*` |
 | 平台原生 | 平台文档 | 如浏览器原生控件（ponytail 首例：日期选择器就是 `<input type="date">`） |
 | 已装依赖 | 清单与锁文件 | `Cargo.toml`/lock、`pyproject.toml`+`uv.lock`、`package.json`、`modules.psd1`；必要时 rg 进依赖源码目录 |
 
@@ -30,7 +30,7 @@
 
 ### GitHub 通道（评估质量与找真实用法，与注册中心通道互补）
 
-`gh search repos`（星数与 pushedAt 并看，新秀加 created 限定）到 `gh repo view` 定点核证（isArchived/license/issues）到 releases 看发布节奏 到 `gh search code` 找签名片段的真实用法 到 深读用 `--filter=blob:none --no-checkout` 先行。细则见 tool-gh.md。
+`gh search repos`（星数与 pushedAt 并看，新秀加 created 限定）到 `gh repo view` 定点核证（isArchived/license/issues）到 releases 看发布节奏 到 `gh search code` 找签名片段的真实用法 到 深读用 `--filter=blob:none --no-checkout` 先行。细则见市场技能 `super-research:research` 的 gh 篇。
 
 ## 三、发现层：awesome 清单与官方库搜索
 
@@ -55,7 +55,7 @@
 - **名字防仿冒**：各生态均有仿冒前缀与热门名仿冒，装前与官方文档一字不差核对
 - **锁定单一**：一仓一锁（`Cargo.lock`/`uv.lock`/`package-lock.json`/`modules.psd1`），CI 冻结安装（`--locked`/`uv sync --frozen`/`npm ci`）
 - PowerShell 模块经 psmodule 版本加 SHA256 双锁，不散装 Install-Module
-- **稳妥梯队优先**：名称稳定、小版本演进的库优先（各栈手册列有清单，如 PyPI 的 httpx/pytest/ruff、npm 的 typescript/zod/vitest）
+- **稳妥梯队优先**：名称稳定、小版本演进的库优先（各栈手册列有清单，如 PyPI 的 httpx/pytest/ruff、npm 的 typescript/zod/commander）。Node/TS 测试家族实证是 `node:test`（内置），vitest 非默认；runtime 依赖白名单制见 tool-typescript.md
 
 ## 五、结论落位与验收
 

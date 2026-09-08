@@ -142,7 +142,8 @@ def test_marketplace_catalog_consistency():
 
     names_c = {p["name"] for p in claude_mkt["plugins"]}
     names_x = {p["name"] for p in codex_mkt["plugins"]}
-    assert names_c == names_x == {"project-evo"}, "双市场收录集须一致"
+    assert names_c == names_x, "双市场收录集须一致"
+    assert "project-evo" in names_c and "super-research" in names_c, "须同时收录文档插件与研究插件"
     for p in claude_mkt["plugins"]:
         assert (REPO / p["source"].removeprefix("./")).is_dir(), f"Claude source 不可达: {p['source']}"
     for p in codex_mkt["plugins"]:
@@ -161,3 +162,12 @@ def test_marketplace_catalog_consistency():
     for c in ("init.md", "check.md", "scan.md"):
         assert (PLUGIN / "commands" / c).is_file(), f"斜杠命令缺失: {c}"
     json.loads((PLUGIN / "hooks" / "hooks.json").read_text(encoding="utf-8")), "hooks.json 须为合法 JSON"
+
+    research = REPO / "plugins" / "super-research"
+    r_claude = json.loads((research / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8"))
+    r_codex = json.loads((research / ".codex-plugin" / "plugin.json").read_text(encoding="utf-8"))
+    for k in ("name", "version", "description"):
+        assert r_claude[k] == r_codex[k], f"super-research {k} 双 manifest 漂移"
+    r_entry = next(p for p in claude_mkt["plugins"] if p["name"] == "super-research")
+    assert r_entry["version"] == r_claude["version"]
+    assert (research / "skills" / "research" / "SKILL.md").is_file()

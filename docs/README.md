@@ -8,6 +8,8 @@
 | `../README.md` | 项目标准入口（定位、快速开始、目录、概念） | 第一次接触本仓 |
 | `../CHANGELOG.md` | 可交付变更日志 | 查历史时 |
 | `../ROADMAP.md` | 阶段与里程碑状态 | 看进度时 |
+| `research/README.md` | 本仓研究登记 | 找 S 文档时 |
+| `research/S001-bh与reader使用过程技巧.md` | bh 工位复用与 reader 电子书阅读过程 | 再用搜索抓取或读电子书前 |
 | `../plugins/project-evo/skills/evo/SKILL.md` | skill 本体概览层 | 使用/修改 skill 前 |
 | `../plugins/project-evo/skills/evo/references/README.md` | 参考知识体系渐进索引（快速路由到场景到全量） | 找任何参考时先看 |
 | `../plugins/project-evo/skills/evo/references/base-primitives.md` | 根原语详解（PRD/GOAL/PLAN/TODO/INDEX/AGENTS 模板头 + 文档义务表） | 建骨架写原语时 |
@@ -19,6 +21,7 @@
 | `../plugins/project-evo/skills/evo/references/env-environment.md` | 环境依赖索引：ome 三态模型、命令面速查、七域分组、依赖路由规则 | 项目初始化盘点/换机重建时 |
 | `../plugins/project-evo/skills/evo/references/flow-release.md` | 封版发布模式：三路门禁验收、封版件、tag 触发、发布验收 | 发版本时 |
 | `../plugins/project-evo/skills/evo/references/tool-project.md` | 项目工具：`.tools/` uv Python 脚本约定、外部工具路由 | 建项目脚本/选外部工具时 |
+| `../plugins/project-evo/skills/evo/references/tool-typescript.md` | TypeScript/Node 工程合同（tsc、node:test、npm pack） | 建或治理 Node/TS 仓时 |
 | `../plugins/project-evo/skills/evo/references/exp-pitfalls.md` | 已知误区（proven 语义、分界混淆、静默假设等） | 落地前预警 / 踩坑后对照 |
-| `../plugins/project-evo/skills/evo/references/` 下 tool-gh.md / tool-git.md / tool-browser-harness.md / tool-reader.md / tool-aria2c.md | 五工具指南 | 用这五样工具时 |
+| `../plugins/super-research/skills/research/SKILL.md` | 超级研究管线 | 搜论文/网页/X/GitHub/电子书/下载时 |
 | `../plugins/project-evo/skills/evo/verification/command-test-cases.md` | 规范检查命令（参数化 ProjectRoot） | 验证骨架合规时 |

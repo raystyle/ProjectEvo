@@ -44,7 +44,7 @@ git bisect start / bad / good <sha> / reset   # 二分定位「哪次改坏的�
 
 | 诉求 | 工具 |
 | --- | --- |
-| 远程/跨仓库，还没 clone | gh search（见 tool-gh.md 零节） |
+| 远程/跨仓库，还没 clone | gh search（见 gh.md） |
 | 本地工作区，最快、任意正则、无配额 | `rg` |
 | 历史版本内容搜索 | `git grep <rev>` |
 | 何时引入/演变 | `git log -S/-G`(pickaxe) |

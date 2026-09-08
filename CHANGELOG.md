@@ -4,6 +4,39 @@
 
 ## [Unreleased]
 
+### 变更（2026-09-08，第三十五批：bh 0.6.0 无头引擎写入 research）
+
+> 信源：https://github.com/raystyle/browser-harness README + CHANGELOG 0.6.0（D37）+ 本机 `bh engine` 实弹。仓已是 TS `bh`，不是旧 Python CLI。
+
+- web.md 第七节改写：研究优先 `bh engine start/status/stop` 与 `web-fetch --engine`；用户 Chrome 仍工位复用
+- SKILL.md / pipeline.md 硬规则同步；本机实证 engine pid 15448、`--headless=new`、抓 example.org 后 stop 干净
+
+### 新增（2026-09-08，第三十四批：超级研究技能拆出市场；论文与种子下载实证）
+
+> 用户裁定：reader / X / Google / Medium / gh 集成进市场独立技能；evo 专注项目文档，去掉多余 CLI 工具介绍。同日实测论文检索下载与官方种子文件下载。
+
+- 新插件 `plugins/super-research`（skill `research`，显示 super-research:research）：管线 pipeline + gh/web/x/reader/aria2c/git 参考；双 manifest 0.1.0；双市场清单收录
+- evo 迁出五工具篇（git mv 保沿革）；SKILL 意图路由改指 research 技能；references 全量 17 篇正文 + 本索引
+- 论文实证：Google `site:arxiv.org` + arxiv API + `aria2c` 下 `arxiv.org/pdf/2104.00142`（108268 字节）+ reader 抽出 NodeSRT 摘要
+- 种子实证：官方 Ubuntu 24.04.4 `.torrent` 508158 字节；**必须 `--follow-torrent=false`**，否则预分配 6.1GiB ISO（已中止删除）
+
+### 新增（2026-09-08，第三十三批：记录 bh 与 reader 使用过程技巧）
+
+> 信源：本会话对 `bh` 0.5.2 与 `reader` 0.6.0 实弹（Google/Medium/web-fetch、`E:\研究资料` 电子书）。用户裁定：只复用 1 到 2 个 tab，禁止重复附着。研究收尾 `[实证]` 抽进现役工具篇。
+
+- 本仓研究：`docs/research/S001-bh与reader使用过程技巧.md`（工位复用、HTTP 优先、pluck 对现场、坏 EPUB、扫描 OCR、大盘禁递归）+ `docs/research/README.md` 登记；diary `docs/diary/2026-09-08-bh与reader使用过程.md`
+- tool-browser-harness 脚本纪律补工位复用硬规则；新增第八节 TypeScript 端口 `bh`（与 Python 0.6.12 分 oracle）
+- tool-reader 版本快照 0.5.0 到 0.6.0；坑表补 PowerShell filter、mq exit 2、malformed EPUB、`--pages` 位置、整盘递归挂死
+- 接线：docs/README、references/README 条目描述、env-environment reader 快照
+
+### 新增（2026-09-08，第三十二批：吸收 browser-harness-ts 的 TypeScript 工程经验）
+
+> 信源：D:\browser-harness-ts 对照 package.json、tsconfig、R001、G002、M101 至 M103、P0001。吸收即提炼：只入库跨项目可复用的工程合同，不搬 CDP/站点应用产品细节（产品面仍在 tool-browser-harness.md；脚本 workspace 仍在 tool-cli-agents.md）。
+
+- 新增 `references/tool-typescript.md`（第 22 篇）：Node >=22 ESM、tsc 严选项、runtime 依赖白名单（commander/zod）、构建分面（tsc 对核心、esbuild 仅 IIFE）、node:test 引号 glob、checkJs 管 .mjs、两套家（npm pack 验收禁 link）、空串不走 ??、fnm 下 spawn npm-cli.js、无内核锁只认 pid 死亡、CI 矩阵 Node 22/24 乘三系统
+- 反哺：flow-testing TS 行改为 node:test 家族默认；tool-selection 标准库档补 Node 内置、稳妥梯队改 commander/zod；env-platform 补 node:path 与 npm/fnm/glob 坑；flow-release 衔接 npm pack；base-init 跨项目样本增 browser-harness-ts；env-environment 依赖路由补 Node/TS 不进 ome
+- 接线：SKILL.md 意图路由加行、compatibility 四类仓、篇数 21 改 22；references/README 三层同步（全量 23 篇含本索引）；AGENTS 地图与提炼源；docs/README 与仓 README 篇数
+
 ### 变更（2026-09-04，第三十一批：skill 改名 evo,消除插件名与 skill 名重叠）
 
 > 用户指出市场安装后显示 Skill(project-evo:project-evo) 双名重叠;裁定:插件名、市场安装标识、`/project-evo:*` 斜杠命令前缀不动(品牌与安装兼容优先),skill 目录与 name 改为 evo,显示收敛为 project-evo:evo。

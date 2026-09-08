@@ -1,6 +1,6 @@
 # reader - 本地文档阅读搜索提取指南
 
-> 定位：**读取本地文档、电子书等文档参考资料**（用户裁定）：PDF 按页、markdown 与 Word/EPUB/ODT/RTF/Office/CSV 按标题节，是读一切本地参考资料的首选，代替自写解析。本机 v0.5.0，缩写 `rr` 同入口 [实证： 2026-09-04 `reader --version`]；篇内细节断言为 0.4.0 版实证，升级后待复验。
+> 定位：**读取本地文档、电子书等文档参考资料**（用户裁定）：PDF 按页、markdown 与 Word/EPUB/ODT/RTF/Office/CSV 按标题节，是读一切本地参考资料的首选，代替自写解析。本机 v0.6.0，缩写 `rr` 同入口 [实证： 2026-09-08 `reader --version`]；OCR/环境变量细节 0.4.0 版核对，升级后未逐条复验。
 
 ## 一、三个子命令
 
@@ -39,6 +39,7 @@ reader extract "水印扫描版.pdf" --pages 2-4 --ocr     # PP-OCRv6 tiny,约 1
 | 定位关键词及上下文 | `reader search <文件> 关键词 -C 2` |
 | 抽标题/代码块/链接 | `reader query <文件> ".h2"` / `".code"` / `".link"` |
 | 批量找材料 | `reader search <目录> 关键词` |
+| 电子书库先抽样 | 先顶层列目录，再对单本 `extract --offset 0 --limit 6`；禁对整盘 `Get-ChildItem -Recurse` |
 
 ## 五、环境变量（源码实证，2026-09-03 核对 D：\reader 仓\src）
 
@@ -57,6 +58,11 @@ reader extract "水印扫描版.pdf" --pages 2-4 --ocr     # PP-OCRv6 tiny,约 1
 | 中文参数在 PowerShell 被转义异常 | 路径与关键词加引号；必要时 `--%` 停止解析 | [记忆] |
 | OCR 首跑慢 | 模型下载一次性成本，后续秒级 | [实证： 2026-09-03] |
 | mq select 高级语法不确定 | 先 `reader skill` 查长形态文档再写表达式 | [经验： 2026-09-03 select 语法首试未命中] |
+| `--filter 'results[]'` 在 PowerShell 变成空路径 | 用 `--filter results` 或 `"hits[].text"` | [实证： 2026-09-08] |
+| 无效 mq 选择器（如 `.h9`） | exit 2 语法错，不是无命中的 exit 1 | [实证： 2026-09-08] |
+| EPUB `malformed document: no chapter` | 目录 search 会跳过该文件继续；改找同书 PDF | [实证： 2026-09-08 Black Hat Rust 等三本] |
+| extract 节头 `needs_ocr` | 加 `--ocr`；命令形为 `reader extract <文件> --pages N --ocr`，选项在文件后 | [实证： 2026-09-08 Command-Line Rust] |
+| 资料盘递归列举挂死 | 先 `dir /b` 顶层再定点，不要 `Get-ChildItem -Recurse` 整盘 | [实证： 2026-09-08 E:\研究资料] |
 
 ## 七、复验命令
 

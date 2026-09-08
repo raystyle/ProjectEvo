@@ -1,0 +1,33 @@
+{
+  "name": "super-research",
+  "version": "0.1.0",
+  "description": "超级研究:gh/Google/Medium/X/reader/aria2c 一条资料检索管线(发现到下载到研读)",
+  "author": {
+    "name": "raystyle"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/raystyle/ProjectEvo/tree/main/plugins/super-research",
+  "repository": "https://github.com/raystyle/ProjectEvo",
+  "keywords": [
+    "agent",
+    "skill",
+    "research",
+    "arxiv",
+    "search",
+    "aria2c"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Super Research",
+    "shortDescription": "超级研究:资料检索管线。",
+    "longDescription": "把 gh、Google、Medium、X 本地库、reader、aria2c 串成发现到获取到研读的研究管线。工位复用，HTTP 优先，论文走 arxiv 直链，种子先下 .torrent 再决定是否拉载荷。",
+    "developerName": "raystyle",
+    "category": "Productivity",
+    "capabilities": [
+      "Read"
+    ],
+    "defaultPrompt": [
+      "用 research 技能搜一篇 arxiv 论文并下载 PDF。"
+    ]
+  }
+}

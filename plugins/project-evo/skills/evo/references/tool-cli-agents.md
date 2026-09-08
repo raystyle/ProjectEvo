@@ -97,7 +97,7 @@ EOF
 
 设计要点：
 
-- **内置库函数零 import**：运行时预导入 helper 面（导航/页面读写/抓取等），函数名即 API；agent 不猜模块路径 [实证: browser-harness helpers.py def 清单，见 tool-browser-harness.md]
+- **内置库函数零 import**：运行时预导入 helper 面（导航/页面读写/抓取等），函数名即 API；agent 不猜模块路径 [实证: browser-harness helpers.py def 清单；现役检索见 super-research:research]
 - **直接集成运行时**：代码跑在 CLI 常驻上下文（daemon 连接、tab 状态、配置），不是每次起冷进程；helper 双通道（全量命名空间 + 顶层解包常用名）兼顾全量与顺手 [经验: 云 CLI 仓 omc 同款 TS 片段管道]
 - **产品化形态是 Code Mode**（incurs）：codemode_execute 启动 JS 执行、直接调 tool catalog，配审批生命周期（codemode_decide 逐动作批/拒、codemode_cancel 取消）；本地只读工具免批、远程与破坏性工具须批 [实证: 信源 README]
 - 分工：固定命令管高频与稳定（schema 保障），自由代码管长尾与组合（逃生舱保障）；两者同源一个运行时，脚本产物归档见「九、脚本 workspace」
@@ -152,7 +152,7 @@ incurs 方法：vendored 上游 TS 实现为**行为 oracle**，其 1062 条测�
 | 产物 | 落位 | 出口 |
 | --- | --- | --- |
 | 可复用函数 | browser_helpers.py | 自动并入 helper 面（merge 语义：包内填默认，workspace 副本按函数覆写；缺省总用最新包内） |
-| 独立任务脚本 | apps/<名>.py | 即成一级命令：browser-harness <名> [args...]，位置参数进 APP_ARGS |
+| 独立任务脚本 | apps/<名>.py 或 apps/<名>.mjs | 即成一级命令：browser-harness <名> [args...]，位置参数进 APP_ARGS。TS 仓用 .mjs + checkJs，见 tool-typescript.md 第五节 |
 
 - **同一 exec 运行时**：apps 脚本与管道/heredoc 代码走同一条执行路径（预导入 helpers、合并 workspace helper 后 exec）；workspace 新写的函数，下一次管道脚本直接调用，零 import [实证: run.py 单入口 exec(code, globals())]
 - 长跑插件配 rmux 会话（`browser-harness rmux ensure ...`），不占前台；任务数据（db、心跳、supervisor 日志）同归 workspace，脚本与数据同址

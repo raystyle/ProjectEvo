@@ -1,6 +1,6 @@
 # ProjectEvo
 
-> 一句话定位：project-evo 插件市场仓。唯一交付 project-evo 插件：一个渐进知识库型 Agent skill，指导为项目建立需求驱动、留痕沉淀、持续进化的文档体系（根原语 + docs 六目录 + 五步工作流），按意图路由检索内置 references，附 init/check/scan 零依赖脚本与 md 禁字会话挡板。
+> 一句话定位：ProjectEvo 插件市场仓。交付两插件：`project-evo`（文档骨架 skill `evo`）与 `super-research`（资料检索 skill `research`：gh / Google / Medium / X / reader / aria2c）。
 
 ## 安装与部署
 
@@ -48,7 +48,7 @@ ProjectEvo/
     hooks/hooks.json                 PostToolUse md 禁字挡板(Claude 面)
     skills/evo/
       SKILL.md                       意图路由 + 体系速览 + 知识库检索法
-      references/                    分类扁平知识库 21 篇(前缀 base/flow/env/tool/exp)
+      references/                    分类扁平知识库 22 篇(前缀 base/flow/env/tool/exp)
       verification/                  骨架规范检查命令(PE-01 至 PE-13,参数化目标项目)
       assets/templates/              骨架模板(init.py 渲染源)
       scripts/                       init/check/scan/md-guard/mdrules(PEP 723 零依赖)

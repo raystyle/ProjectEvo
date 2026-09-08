@@ -54,13 +54,14 @@
 - [ ] diary 记录初始化当天一笔
 - [ ] （可选）`git init` + 首提交；`.gitignore` 三类齐全（智能体配置/密钥/衍生垃圾）
 
-## 跨项目适配参考（三个实证样本）
+## 跨项目适配参考（四个实证样本）
 
 | 来源项目 | 形态 | 特有增量 |
 | --- | --- | --- |
 | reader 仓 | Rust CLI(agent-native） | 根 SKILL.md 由 `reader skill` 生成 + 双漂移守卫；六层测试体系规范（G006）;`.tools\` md 门禁四件；`poc\` S 编号登记表 |
 | PVE 仓 | Python（基础设施 harness) | references 增「意图路由」（需求意图到命令面映射）；research 混硬件调研（S001 硬件选型） |
 | browser-harness | Python CLI + daemon | skill 双入口（SKILL.md + `--llms` 紧凑索引）；插件开发规范；agent-workspace 约定 |
+| browser-harness-ts | TypeScript Node CLI + daemon | ESM + tsc 严选项；runtime 依赖白名单；node:test；`npm pack` 安装验收（禁 link）；checkJs 管 apps/*.mjs。工程合同见 tool-typescript.md |
 
 适配原则：**结构照搬、内容重写、门禁选配**。每个项目的 AGENTS 边界段必须是该项目自己的定位，禁止样本仓原文照抄。
 

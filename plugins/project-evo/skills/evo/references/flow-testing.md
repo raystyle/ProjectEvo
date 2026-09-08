@@ -13,7 +13,7 @@
 
 | 层 | 轴 | 回答的问题 | 典型载体 | 运行时机 |
 | --- | --- | --- | --- | --- |
-| 单元测试 | 地基 | 单函数对不对（私有 API、错误路径、不变量） | Rust `#[cfg(test)] mod tests`；pytest `tests/unit`；vitest `*.test.ts` | 本地门禁（每次） |
+| 单元测试 | 地基 | 单函数对不对（私有 API、错误路径、不变量） | Rust `#[cfg(test)] mod tests`；pytest `tests/unit`；`node:test`（`src/*.test.ts` 编译后跑）或 vitest `*.test.ts` | 本地门禁（每次） |
 | 集成测试 | 地基 | 公开契约对不对（退出码、stdout 标记行、JSON 关键字段） | `tests\*.rs`（assert_cmd）；`tests/integration`；`tests/<域>.test.ts` | 本地门禁（每次） |
 | 冒烟测试 | 意图 | 核心路径活着没 | 独立 target（`--test smoke`）；`npm run smoke`；Pester 结构冒烟；冒烟矩阵（退出码矩阵） | 门禁内；发版资产解包后；新平台首装 |
 | 回归测试 | 意图 | 改动破没破旧行为 | 集成全网即回归网；黄金文件/快照基线；修 bug 附复现用例 | 动对应管线后；结构大改后断链回归 |
@@ -39,7 +39,7 @@
 | --- | --- | --- | --- | --- |
 | Rust | `cargo test --locked` | `--test smoke` 独立 target | insta 快照、黄金文件 `tests\expected\`、语料基线 | `#[ignore]`；环境变量闸门（如 `OME_TEST_REAL`，缺则 skip 不失败不写真实态） |
 | Python(uv) | `uv run --with pytest python -m pytest tests/unit -q` | stdin/import 冒烟 | mistake 编号配回归用例；防漂移单测 | conftest 钉临时 HOME 隔离真实数据；平台预期 skip |
-| TypeScript | `npm test`（vitest run） | `npm run smoke`（--help 退出码）；冒烟矩阵 | 修复配回归断言；断链扫描 | `it.skipIf(!外部依赖)`，skip 不伪造 |
+| TypeScript | `npm test`（家族默认 `node --test "dist/*.test.js"`，glob 必须引号；vitest 可作替代） | `npm run smoke`（--help 退出码）；冒烟矩阵 | 修复配回归断言；断链扫描 | 外部依赖缺失 skip 不伪造（node:test 用 `skip` / vitest 用 `it.skipIf`） |
 | PowerShell | Pester `tests\*.Tests.ps1`（结构冒烟） | 模块导入、布局存在性、DryRun no-throw | verify 脚本重跑全 PASS 即回归 | 提权/实机路径不进 Pester，走实机清单 |
 
 ## 五、门禁时机谱

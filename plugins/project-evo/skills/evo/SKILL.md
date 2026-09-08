@@ -6,13 +6,13 @@ description: >-
   (proven/diary/research/references/guide/mistakes)、P/S/R/G/M/D 编号、五步工作流、六态标记（知行合一）、双向问答（你问我答拷问/我问你答咨询）、
   三平台适配、ome 环境索引、封版发布。触发后先读本文件「意图路由」定位,再渐进检索 references/。
   Use when 初始化或治理项目文档体系/骨架/结构/规范,项目进化,需求立项到归档工作流,
-  或判断文档落位、平台适配、环境依赖、发版流程、agent-native CLI 契约时。
-compatibility: 通用(不限语言/平台);提炼自 Rust CLI、Python 基础设施 harness、Python CLI+daemon 三类仓实践。
+  或判断文档落位、平台适配、环境依赖、发版流程、agent-native CLI 契约、TypeScript/Node 工程约定时。
+compatibility: 通用(不限语言/平台);提炼自 Rust CLI、Python 基础设施 harness、Python CLI+daemon、TypeScript Node CLI+daemon 四类仓实践。
 ---
 
 # evo - project-evo 项目进化指南
 
-**渐进知识库型 skill**：本文件只做两件事，**意图路由**（你要做的事 到 该查哪篇参考）与**体系速览**（一层概览）；完整知识在 `references/` 分类扁平目录（前缀 base/flow/env/tool/exp 分组，21 篇自包含），按「rg 定位文件 + mq 提取结构」渐进检索，不要求一次读完。
+**渐进知识库型 skill**：本文件只做两件事，**意图路由**（你要做的事 到 该查哪篇参考）与**体系速览**（一层概览）；完整知识在 `references/` 分类扁平目录（前缀 base/flow/env/tool/exp 分组，17 篇自包含），按「rg 定位文件 + mq 提取结构」渐进检索，不要求一次读完。资料检索（gh/Google/Medium/X/reader/aria2c）在市场另一插件 `super-research` 的 `research` 技能。
 
 核心思想：文档是项目的操作系统，需求进 PRD、目标进 GOAL、过程留痕进 diary/research、方案归档进 proven、流程沉淀进 references、规范固化进 guide、踩坑进 mistakes。做过的不重做、踩过的不再踩、验证过的直接复用。吸收即提炼，沉淀成资产；循环迭代，复利增厚。
 
@@ -38,10 +38,10 @@ compatibility: 通用(不限语言/平台);提炼自 Rust CLI、Python 基础设
 | 定平台矩阵 / shell 行尾 / CI 三系统 / 换机接管 | `references/env-platform.md` |
 | 盘点环境依赖 / ome 命令 / 换机重建 | `references/env-environment.md` |
 | 建项目脚本工具（.tools / uv / PEP 723) | `references/tool-project.md` |
-| 找库搜代码（gh）/ 深读外来仓（git） | `references/tool-gh.md` / `references/tool-git.md` |
+| 建 TypeScript/Node 项目 / tsc / node:test / npm 包验收 | `references/tool-typescript.md` |
 | 选依赖 / 查库（五栈数据源与稳度判据） | `references/tool-selection.md` |
 | 给 CLI 加 agent 用户面（agent-native 契约、管道逃生舱、脚本 workspace） | `references/tool-cli-agents.md` |
-| 搜引擎/抓网页 / 读本地文档 / 下资料 | `references/tool-browser-harness.md` / `references/tool-reader.md` / `references/tool-aria2c.md` |
+| 搜论文/Google/Medium/X/GitHub/电子书/种子下载 | 市场技能 `super-research:research`（本 skill 不承载 CLI 工具手册） |
 | 落地前预警 / 疑似踩了已知坑 | `references/exp-pitfalls.md` |
 | 经验往哪沉淀 / 踩坑何时升格 / 二犯配什么约束 | `references/exp-sedimentation.md` |
 | 验证某项目是否符合骨架 | `verification/command-test-cases.md` |
@@ -62,7 +62,7 @@ rg -n "关键词" references\
 
 # 4 结构化提取:进文件后按节/代码块抽取,不整篇读
 reader query references\base-primitives.md ".h2"      # 节导航
-reader query references\tool-aria2c.md ".code"        # 只要命令
+reader query references\flow-release.md ".code"       # 只要命令
 ```
 
 检索原则：先窄后宽（文件名到索引到正文）；命中多篇时以 README 场景分组定主从；进文件先 `.h2` 抽目录再定点读。
@@ -76,7 +76,7 @@ reader query references\tool-aria2c.md ".code"        # 只要命令
 | 认知 | 六态（base-writing-standards）+ 知行合一（flow-workflow 三节） | 知行合一给方向，六态给状态；实证与经验循环 |
 | 对话 | 双向问答（flow-inquiry） | 你问我答收决策入 PRD，我问你答核知识出 S 文档 |
 | 流程 | 五步工作流与最小实现阶梯（flow-workflow） | 登记到归档主线；阶梯管写码前，探查是其落地 |
-| 探查 | 依赖选型（tool-selection）+ 五工具管线（tool-\*） | 阶梯 2 到 5 档的数据源与稳度判据 |
+| 探查 | 依赖选型（tool-selection） | 阶梯 2 到 5 档；网页/论文/代码检索见 research 技能 |
 | 执行 | 事件三态与超时兜底（flow-events） | 任务运行模型；未知必处置，反馈即事件 |
 | 验证 | 测试双轴与门禁（flow-testing）+ verification PE 检查 | 反馈的工程化；测试绿是实证最强依据 |
 | 沉淀 | 经验分治与集成约束（exp-sedimentation）+ exp-pitfalls | 错误反馈转资产；二犯升格并配机器约束 |

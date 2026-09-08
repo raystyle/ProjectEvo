@@ -55,11 +55,11 @@ ome 自身:C:\Users\<u>\AppData\Local\Programs\ome\ome.exe(ome init 装入用户
 
 | 工具 | 域 | 安装形态 | 环境根位置 | 指南 | 版本快照 |
 | --- | --- | --- | --- | --- | --- |
-| reader | 命令工具 | 自包含（reader.exe + rr.exe + SKILL.md) | `环境根\reader\` | [tool-reader.md](tool-reader.md) | 0.5.0 [实证: 2026-09-04] |
-| gh | 命令工具 | 自包含 | `环境根\gh\` | [tool-gh.md](tool-gh.md) | 2.98.0 [实证] |
-| git | 命令工具 | 自包含（portable) | `环境根\git\` | [tool-git.md](tool-git.md) | 2.55.0 [实证] |
-| aria2 | 命令工具 | 自包含 | `环境根\aria2\` | [tool-aria2c.md](tool-aria2c.md) | 1.37.0 [实证] |
-| browser-harness | - | **uv tool**（非 ome 直管） | `环境根\uv-tools\browser-harness\` | [tool-browser-harness.md](tool-browser-harness.md) | 0.6.12 [实证: 2026-09-04] |
+| reader | 命令工具 | 自包含 | `环境根\reader\` | research 技能 | 0.6.0 [实证: 2026-09-08] |
+| gh | 命令工具 | 自包含 | `环境根\gh\` | research 技能 | 2.98.0 [实证] |
+| git | 命令工具 | 自包含（portable) | `环境根\git\` | research 技能 | 2.55.0 [实证] |
+| aria2 | 命令工具 | 自包含 | `环境根\aria2\` | research 技能 | 1.37.0 [实证] |
+| bh | npm-global | 非 ome 直管 | Node 装态 | research 技能 | 0.6.0 含 `engine` 无头 [实证: 2026-09-08] |
 
 > browser-harness 走 uv tool 安装（`uv tool install browser-harness`），升级用 `uv tool upgrade`，不在 ome 锁定面内；其余四工具由 ome 三态管理。
 
@@ -71,6 +71,7 @@ ome 自身:C:\Users\<u>\AppData\Local\Programs\ome\ome.exe(ome init 装入用户
 4. **日常**：跨主版本升级经 `ome daily` 保留待确认，**升级依赖是显式决策**，不静默跳主版本 [实证： daily 语义出自 --help]
 5. **版本快照**：关键工具版本在项目 ROADMAP/diary 记「快照 + 日期」，升级后复验刷新
 6. **新增工具**：先查 `ome status` 防重复安装；Python CLI 一律 `uv tool install`；能被 ome 管的优先进 ome 锁定面
+7. **Node/TS CLI**：走 `npm pack` 全局 tgz，不进 ome 锁定面、也不走 uv tool；工程合同见 tool-typescript.md [实证: browser-harness-ts R001]
 
 ## 五、复验命令
 

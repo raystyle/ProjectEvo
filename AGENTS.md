@@ -39,7 +39,8 @@ ProjectEvo/
 ├── .claude-plugin/marketplace.json   # Claude Code 市场清单
 ├── .agents/plugins/marketplace.json  # Codex 市场清单
 ├── plugins/
-│   └── project-evo/     # 唯一交付插件:项目进化(结构源仓 文档骨架)
+│   ├── project-evo/     # 文档骨架插件
+│   └── super-research/  # 超级研究插件(skill research)
 │       ├── .claude-plugin/plugin.json   # Claude manifest
 │       ├── .codex-plugin/plugin.json    # Codex manifest(与 Claude 面字段同步,测试守卫)
 │       ├── README.md    # 插件说明(状态/前置/安装/用法/敏感产物/发布)
@@ -47,7 +48,7 @@ ProjectEvo/
 │       ├── hooks/       # hooks.json:PostToolUse md 禁字挡板(Claude 面)
 │       └── skills/evo/
 │           ├── SKILL.md     # 意图路由 + 体系速览 + 知识库检索方法
-│           ├── references/  # 分类扁平参考目录(前缀分组 21 篇,README 渐进索引路由)
+│           ├── references/  # 分类扁平参考目录(前缀分组 22 篇,README 渐进索引路由)
 │           ├── verification/# 命令行为验证用例(规范检查命令,参数化 ProjectRoot)
 │           ├── assets/templates/  # 骨架模板(scripts/init.py 渲染源)
 │           └── scripts/   # init/check/scan/md-guard/mdrules(PEP 723 零依赖)
@@ -63,7 +64,7 @@ ProjectEvo/
 ├── README.md            # 标准入口
 ```
 
-> skill 源码唯一位置是 `plugins/project-evo/skills/evo/`；分发走插件市场（根双清单 + 插件双 manifest），无内嵌副本（双漂移守卫已随单源化取消，清单一致性守卫接棒）。
+> 文档体系 skill 在 `plugins/project-evo/skills/evo/`；资料检索 skill 在 `plugins/super-research/skills/research/`。分发走插件市场（根双清单 + 各插件双 manifest）。
 
 ## 三、文档索引
 
@@ -82,7 +83,7 @@ ProjectEvo/
 
 > 每条硬规则带六态来源标注。
 
-1. **单一权威源**：skill 内容只在 `plugins/project-evo/skills/evo/` 维护；引用其项目的文档体系规则以该 skill 为准，本文件不重复。[经验： 双份漂移踩坑]
+1. **单一权威源**：文档体系只在 `plugins/project-evo/skills/evo/`；资料检索只在 `plugins/super-research/skills/research/`。本文件不重复。[经验： 双份漂移踩坑]
 2. **proven 语义**：proven = **完全成功的 plan 方案归档**（立项建方案、完成回填），不是里程碑/成果列表，用户 2026-09-03 明确裁定，写入 skill。[经验： 用户纠正]
 3. **双层机器可读**：目录与文件名以 rg 检索为先（类别前缀+主题词）；文档内部结构以 mq 提取为先（标题层级/代码块/表格）。[经验： 用户裁定 2026-09-03]
 4. **变更完整性**：只改 skill 不同步 SKILL.md 索引/references/CHANGELOG = 变更不完整。[经验]
@@ -93,6 +94,6 @@ ProjectEvo/
 ## 五、环境事实
 
 - 平台：Windows · PowerShell 7（禁 powershell.exe 5.1 与 cmd）
-- skill 提炼源：D：\reader 仓、D：\PVE 仓、浏览器工具仓（家族骨架三仓）
+- skill 提炼源：D：\reader 仓、D：\PVE 仓、浏览器工具仓、D：\browser-harness-ts（家族骨架，TS 栈合同见 tool-typescript.md）
 - 当前阶段：v0.2.0 插件市场形态（2026-09-04 转型，第二十八批；SpecterOps/skills 组织形式既证模式）；部署 = Claude Code `/plugin marketplace add raystyle/ProjectEvo` 或 Codex `codex plugin marketplace add raystyle/ProjectEvo`；旧 `uv tool install` 通道已退役
 - 项目状态与待办见 `ROADMAP.md`，不再在本文维护

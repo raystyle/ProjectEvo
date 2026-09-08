@@ -57,7 +57,8 @@ git push origin main v<版本>      # tag 推送即触发 release 流水线
 | 环节 | 依据 |
 | --- | --- |
 | Unreleased 起步与转版 | flow-workflow.md 归档步 + base-primitives.md 义务表「发布」行 |
-| tag 纪律与一致性闸 | tool-git.md 二节 |
-| release 资产上传/验收 | tool-gh.md 二节 |
+| tag 纪律与一致性闸 | `git tag v<版本>` 后推送；已发 release 的 tag 不回退 |
+| release 资产上传/验收 | `gh release create` / `gh release upload --clobber` |
 | 平台矩阵与实机接管 | env-platform.md 六/七节 |
 | 环境依赖（实机工具链） | env-environment.md(ome status 盘点） |
+| Node/TS npm 包资产 | tool-typescript.md 第十节：`package.json` 与 lock 双处 version、`npm pack` tgz、安装验收禁 link |

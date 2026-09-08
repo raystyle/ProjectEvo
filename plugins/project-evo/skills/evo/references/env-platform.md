@@ -19,7 +19,7 @@
 
 - 文档与源码一律 **UTF-8**;Windows 上需兼容 PowerShell 5.1 的脚本用 **UTF-8 BOM**（无 BOM 中文 ps1 给 5.1 读会乱码） [经验： reader 仓 同款规则]
 - **`.gitattributes` 钉死行尾**（`* text=auto eol=lf` 按语言细化），不靠各机 `core.autocrlf` 配置 [经验： reader 仓 P0004 实践；不做则跨平台 diff 全是行尾噪声]
-- 代码中**禁止手拼路径分隔符**：用 Path API / `std::path::Path` 拼接，不写 `"a\\b"` 或 `"a/b"` 硬编码 [经验： reader 仓 M005，反斜杠 join 直接打红 linux/macOS 测试]
+- 代码中**禁止手拼路径分隔符**：用 Path API / `std::path::Path` / Node `node:path` 拼接，不写 `"a\\b"` 或 `"a/b"` 硬编码 [经验： reader 仓 M005，反斜杠 join 直接打红 linux/macOS 测试；TS 落点见 tool-typescript.md]
 
 ## 三、文档路径写法
 
@@ -82,6 +82,9 @@
 | browser-harness | 第一优先验证 | headless 默认（无显示环境） | 支持 |
 | browser-harness + WSL2 | 宿主 Windows 栈用 9223 | WSL2 镜像网络下 Linux 栈自钉端口（如 9224）避撞 | - [经验： bh SKILL 约定] |
 | uv | 三平台 | 同 | 同 |
+| Node/npm | 三平台；CI `npm ci` + `npm test`，矩阵 Node 22/24 [实证: browser-harness-ts] | 同 | 同 |
+| `node --test` glob | Windows git-bash 必须引号：`"dist/*.test.js"`，否则目录当参数炸 [实证: M002] | 引号同样安全 | 同 |
+| spawn npm | fnm 下勿 `spawnSync('npm.cmd')`；走与 node.exe 同目录的 `node npm-cli.js` [实证: M016] | 直接 `npm` | 同 |
 | rmux | 三平台 | 同 | 同 |
 
 ## 九、立项时的平台决策（回填 base-init.md Step 2)
