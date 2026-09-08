@@ -72,6 +72,20 @@ def test_cli_github_requires_owner_repo(tmp_path: Path):
     assert "owner/repo" in r.stderr
 
 
+def test_ab_matches_oracle():
+    """A/B 对照脚本退出 0，且每条与 ab-cases 期望一致（对照本身不作门禁胜负）。"""
+    r = subprocess.run(
+        [sys.executable, str(SCRIPTS / "ab.py")],
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+    )
+    assert r.returncode == 0, r.stderr
+    data = json.loads(r.stdout)
+    assert data["cases"], "夹具不得为空"
+    assert all(c["A_match_exp"] and c["B_match_exp"] for c in data["cases"]), data["cases"]
+
+
 def test_cli_json_clean(tmp_path: Path):
     (tmp_path / "ok.txt").write_text("hello\n", encoding="utf-8")
     r = subprocess.run(

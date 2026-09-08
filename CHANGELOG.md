@@ -4,6 +4,14 @@
 
 ## [Unreleased]
 
+### 新增（2026-09-08，第三十七批：secret-scan A/B 对照）
+
+> A/B 是对比不是门禁。同夹具实跑 A=`secret-scan` 对 B=`evo scan` secrets 部分，结论回填 S006。
+
+- `scripts/ab.py` + `verification/ab-cases.md`：九条伪造夹具（工作区/已删历史/占位/AWS 文档示例/.env/--pii）
+- 本机九条期望全中；A 独有 Stripe/GitLab/pii；共有 GitHub token 历史能力与 AWS 示例假阳；gitleaks 未装 SKIP
+- 研究：`docs/research/S006-secret-scan-AB对照.md`
+
 ### 新增（2026-09-08，第三十六批：密钥隐私扫描插件 secret-scan）
 
 > 信源：超级研究对照 gitleaks/trufflehog/detect-secrets/akaihola secrets-scan/GitGuardian 技能与本仓 evo scan.py。用户要 uv Python 扫本地仓与 GitHub 历史，不绑 Go 二进制。

@@ -15,7 +15,7 @@
 1. **成熟引擎是 Go 二进制，不是 uv Python。** `gitleaks/gitleaks` 约 29k star、`trufflesecurity/trufflehog` 约 28k star，扫 git 历史与（TruffleHog）远程 GitHub/验证存活密钥。agent skill 市场上大量 SKILL.md 只是「去跑 gitleaks/trufflehog」的说明书。[实证: 2026-09-08 `gh search repos`]
 2. **最接近「uv run scripts/scan.py」的现成 skill 是 akaihola/secrets-scan。** 它编排 `uvx detect-secrets` + npm `secretlint`，扫的是**当前 git 跟踪文件**，不是全历史，也不是 GitHub API。[实证: agent-skills.md 该 skill 正文]
 3. **GitHub 历史不能靠 `gh search code` 单独完成。** code search 只索引默认分支当前树；已删提交里的密钥要 `git log -p` 或平台 Secret Scanning alerts。alerts 需仓库打开 secret scanning 且 token 有 `security_events`。[推断: 对照 GitHub 文档与本仓 evo 已用 `git log -p`；alerts 权限未在本机复验]
-4. **本仓应自带 PEP 723 零依赖脚本，不绑 gitleaks。** 与 evo 脚本合同一致、Windows 无 brew、无 Docker。规则比 evo 现网正则更全，但比 gitleaks 规则库窄；GitHub 面用 `gh api` alerts + 可选 `--clone-history` 拉裸仓再扫历史。活密钥探测（对第三方发请求）不做。[经验: 本仓 v0.2.0 零依赖门禁；用户明确 uv Python]
+4. **本仓应自带 PEP 723 零依赖脚本，不绑 gitleaks。** 与 evo 脚本合同一致、Windows 无 brew、无 Docker。规则比 evo 现网正则更全，但比 gitleaks 规则库窄；GitHub 面用 `gh api` alerts + 可选 `--clone-history` 拉裸仓再扫历史。活密钥探测（对第三方发请求）不做。[经验: 本仓 v0.2.0 零依赖门禁；用户明确 uv Python]。与 evo scan 的同夹具实跑见 [S006](S006-secret-scan-AB对照.md)。
 5. **报告必须脱敏。** 安全审计 skill 把 scanner snippet 写进仓内报告会二次泄露（claude-security-audit v2.6.1 踩过）。本 skill 片段只留前缀。[实证: velimattiv/claude-security-audit README]
 
 ## 现成 skill 对照

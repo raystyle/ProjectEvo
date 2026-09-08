@@ -9,3 +9,4 @@
 | S003 | （退役） | 同上 | 编号不复用 |
 | S004 | （退役） | 同上 | 编号不复用 |
 | S005 | [S005-git密钥隐私扫描skill选型.md](S005-git密钥隐私扫描skill选型.md) | git/GitHub 密钥隐私扫描 skill 选型与落地 | 已完成 2026-09-08 |
+| S006 | [S006-secret-scan-AB对照.md](S006-secret-scan-AB对照.md) | secret-scan 与 evo scan 同夹具 A/B | 已完成 2026-09-08 |

@@ -49,4 +49,8 @@ uv run <脚本> --json
 - HIGH:先轮换再清史(见 `references/remediate.md`)
 - 不做对第三方的活密钥探测
 
-选型依据:`docs/research/S005-git密钥隐私扫描skill选型.md`
+选型依据:`docs/research/S005-git密钥隐私扫描skill选型.md`。A/B 夹具:`verification/ab-cases.md`；实跑回填 `docs/research/S006-secret-scan-AB对照.md`。
+
+```powershell
+uv run plugins/secret-scan/skills/secrets/scripts/ab.py
+```
