@@ -1,6 +1,6 @@
 # ProjectEvo
 
-> 一句话定位：ProjectEvo 插件市场仓。交付三插件：`project-evo`（文档骨架 skill `evo`）、`super-research`（资料检索 skill `research`）、`secret-scan`（密钥隐私扫描 skill `secrets`）。
+> 一句话定位：ProjectEvo 插件市场仓。交付四插件：`project-evo`（文档骨架 skill `evo`）、`super-research`（资料检索 skill `research`）、`secret-scan`（密钥隐私扫描 skill `secrets`）、`office-pro`（OfficeCLI 专业面 skill `office-pro`）。
 
 ## 安装与部署
 
@@ -12,7 +12,8 @@
   /plugin install project-evo@projectevo
   /plugin install super-research@projectevo
   /plugin install secret-scan@projectevo
-  得到:文档骨架 + 检索管线 + 密钥扫描;斜杠命令与 PostToolUse 禁字挡板随 project-evo
+  /plugin install office-pro@projectevo
+  得到:文档骨架 + 检索管线 + 密钥扫描 + OfficeCLI 专业面;斜杠命令与 PostToolUse 禁字挡板随 project-evo
 
 通道二 Codex 插件
   codex plugin marketplace add raystyle/ProjectEvo
@@ -42,7 +43,7 @@
 ProjectEvo/
   .claude-plugin/marketplace.json    Claude Code 市场清单
   .agents/plugins/marketplace.json   Codex 市场清单
-  plugins/project-evo/               唯一交付插件(发布单元)
+  plugins/project-evo/               文档骨架(skill evo)
     .claude-plugin/plugin.json       Claude manifest
     .codex-plugin/plugin.json        Codex manifest(字段与 Claude 面同步,受测试守卫)
     README.md                        插件说明(状态/前置/安装/用法/敏感产物/发布)
@@ -50,10 +51,13 @@ ProjectEvo/
     hooks/hooks.json                 PostToolUse md 禁字挡板(Claude 面)
     skills/evo/
       SKILL.md                       意图路由 + 体系速览 + 知识库检索法
-      references/                    分类扁平知识库 22 篇(前缀 base/flow/env/tool/exp)
+      references/                    分类扁平知识库(前缀 base/flow/env/tool/exp)
       verification/                  骨架规范检查命令(PE-01 至 PE-13,参数化目标项目)
       assets/templates/              骨架模板(init.py 渲染源)
       scripts/                       init/check/scan/md-guard/mdrules(PEP 723 零依赖)
+  plugins/super-research/            资料检索(skill research)
+  plugins/secret-scan/               密钥扫描(skill secrets)
+  plugins/office-pro/                OfficeCLI 专业面(skill office-pro)
   .tools/                            md-ref-scan 断链扫描(仓内维护)
   githooks/                          pre-commit 挡板(md-guard --staged + md-ref-scan)
   tests/                             pytest(脚本行为 + 清单一致性守卫 + 仓内禁字回归)
@@ -95,6 +99,7 @@ uv run plugins/project-evo/skills/evo/scripts/check.py <目标项目>
 | `plugins/project-evo/skills/evo/references/README.md` | 参考知识库渐进索引 | 找参考文档时先看 |
 | `plugins/project-evo/skills/evo/verification/command-test-cases.md` | 骨架规范检查命令 | 验证目标项目合规时 |
 | `plugins/project-evo/README.md` | 插件说明与安装 | 安装/分发插件时 |
+| `plugins/office-pro/skills/office-pro/SKILL.md` | OfficeCLI 专业面 | 改 docx/xlsx/pptx 时 |
 | `docs/README.md` | 全仓文档地图 | 找任何文档时 |
 | `ROADMAP.md` | 阶段与里程碑状态 | 看进度时 |
 | `CHANGELOG.md` | 变更日志 | 查历史时 |

@@ -143,7 +143,7 @@ def test_marketplace_catalog_consistency():
     names_c = {p["name"] for p in claude_mkt["plugins"]}
     names_x = {p["name"] for p in codex_mkt["plugins"]}
     assert names_c == names_x, "双市场收录集须一致"
-    assert "project-evo" in names_c and "super-research" in names_c and "secret-scan" in names_c, "须收录文档/研究/密钥扫描三插件"
+    assert "project-evo" in names_c and "super-research" in names_c and "secret-scan" in names_c and "office-pro" in names_c, "须收录文档/研究/密钥扫描/Office 四插件"
     for p in claude_mkt["plugins"]:
         assert (REPO / p["source"].removeprefix("./")).is_dir(), f"Claude source 不可达: {p['source']}"
     for p in codex_mkt["plugins"]:
@@ -182,3 +182,15 @@ def test_marketplace_catalog_consistency():
     assert (leaks / "skills" / "secrets" / "SKILL.md").is_file()
     assert (leaks / "skills" / "secrets" / "scripts" / "scan.py").is_file()
     assert (leaks / "commands" / "scan.md").is_file()
+
+    office = REPO / "plugins" / "office-pro"
+    o_claude = json.loads((office / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8"))
+    o_codex = json.loads((office / ".codex-plugin" / "plugin.json").read_text(encoding="utf-8"))
+    for k in ("name", "version", "description"):
+        assert o_claude[k] == o_codex[k], f"office-pro {k} 双 manifest 漂移"
+    o_entry = next(p for p in claude_mkt["plugins"] if p["name"] == "office-pro")
+    assert o_entry["version"] == o_claude["version"]
+    assert (office / "skills" / "office-pro" / "SKILL.md").is_file()
+    assert (office / "skills" / "office-pro" / "scripts" / "which.py").is_file()
+    assert (office / "skills" / "office-pro" / "scripts" / "smoke.py").is_file()
+    assert (office / "commands" / "office.md").is_file()

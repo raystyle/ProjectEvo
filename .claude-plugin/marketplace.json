@@ -4,7 +4,7 @@
     "name": "raystyle"
   },
   "metadata": {
-    "description": "项目进化:agent skill 与插件市场(文档骨架、合规诊断、安全扫描)",
+    "description": "项目进化:agent skill 与插件市场(文档骨架、资料检索、密钥扫描、OfficeCLI 专业面)",
     "pluginRoot": "./plugins"
   },
   "plugins": [
@@ -26,6 +26,13 @@
       "name": "secret-scan",
       "source": "./plugins/secret-scan",
       "description": "密钥与隐私扫描:本地 git 工作区/全历史,以及 GitHub alerts 与提交史",
+      "version": "0.1.0",
+      "category": "productivity"
+    },
+    {
+      "name": "office-pro",
+      "source": "./plugins/office-pro",
+      "description": "OfficeCLI 专业面:钉 GitHub 资产装二进制,DOM 路径读写 docx/xlsx/pptx,既有稿纠偏与写入前事实核查",
       "version": "0.1.0",
       "category": "productivity"
     }

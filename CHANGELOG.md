@@ -4,6 +4,23 @@
 
 ## [Unreleased]
 
+### 新增（2026-09-08，第三十九批：office-pro 插件）
+
+> 信源：S007 烟测 + 既有 pptx 纠偏/换文案/事实核查实弹。用户裁定把该过程沉淀为市场插件。钉资产，不跑 `install.ps1`，不 `officecli install`。
+
+- 新插件 `plugins/office-pro`（skill `office-pro`）：意图路由 + install/cli/edit/facts 四篇参考；PEP 723 `which.py`/`smoke.py`；斜杠命令 `/office-pro:office`
+- 硬规则：钉 GitHub 资产、备份与锁文件、PowerShell 禁 `$args`、稿面数字须对官方页、native 截图核、图片保纵横比
+- 双 manifest 0.1.0；双市场清单收录；pytest 覆盖清单与 which/smoke
+- 研究底稿仍是 `docs/research/S007-OfficeCLI-agent原生Office套件.md`，本轮标明已沉淀
+
+### 新增（2026-09-08，第三十八批：OfficeCLI 研究与本机烟测）
+
+> 信源：https://github.com/iOfficeAI/OfficeCLI 。钉 release 资产，不跑官方 `install.ps1`、不 `officecli install`。
+
+- 研究：`docs/research/S007-OfficeCLI-agent原生Office套件.md`
+- 本机 `%LOCALAPPDATA%\OfficeCLI\officecli.exe` v1.0.148，SHA256 与 `SHA256SUMS` 一致
+- 烟测 pptx/docx/xlsx 的 create/add/view/get/validate/close 与 `--json` 信封通过；坏路径 `not_found` 退出 1
+
 ### 新增（2026-09-08，第三十七批：secret-scan A/B 对照）
 
 > A/B 是对比不是门禁。同夹具实跑 A=`secret-scan` 对 B=`evo scan` secrets 部分，结论回填 S006。

@@ -49,7 +49,7 @@
 - [tool-cli-agents.md](tool-cli-agents.md) - agent-native CLI 设计：双用户公理与 token 经济学、发现三通道（skills add/mcp add/--llms）、市场分发协议（双客户端 add 形态、git 双协议、简写默认协议相反、钉版、source 七型）、TOON 紧凑输出与 CTA、四面 schema、管道代码逃生舱（零 import 集成运行时）、脚本 workspace 集中归档（同 exec 运行时、apps 即命令、domain-skills 知识层）、定义一次多面暴露（Agent Plugins 三层）、行为 oracle 对齐、落地清单
 - [tool-typescript.md](tool-typescript.md) - TypeScript/Node 工程合同：Node >=22 ESM、tsc 严选项、runtime 依赖白名单、node:test（引号 glob）、checkJs 管 .mjs、npm pack 验收（禁 link）、空串不走 ??、fnm 下 spawn npm-cli.js
 
-资料检索（gh / Google / Medium / X / reader / aria2c）不在本 skill，见市场插件 `super-research` 的 `research` 技能。
+资料检索（gh / Google / Medium / X / reader / aria2c）不在本 skill，见市场插件 `super-research` 的 `research` 技能。Office 文件读写（OfficeCLI）不在本 skill，见市场插件 `office-pro`。
 
 ### 经验
 
