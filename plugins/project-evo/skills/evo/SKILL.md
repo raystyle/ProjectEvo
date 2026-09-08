@@ -42,6 +42,7 @@ compatibility: 通用(不限语言/平台);提炼自 Rust CLI、Python 基础设
 | 选依赖 / 查库（五栈数据源与稳度判据） | `references/tool-selection.md` |
 | 给 CLI 加 agent 用户面（agent-native 契约、管道逃生舱、脚本 workspace） | `references/tool-cli-agents.md` |
 | 搜论文/Google/Medium/X/GitHub/电子书/种子下载 | 市场技能 `super-research:research`（本 skill 不承载 CLI 工具手册） |
+| 扫 git/GitHub 密钥密码隐私泄露 | 市场技能 `secret-scan:secrets`（本 skill 的 scan 仍管浅密钥+md 禁字） |
 | 落地前预警 / 疑似踩了已知坑 | `references/exp-pitfalls.md` |
 | 经验往哪沉淀 / 踩坑何时升格 / 二犯配什么约束 | `references/exp-sedimentation.md` |
 | 验证某项目是否符合骨架 | `verification/command-test-cases.md` |

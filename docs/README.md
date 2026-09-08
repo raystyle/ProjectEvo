@@ -10,6 +10,8 @@
 | `../ROADMAP.md` | 阶段与里程碑状态 | 看进度时 |
 | `research/README.md` | 本仓研究登记 | 找 S 文档时 |
 | `research/S001-bh与reader使用过程技巧.md` | bh 工位复用与 reader 电子书阅读过程 | 再用搜索抓取或读电子书前 |
+| `research/S005-git密钥隐私扫描skill选型.md` | 密钥扫描 skill 选型 | 改 secret-scan 规则或对照 gitleaks 前 |
+| `../plugins/secret-scan/skills/secrets/SKILL.md` | 密钥与隐私扫描命令面 | 扫 git/GitHub 泄露时 |
 | `../plugins/project-evo/skills/evo/SKILL.md` | skill 本体概览层 | 使用/修改 skill 前 |
 | `../plugins/project-evo/skills/evo/references/README.md` | 参考知识体系渐进索引（快速路由到场景到全量） | 找任何参考时先看 |
 | `../plugins/project-evo/skills/evo/references/base-primitives.md` | 根原语详解（PRD/GOAL/PLAN/TODO/INDEX/AGENTS 模板头 + 文档义务表） | 建骨架写原语时 |

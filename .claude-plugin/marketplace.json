@@ -21,6 +21,13 @@
       "description": "超级研究:gh/Google/Medium/X/reader/aria2c 资料检索管线",
       "version": "0.1.0",
       "category": "productivity"
+    },
+    {
+      "name": "secret-scan",
+      "source": "./plugins/secret-scan",
+      "description": "密钥与隐私扫描:本地 git 工作区/全历史,以及 GitHub alerts 与提交史",
+      "version": "0.1.0",
+      "category": "productivity"
     }
   ]
 }

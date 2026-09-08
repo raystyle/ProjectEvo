@@ -4,6 +4,15 @@
 
 ## [Unreleased]
 
+### 新增（2026-09-08，第三十六批：密钥隐私扫描插件 secret-scan）
+
+> 信源：超级研究对照 gitleaks/trufflehog/detect-secrets/akaihola secrets-scan/GitGuardian 技能与本仓 evo scan.py。用户要 uv Python 扫本地仓与 GitHub 历史，不绑 Go 二进制。
+
+- 新插件 `plugins/secret-scan`（skill `secrets`）：PEP 723 零依赖 `scan.py` 扫工作区、`git log -p` 全历史、`gh` Secret Scanning alerts 与 code search；完整远程历史须显式 `--clone-history`
+- 报告脱敏；不做活密钥探测；白名单 `SECRET_SCAN_ALLOW`
+- 双 manifest 0.1.0；双市场清单收录；pytest 覆盖历史命中与 CLI 校验
+- 研究落 `docs/research/S005-git密钥隐私扫描skill选型.md`
+
 ### 变更（2026-09-08，第三十五批：bh 0.6.0 无头引擎写入 research）
 
 > 信源：https://github.com/raystyle/browser-harness README + CHANGELOG 0.6.0（D37）+ 本机 `bh engine` 实弹。仓已是 TS `bh`，不是旧 Python CLI。

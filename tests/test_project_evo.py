@@ -143,7 +143,7 @@ def test_marketplace_catalog_consistency():
     names_c = {p["name"] for p in claude_mkt["plugins"]}
     names_x = {p["name"] for p in codex_mkt["plugins"]}
     assert names_c == names_x, "双市场收录集须一致"
-    assert "project-evo" in names_c and "super-research" in names_c, "须同时收录文档插件与研究插件"
+    assert "project-evo" in names_c and "super-research" in names_c and "secret-scan" in names_c, "须收录文档/研究/密钥扫描三插件"
     for p in claude_mkt["plugins"]:
         assert (REPO / p["source"].removeprefix("./")).is_dir(), f"Claude source 不可达: {p['source']}"
     for p in codex_mkt["plugins"]:
@@ -171,3 +171,14 @@ def test_marketplace_catalog_consistency():
     r_entry = next(p for p in claude_mkt["plugins"] if p["name"] == "super-research")
     assert r_entry["version"] == r_claude["version"]
     assert (research / "skills" / "research" / "SKILL.md").is_file()
+
+    leaks = REPO / "plugins" / "secret-scan"
+    s_claude = json.loads((leaks / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8"))
+    s_codex = json.loads((leaks / ".codex-plugin" / "plugin.json").read_text(encoding="utf-8"))
+    for k in ("name", "version", "description"):
+        assert s_claude[k] == s_codex[k], f"secret-scan {k} 双 manifest 漂移"
+    s_entry = next(p for p in claude_mkt["plugins"] if p["name"] == "secret-scan")
+    assert s_entry["version"] == s_claude["version"]
+    assert (leaks / "skills" / "secrets" / "SKILL.md").is_file()
+    assert (leaks / "skills" / "secrets" / "scripts" / "scan.py").is_file()
+    assert (leaks / "commands" / "scan.md").is_file()

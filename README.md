@@ -1,6 +1,6 @@
 # ProjectEvo
 
-> 一句话定位：ProjectEvo 插件市场仓。交付两插件：`project-evo`（文档骨架 skill `evo`）与 `super-research`（资料检索 skill `research`：gh / Google / Medium / X / reader / aria2c）。
+> 一句话定位：ProjectEvo 插件市场仓。交付三插件：`project-evo`（文档骨架 skill `evo`）、`super-research`（资料检索 skill `research`）、`secret-scan`（密钥隐私扫描 skill `secrets`）。
 
 ## 安装与部署
 
@@ -10,7 +10,9 @@
 通道一 Claude Code 插件(推荐)
   /plugin marketplace add raystyle/ProjectEvo
   /plugin install project-evo@projectevo
-  得到:skill 意图路由 + /project-evo:init|check|scan 斜杠命令 + PostToolUse 禁字挡板
+  /plugin install super-research@projectevo
+  /plugin install secret-scan@projectevo
+  得到:文档骨架 + 检索管线 + 密钥扫描;斜杠命令与 PostToolUse 禁字挡板随 project-evo
 
 通道二 Codex 插件
   codex plugin marketplace add raystyle/ProjectEvo
