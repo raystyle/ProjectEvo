@@ -134,4 +134,4 @@ reader query references\flow-release.md ".code"       # 只要命令
 
 完整渐进索引（快速路由到场景到全量）见 `references/README.md`；姊妹件：`verification/command-test-cases.md`（骨架规范检查命令）。
 
-配套脚本（`scripts/`，PEP 723 零依赖，uv run 或系统 python 直跑；模板在 `assets/templates/`）：`init.py <path> [--name 名]` 安装文档骨架（幂等）/ `check.py [path]` 诊断合规（PE-01 至 PE-13)/ `scan.py [path] [--no-history]` 安全与规范扫描；禁字规则唯一权威 `scripts/mdrules.py`（check 的 PE-12、scan、md-guard 三面同源）。安装通道：Claude Code `/plugin marketplace add raystyle/ProjectEvo` 后装 project-evo 插件（`/project-evo:*` 斜杠命令与 PostToolUse 禁字挡板随插件生效）；Codex `codex plugin marketplace add raystyle/ProjectEvo`。
+配套脚本（`scripts/`，PEP 723 零依赖，uv run 或系统 python 直跑；模板在 `assets/templates/`）：`init.py <path> [--name 名]` 安装文档骨架（幂等）/ `check.py [path]` 诊断合规（PE-01 至 PE-13)/ `scan.py [path] [--no-history]` 安全与规范扫描；禁字规则唯一权威 `scripts/mdrules.py`（check 的 PE-12、scan、md-guard 三面同源）。安装通道：Claude Code `/plugin marketplace add raystyle/ProjectEvo` 后装 project-evo 插件（`/project-evo:*` 斜杠命令与 PostToolUse 禁字挡板随插件生效）；Codex `codex plugin marketplace add raystyle/ProjectEvo`；Grok `grok plugin install project-evo@projectevo --trust`；Kimi 无市场，拷 `skills/evo/` 至 `~/.kimi/skills`（命令与 hook 不随行）。

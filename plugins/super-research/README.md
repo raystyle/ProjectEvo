@@ -12,7 +12,7 @@
 /plugin install super-research@projectevo
 ```
 
-Codex：在 `/plugins` 里装 `super-research`。
+Codex：`codex plugin add super-research@projectevo`；Grok：`grok plugin install super-research@projectevo --trust`；Kimi（无市场）：拷 `skills/research/` 整目录至 `~/.kimi/skills/`。
 
 ## 用法
 

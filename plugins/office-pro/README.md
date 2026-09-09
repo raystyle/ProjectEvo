@@ -20,7 +20,7 @@ OfficeCLI 专业面插件。核心 skill 为 `office`（显示 `office-pro:offic
 /plugin install office-pro@projectevo
 ```
 
-Codex：在 `/plugins` 里装 `office-pro`。二进制另按 `skills/office/references/install.md` 钉资产，插件不代装。
+Codex：`codex plugin add office-pro@projectevo`；Grok：`grok plugin install office-pro@projectevo --trust`；Kimi（无市场）：拷 `skills/office/` 整目录至 `~/.kimi/skills/`。二进制另按 `skills/office/references/install.md` 钉资产，插件不代装。
 
 ## 用法
 

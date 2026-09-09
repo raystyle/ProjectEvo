@@ -2,7 +2,7 @@
 
 项目进化插件:为项目建立需求驱动、留痕沉淀、持续进化的文档体系(家族骨架)。
 
-状态:active。支持客户端:Claude Code 与 Codex。
+状态:active。插件面客户端:Claude Code、Codex、Grok;纯 skills 面:Kimi 等手拷子集。
 
 ## 前置
 
@@ -25,7 +25,16 @@ Codex:
 codex plugin marketplace add raystyle/ProjectEvo
 ```
 
-本地开发(两客户端同款,路径换本地仓根)。
+Grok:
+
+```bash
+grok plugin marketplace add raystyle/ProjectEvo
+grok plugin install project-evo@projectevo --trust
+```
+
+Kimi(无市场):拷 `skills/evo/` 整目录至 `~/.kimi/skills/`;斜杠命令与 hook 不随行。
+
+本地开发(三客户端同款,路径换本地仓根)。
 
 ## 用法
 

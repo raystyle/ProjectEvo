@@ -12,6 +12,8 @@
 /plugin install secret-scan@projectevo
 ```
 
+Codex:`codex plugin add secret-scan@projectevo`;Grok:`grok plugin install secret-scan@projectevo --trust`;Kimi(无市场):拷 `skills/secrets/` 整目录至 `~/.kimi/skills/`。
+
 ## 用法
 
 ```powershell

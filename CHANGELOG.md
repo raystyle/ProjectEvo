@@ -4,6 +4,14 @@
 
 ## [Unreleased]
 
+### 变更（2026-09-09，第四十一批：Grok/Kimi 部署通道入册与 README 精练）
+
+> 本机四 agent 面装齐（claude/codex/grok/kimi）后把实测通道写回文档；用户裁定 README 面向人类读者精练，专注全平台安装部署与使用示例。
+
+- README 重写：安装节按客户端分面（Claude Code/Codex/Grok 插件 + Kimi skills 手拷 + 本地市场 + 裸脚本），新增四插件使用示例节；删目录树与理论概念节（权威在 AGENTS 仓库地图与 evo SKILL）
+- AGENTS 环境事实、evo SKILL 安装通道、四插件 README 安装节、tool-cli-agents 市场分发要点同步 Grok/Kimi
+- 实测口径：grok 1.0.13 走 plugin marketplace（install/update/details 通）；kimi 0.41.0 无市场，`extra_skill_dirs` 指 `~/.kimi/skills`，命令与 hooks 不随行
+
 ### 变更（2026-09-09，第四十批：office-pro skill 改名 office,消除双名重叠）
 
 > 用户指出市场安装后显示 Skill(office-pro:office-pro) 双名重叠;同第三十一批裁定:插件名、市场安装标识不动,skill 目录与 name 改为 office,显示收敛为 office-pro:office;斜杠命令同名避让,office 改 office-cli。
