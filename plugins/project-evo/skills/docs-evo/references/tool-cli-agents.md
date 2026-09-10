@@ -45,7 +45,7 @@
 | add 参数形态 | `owner/repo[@ref]`、带 scheme 的 git URL(`#ref`)、直指 marketplace.json 的 URL、本地路径 | 本地路径、`owner/repo[@ref]`、HTTPS URL、SSH URL(git 源另有 `--ref`/`--sparse`) |
 | 简写默认协议 | **SSH**;`CLAUDE_CODE_PLUGIN_PREFER_HTTPS=1` 切 HTTPS [实证: 官方文档取回] | **HTTPS**(简写实测解析为 https 克隆) [实证: codex-cli 0.149.1 本机] |
 | 私库认证 | 标准 git 机制:credential helper(推荐 `gh auth setup-git`)或 known_hosts+ssh-agent;后台自动更新禁用 helper(SSH 不受影响) | 同 git 机制 |
-| 钉版 | 简写尾 `@v0.2.2` 或 URL 尾 `#v0.2.2` | `--ref v0.2.2` |
+| 钉版 | 简写尾 `@v0.2.3` 或 URL 尾 `#v0.2.3` | `--ref v0.2.3` |
 
 要点:
 

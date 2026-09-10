@@ -4,6 +4,16 @@
 
 ## [Unreleased]
 
+### 修复（2026-09-10，第四十六批:Codex 面 hook 的 Windows 修法纠错,改用花括号变量）
+
+> 现象:第四十二批发版后,Codex 会话编辑 markdown 仍报 `PostToolUse hook (failed) error: hook exited with code 1`。第四十二批的根因判断有误,本轮纠正。
+
+- 正确根因 [实证: 2026-09-10 codex 源码 rust-v0.149.1 与 main 实取 + 本机 cmd 实跑]:Codex 在 Windows 用 `cmd.exe /C`(取 COMSPEC)执行 hook 命令行(codex-rs/hooks/src/engine/command_runner.rs),且只把命令里的 `${VAR}` 花括号形态按插件环境变量展开(codex-rs/hooks/src/engine/discovery.rs:`command.replace("${key}", value)`,插件 env 含 `CLAUDE_PLUGIN_ROOT` 与 `PLUGIN_ROOT`;Windows 面取 `command_windows.unwrap_or(command)`)
+- 纠错:第四十二批的 `commandWindows` 写了 PowerShell 语法 `$env:CLAUDE_PLUGIN_ROOT`,cmd 不认这一形态,路径原样传给 uv,仍退出 1;并非当时判定的"PowerShell 把变量展开成空串"
+- 修法:`command` 与 `commandWindows` 统一改 `${CLAUDE_PLUGIN_ROOT}`(Windows 面用反斜杠拼路径);本机 cmd `/C` 跑展开后的命令行退出 0
+- 测试:tests 守卫改为"两字段都须含 `${CLAUDE_PLUGIN_ROOT}` 且禁 `$env:`",判据来源写进 docstring
+- 教训:跨 shell 的命令面不许按一面的语法臆测,判据要落到被执行方(此处 cmd)的实跑
+
 ### 变更（2026-09-10，第四十五批:三兄弟插件补版 0.1.1,同步改名引用）
 
 > 缘由:第四十四批改名动了 secret-scan、super-research、office-pro 三插件内的引用文字(A/B 脚本路径、SKILL 与 README 交叉引用、office 六态措辞),但三插件版本未动,市场按版本号判定无更新,Claude 面装到的仍是改名前的文本。

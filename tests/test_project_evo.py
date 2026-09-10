@@ -234,13 +234,19 @@ def test_md_guard_hook_flags_forbidden_chars(tmp_path: Path):
     assert _run_md_guard(ok_payload).returncode == 0
 
 
-def test_plugin_hooks_windows_variant_uses_powershell_env():
-    """Windows 面须用 $env: 前缀:PowerShell 把 $CLAUDE_PLUGIN_ROOT 当 PS 变量,展开成空串必炸。"""
+def test_plugin_hooks_use_braced_plugin_root():
+    """hook 命令须写 ${CLAUDE_PLUGIN_ROOT}。
+
+    Codex 只替换花括号形态(codex-rs/hooks/src/engine/discovery.rs: fold replace "${key}"),
+    且在 Windows 用 cmd.exe /C 执行(command_runner.rs: COMSPEC 兜底 cmd.exe /C)。
+    故裸 $VAR 与 PowerShell 的 $env: 在 Windows 面都不展开,脚本路径必失效。
+    """
     hooks = json.loads((PLUGIN / "hooks" / "hooks.json").read_text(encoding="utf-8"))
     handlers = [h for g in hooks["hooks"]["PostToolUse"] for h in g["hooks"]]
     assert handlers, "hooks.json 须有 PostToolUse 处理器"
     for h in handlers:
-        assert "$CLAUDE_PLUGIN_ROOT" in h["command"], "非 Windows 面保留 Claude 变量形态"
-        win = h.get("commandWindows")
-        assert win, "缺 commandWindows 则 Codex on Windows 下变量展开为空,脚本必起不来"
-        assert "$env:CLAUDE_PLUGIN_ROOT" in win
+        for field in ("command", "commandWindows"):
+            cmd = h.get(field)
+            assert cmd, f"hooks.json 缺 {field}"
+            assert "${CLAUDE_PLUGIN_ROOT}" in cmd, f"{field} 须用花括号形态(Codex 只替换 ${{VAR}})"
+            assert "$env:" not in cmd, f"{field} 禁 PowerShell 语法:Windows 走 cmd.exe /C"
