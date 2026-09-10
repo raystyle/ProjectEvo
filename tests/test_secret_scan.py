@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -29,7 +30,7 @@ def _git(cwd: Path, *args: str) -> None:
         check=True,
         capture_output=True,
         env={
-            **__import__("os").environ,
+            **os.environ,
             "GIT_AUTHOR_NAME": "t",
             "GIT_AUTHOR_EMAIL": "t@t",
             "GIT_COMMITTER_NAME": "t",
@@ -79,6 +80,7 @@ def test_ab_matches_oracle():
         capture_output=True,
         text=True,
         encoding="utf-8",
+        env={**os.environ, "PYTHONIOENCODING": "utf-8"},
     )
     assert r.returncode == 0, r.stderr
     data = json.loads(r.stdout)

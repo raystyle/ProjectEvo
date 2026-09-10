@@ -4,6 +4,18 @@
 
 ## [Unreleased]
 
+（本段暂空:下一轮新条目接在下方,封版时整段转版本号。）
+
+## [0.2.1] - 2026-09-10
+
+### 修复（2026-09-10，第四十三批:secret-scan A/B 对照测试在 Windows 必红）
+
+> 现象:本机 Windows + PowerShell 7 下 `uv run pytest` 必红一例,`test_ab_matches_oracle` 抛 `TypeError: the JSON object must be str, bytes or bytearray, not NoneType`。
+
+- 根因 [实证: 2026-09-10 本机 pytest 实跑与探针复现]:`ab.py` 以 `ensure_ascii=False` 打含中文的 JSON,Windows 下子进程 stdout 接管道时默认用 ANSI 代码页(cp936)编码,测试按 utf-8 解码失败,读取线程抛 UnicodeDecodeError,`r.stdout` 落成 `None`
+- 修复:`tests/test_secret_scan.py` 该例子进程补 `PYTHONIOENCODING=utf-8`,与 `test_project_evo.py` 的 `_run_md_guard` 既有口径一致;脚本产物形态不动,Linux 与 CI 行为不变
+- 影响面:该例自第三十七批引入起在 Windows 上从未真绿,属长期潜伏,非本轮改动引入
+
 ### 修复（2026-09-10，第四十二批：Codex 面 PostToolUse 钩子在 Windows 起不来）
 
 > 现象：Codex 会话里每次编辑 markdown 都报 `PostToolUse hook (failed) error: hook exited with code 1`，会话被打断。定位到本插件 `hooks/hooks.json` 的 md 禁字挡板，与 oma 无关。
@@ -124,6 +136,8 @@
 - tests 增 test_init_creates_missing_target(嵌套不存在路径,期望 0 且 PRD.md 生成)
 - CI 冒烟步无需预建目录,顺带即测新语义
 
+## [0.2.0] - 2026-09-04
+
 ### 变更（2026-09-04，第二十八批：插件市场转型,uv CLI 分发通道退役）
 
 > 信源:SpecterOps/skills 市场仓组织维护形式实地调研(README/CONTRIBUTING/justfile/根双市场清单/插件双 manifest/catalog 机制原文取回核对)。用户裁定:放弃 uv CLI 分发,转插件市场仓,保留 git 历史原地重构;Codex 双面纳入;命令面全量(斜杠命令+hook)。六命令归宿:skill 安装与 update 随分发模式消亡(插件通道原生替代),init/check/scan 等价迁出,llms 降为 CI 冒烟。
@@ -243,6 +257,8 @@
 - SKILL.md:description 加知行合一触发词;意图路由与体系速览同步;references/README.md 三条目描述同步;verification PE-10 加手检注记（验证路径属语义判断,机检不做）
 - data/skill 内嵌副本同步（双漂移守卫）;G001 模板六态节补一行
 - 不动:checker/cli 不加新 PE 检查;AGENTS 硬规则与 ROADMAP 无涉
+
+## [0.1.1] - 2026-09-03
 
 ### 实测（2026-09-03,v0.1.0 后）
 
