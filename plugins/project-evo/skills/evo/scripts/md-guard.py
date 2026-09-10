@@ -9,6 +9,9 @@
   是 .md 则检四类禁字;有违规 exit 2(stderr 回传 agent 提醒修正),干净 exit 0
 - git pre-commit:--staged 检查暂存区 .md;有违规 exit 1 挡提交
 
+载荷宽容:tool_input 不是对象(Codex 的 apply_patch 面是字符串 patch 文本)或整条事件
+不是对象时,视为未命中直接放行 exit 0,绝不因载荷形态异常而报错退出。
+
 零第三方依赖,`uv run md-guard.py` 或 `python md-guard.py` 均可(PEP 723 头)。
 """
 
@@ -56,7 +59,10 @@ def main(argv: list[str]) -> int:
         event = json.loads(sys.stdin.read() or "{}")
     except json.JSONDecodeError:
         return 0
-    fp = (event.get("tool_input") or {}).get("file_path") or ""
+    if not isinstance(event, dict):
+        return 0
+    tool_input = event.get("tool_input")
+    fp = tool_input.get("file_path") or "" if isinstance(tool_input, dict) else ""
     p = Path(fp) if fp else None
     if not p or p.suffix.lower() != ".md" or not p.exists():
         return 0

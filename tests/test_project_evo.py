@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import importlib.util
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -194,3 +195,52 @@ def test_marketplace_catalog_consistency():
     assert (office / "skills" / "office" / "scripts" / "which.py").is_file()
     assert (office / "skills" / "office" / "scripts" / "smoke.py").is_file()
     assert (office / "commands" / "office-cli.md").is_file()
+
+
+def _run_md_guard(payload: str) -> subprocess.CompletedProcess:
+    env = {**os.environ, "PYTHONIOENCODING": "utf-8"}
+    return subprocess.run(
+        [sys.executable, str(SCRIPTS / "md-guard.py")],
+        input=payload, capture_output=True, text=True, encoding="utf-8",
+        errors="replace", env=env,
+    )
+
+
+def test_md_guard_hook_tolerates_alien_payload(tmp_path: Path):
+    """Codex apply_patch 面载荷宽容:tool_input 是对象但无 file_path,或整体不是对象,均放行 0。"""
+    codex_shape = json.dumps({
+        "hook_event_name": "PostToolUse",
+        "tool_name": "apply_patch",
+        "tool_input": {"command": "*** Begin Patch\n*** Update File: note.md\n+x\n*** End Patch\n"},
+        "tool_response": "Success. Updated files.",
+    })
+    assert _run_md_guard(codex_shape).returncode == 0
+    alien_shape = json.dumps({"hook_event_name": "PostToolUse", "tool_input": "*** Begin Patch"})
+    assert _run_md_guard(alien_shape).returncode == 0
+    assert _run_md_guard("not json at all").returncode == 0
+
+
+def test_md_guard_hook_flags_forbidden_chars(tmp_path: Path):
+    """Claude 面判据不回退:file_path 指向含禁字的 .md 时退出 2 并写 stderr。"""
+    bad = tmp_path / "bad.md"
+    bad.write_text("正常一行\n带破折号 \u2014 的一行\n", encoding="utf-8")
+    bad_payload = json.dumps({"hook_event_name": "PostToolUse", "tool_input": {"file_path": str(bad)}})
+    r = _run_md_guard(bad_payload)
+    assert r.returncode == 2, r.stdout + r.stderr
+    assert "禁字" in r.stderr
+    clean = tmp_path / "ok.md"
+    clean.write_text("干净一行\n", encoding="utf-8")
+    ok_payload = json.dumps({"hook_event_name": "PostToolUse", "tool_input": {"file_path": str(clean)}})
+    assert _run_md_guard(ok_payload).returncode == 0
+
+
+def test_plugin_hooks_windows_variant_uses_powershell_env():
+    """Windows 面须用 $env: 前缀:PowerShell 把 $CLAUDE_PLUGIN_ROOT 当 PS 变量,展开成空串必炸。"""
+    hooks = json.loads((PLUGIN / "hooks" / "hooks.json").read_text(encoding="utf-8"))
+    handlers = [h for g in hooks["hooks"]["PostToolUse"] for h in g["hooks"]]
+    assert handlers, "hooks.json 须有 PostToolUse 处理器"
+    for h in handlers:
+        assert "$CLAUDE_PLUGIN_ROOT" in h["command"], "非 Windows 面保留 Claude 变量形态"
+        win = h.get("commandWindows")
+        assert win, "缺 commandWindows 则 Codex on Windows 下变量展开为空,脚本必起不来"
+        assert "$env:CLAUDE_PLUGIN_ROOT" in win

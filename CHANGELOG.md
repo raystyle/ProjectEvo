@@ -4,6 +4,15 @@
 
 ## [Unreleased]
 
+### 修复（2026-09-10，第四十二批：Codex 面 PostToolUse 钩子在 Windows 起不来）
+
+> 现象：Codex 会话里每次编辑 markdown 都报 `PostToolUse hook (failed) error: hook exited with code 1`，会话被打断。定位到本插件 `hooks/hooks.json` 的 md 禁字挡板，与 oma 无关。
+
+- 根因 [实证：2026-09-10 本机 codex 0.149.1 探针实跑]：Codex 在 Windows 用会话 shell(PowerShell)执行 hook 命令行，`$CLAUDE_PLUGIN_ROOT` 被 PowerShell 当普通变量解析，展开为空串，实际执行 `uv run --no-project "/skills/evo/scripts/md-guard.py"`，uv 找不到脚本，钩子进程退出码 1
+- 修复：`hooks/hooks.json` 补 `commandWindows` 字段，Windows 面改用 `$env:CLAUDE_PLUGIN_ROOT`（非 Windows 面保持原 `$CLAUDE_PLUGIN_ROOT`，Claude 面 bash 语义不变）
+- 加固：`md-guard.py` 载荷宽容，`tool_input` 不是对象（Codex 的 apply_patch 面是 patch 文本）或整条事件不是对象时直接放行退出 0，不再抛 `AttributeError` 退出 1
+- 测试：`tests/test_project_evo.py` 加三例，hooks.json Windows 形态守卫、载荷宽容、禁字判据不回退
+
 ### 变更（2026-09-09，第四十一批：Grok/Kimi 部署通道入册与 README 精练）
 
 > 本机四 agent 面装齐（claude/codex/grok/kimi）后把实测通道写回文档；用户裁定 README 面向人类读者精练，专注全平台安装部署与使用示例。

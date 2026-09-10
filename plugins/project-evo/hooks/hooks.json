@@ -7,6 +7,7 @@
           {
             "type": "command",
             "command": "uv run --no-project \"$CLAUDE_PLUGIN_ROOT/skills/evo/scripts/md-guard.py\"",
+            "commandWindows": "uv run --no-project \"$env:CLAUDE_PLUGIN_ROOT\\skills\\evo\\scripts\\md-guard.py\"",
             "timeout": 60,
             "statusMessage": "md 禁字门禁"
           }
