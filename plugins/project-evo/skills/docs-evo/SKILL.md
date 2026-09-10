@@ -12,7 +12,7 @@ compatibility: 通用(不限语言/平台);提炼自 Rust CLI、Python 基础设
 
 # docs-evo - project-evo 项目进化指南
 
-**渐进知识库型 skill**：本文件只做两件事，**意图路由**（你要做的事 到 该查哪篇参考）与**体系速览**（一层概览）；完整知识在 `references/` 分类扁平目录（前缀 base/flow/env/tool/exp 分组，17 篇自包含），按「rg 定位文件 + mq 提取结构」渐进检索，不要求一次读完。资料检索（gh/Google/Medium/X/reader/aria2c）在市场另一插件 `super-research` 的 `research` 技能。
+**渐进知识库型 skill**：本文件只做两件事，**意图路由**（你要做的事 到 该查哪篇参考）与**体系速览**（一层概览）；完整知识在 `references/` 分类扁平目录（前缀 base/flow/env/tool/exp 分组，17 篇自包含），按「rg 定位文件 + mq 提取结构」渐进检索，不要求一次读完。资料检索（gh/Google/Medium/X/reader/aria2c）在同插件的 `super-research` 技能。
 
 核心思想：文档是项目的操作系统，需求进 PRD、目标进 GOAL、过程留痕进 diary/research、方案归档进 proven、流程沉淀进 references、规范固化进 guide、踩坑进 mistakes。做过的不重做、踩过的不再踩、验证过的直接复用。吸收即提炼，沉淀成资产；循环迭代，复利增厚。
 
@@ -41,9 +41,9 @@ compatibility: 通用(不限语言/平台);提炼自 Rust CLI、Python 基础设
 | 建 TypeScript/Node 项目 / tsc / node:test / npm 包验收 | `references/tool-typescript.md` |
 | 选依赖 / 查库（五栈数据源与稳度判据） | `references/tool-selection.md` |
 | 给 CLI 加 agent 用户面（agent-native 契约、管道逃生舱、脚本 workspace） | `references/tool-cli-agents.md` |
-| 搜论文/Google/Medium/X/GitHub/电子书/种子下载 | 市场技能 `super-research:research`（本 skill 不承载 CLI 工具手册） |
-| 扫 git/GitHub 密钥密码隐私泄露 | 市场技能 `secret-scan:secrets`（本 skill 的 scan 仍管浅密钥+md 禁字） |
-| 改 .docx/.xlsx/.pptx / OfficeCLI / 幻灯片偏位 / 稿面事实核查 | 市场技能 `office-pro:office`（本 skill 不承载 Office 文件操作） |
+| 搜论文/Google/Medium/X/GitHub/电子书/种子下载 | 同插件 skill `project-evo:super-research`（本 skill 不承载 CLI 工具手册） |
+| 扫 git/GitHub 密钥密码隐私泄露 | 同插件 skill `project-evo:secret-scan`（本 skill 的 scan 仍管浅密钥+md 禁字） |
+| 改 .docx/.xlsx/.pptx / OfficeCLI / 幻灯片偏位 / 稿面事实核查 | 同插件 skill `project-evo:office-pro`（本 skill 不承载 Office 文件操作） |
 | 落地前预警 / 疑似踩了已知坑 | `references/exp-pitfalls.md` |
 | 经验往哪沉淀 / 踩坑何时升格 / 二犯配什么约束 | `references/exp-sedimentation.md` |
 | 验证某项目是否符合骨架 | `verification/command-test-cases.md` |

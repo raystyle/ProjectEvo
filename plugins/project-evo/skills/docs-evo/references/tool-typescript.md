@@ -1,6 +1,6 @@
 # TypeScript/Node 项目工程
 
-> 本文件 = Node/TS 仓怎么建、怎么验（运行时、tsc、测试、依赖、打包）；与 tool-project.md（Python `.tools`）分栈；与 tool-selection.md（出仓选型）分工：本篇是落地后的工程合同。浏览器检索见 `super-research:research`；agent 脚本 workspace 见 tool-cli-agents.md。提炼自 D:\browser-harness-ts 的 package.json、tsconfig、R001、M101 至 M103、P0001 [实证: 2026-09-08 对照源仓]。
+> 本文件 = Node/TS 仓怎么建、怎么验（运行时、tsc、测试、依赖、打包）；与 tool-project.md（Python `.tools`）分栈；与 tool-selection.md（出仓选型）分工：本篇是落地后的工程合同。浏览器检索见 `project-evo:super-research`；agent 脚本 workspace 见 tool-cli-agents.md。提炼自 D:\browser-harness-ts 的 package.json、tsconfig、R001、M101 至 M103、P0001 [实证: 2026-09-08 对照源仓]。
 
 ## 一、运行时合同
 

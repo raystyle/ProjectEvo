@@ -1,7 +1,7 @@
 {
   "name": "project-evo",
-  "version": "0.2.3",
-  "description": "项目进化:建立需求驱动、留痕沉淀、持续进化的文档体系(根原语+docs 六目录+五步工作流+六态标记);渐进知识库型 skill,含 init/check/scan 零依赖脚本",
+  "version": "0.3.0",
+  "description": "项目进化:一个插件四个 skill —— docs-evo(文档骨架与治理)、super-research(资料检索管线)、secret-scan(密钥与隐私扫描)、office-pro(OfficeCLI 专业面);含 init/check/scan 零依赖脚本与 md 禁字挡板",
   "author": {
     "name": "raystyle"
   },
@@ -15,6 +15,9 @@
     "scaffold",
     "workflow",
     "markdown",
+    "research",
+    "security",
+    "office",
     "llm"
   ]
 }

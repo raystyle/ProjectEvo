@@ -15,42 +15,6 @@
         "authentication": "ON_INSTALL"
       },
       "category": "Productivity"
-    },
-    {
-      "name": "super-research",
-      "source": {
-        "source": "local",
-        "path": "./plugins/super-research"
-      },
-      "policy": {
-        "installation": "AVAILABLE",
-        "authentication": "ON_INSTALL"
-      },
-      "category": "Productivity"
-    },
-    {
-      "name": "secret-scan",
-      "source": {
-        "source": "local",
-        "path": "./plugins/secret-scan"
-      },
-      "policy": {
-        "installation": "AVAILABLE",
-        "authentication": "ON_INSTALL"
-      },
-      "category": "Productivity"
-    },
-    {
-      "name": "office-pro",
-      "source": {
-        "source": "local",
-        "path": "./plugins/office-pro"
-      },
-      "policy": {
-        "installation": "AVAILABLE",
-        "authentication": "ON_INSTALL"
-      },
-      "category": "Productivity"
     }
   ]
 }

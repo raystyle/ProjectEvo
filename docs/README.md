@@ -13,8 +13,8 @@
 | `research/S005-git密钥隐私扫描skill选型.md` | 密钥扫描 skill 选型 | 改 secret-scan 规则或对照 gitleaks 前 |
 | `research/S006-secret-scan-AB对照.md` | secret-scan 对 docs-evo scan 的 A/B 实跑 | 裁决规则面差异时 |
 | `research/S007-OfficeCLI-agent原生Office套件.md` | OfficeCLI 是什么、怎么给 agent 用、本机钉资产安装与烟测 | 选型或本机安装 Office 自动化 CLI 时 |
-| `../plugins/office-pro/skills/office/SKILL.md` | OfficeCLI 专业面（钉资产、改稿、事实核查） | 改 docx/xlsx/pptx、幻灯片偏位、稿面数字核验时 |
-| `../plugins/secret-scan/skills/secrets/SKILL.md` | 密钥与隐私扫描命令面 | 扫 git/GitHub 泄露时 |
+| `../plugins/project-evo/skills/office-pro/SKILL.md` | OfficeCLI 专业面（钉资产、改稿、事实核查） | 改 docx/xlsx/pptx、幻灯片偏位、稿面数字核验时 |
+| `../plugins/project-evo/skills/secret-scan/SKILL.md` | 密钥与隐私扫描命令面 | 扫 git/GitHub 泄露时 |
 | `../plugins/project-evo/skills/docs-evo/SKILL.md` | skill 本体概览层 | 使用/修改 skill 前 |
 | `../plugins/project-evo/skills/docs-evo/references/README.md` | 参考知识体系渐进索引（快速路由到场景到全量） | 找任何参考时先看 |
 | `../plugins/project-evo/skills/docs-evo/references/base-primitives.md` | 根原语详解（PRD/GOAL/PLAN/TODO/INDEX/AGENTS 模板头 + 文档义务表） | 建骨架写原语时 |
@@ -28,5 +28,5 @@
 | `../plugins/project-evo/skills/docs-evo/references/tool-project.md` | 项目工具：`.tools/` uv Python 脚本约定、外部工具路由 | 建项目脚本/选外部工具时 |
 | `../plugins/project-evo/skills/docs-evo/references/tool-typescript.md` | TypeScript/Node 工程合同（tsc、node:test、npm pack） | 建或治理 Node/TS 仓时 |
 | `../plugins/project-evo/skills/docs-evo/references/exp-pitfalls.md` | 已知误区（proven 语义、分界混淆、静默假设等） | 落地前预警 / 踩坑后对照 |
-| `../plugins/super-research/skills/research/SKILL.md` | 超级研究管线 | 搜论文/网页/X/GitHub/电子书/下载时 |
+| `../plugins/project-evo/skills/super-research/SKILL.md` | 超级研究管线 | 搜论文/网页/X/GitHub/电子书/下载时 |
 | `../plugins/project-evo/skills/docs-evo/verification/command-test-cases.md` | 规范检查命令（参数化 ProjectRoot） | 验证骨架合规时 |

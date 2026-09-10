@@ -39,21 +39,17 @@ ProjectEvo/
 ├── .claude-plugin/marketplace.json   # Claude Code 市场清单
 ├── .agents/plugins/marketplace.json  # Codex 市场清单
 ├── plugins/
-│   ├── project-evo/     # 文档骨架插件(skill docs-evo)
+│   └── project-evo/     # 唯一插件:四个 skill 同装同版
 │   │   ├── .claude-plugin/plugin.json   # Claude manifest
 │   │   ├── .codex-plugin/plugin.json    # Codex manifest(与 Claude 面字段同步,测试守卫)
-│   │   ├── README.md    # 插件说明(状态/前置/安装/用法/敏感产物/发布)
-│   │   ├── commands/    # 斜杠命令 init|check|scan(Claude 面)
+│   │   ├── README.md    # 插件说明(状态/前置/安装/四 skill 用法/发布)
+│   │   ├── commands/    # 斜杠命令 init|check|scan|secret-scan-cli|office-cli(Claude 面)
 │   │   ├── hooks/       # hooks.json:PostToolUse md 禁字挡板(Claude 面)
-│   │   └── skills/docs-evo/
-│   │       ├── SKILL.md     # 意图路由 + 体系速览 + 知识库检索方法
-│   │       ├── references/  # 分类扁平参考目录(前缀分组,README 渐进索引路由)
-│   │       ├── verification/# 命令行为验证用例(规范检查命令,参数化 ProjectRoot)
-│   │       ├── assets/templates/  # 骨架模板(scripts/init.py 渲染源)
-│   │       └── scripts/   # init/check/scan/md-guard/mdrules(PEP 723 零依赖)
-│   ├── super-research/  # 超级研究插件(skill research)
-│   ├── secret-scan/     # 密钥隐私扫描插件(skill secrets)
-│   └── office-pro/      # OfficeCLI 专业面(skill office)
+│   │   └── skills/
+│   │       ├── docs-evo/        # 文档骨架与治理;references/ verification/ assets/templates/ scripts/
+│   │       ├── super-research/  # 资料检索管线(gh/web/x/reader/aria2c/git 参考)
+│   │       ├── secret-scan/     # 密钥与隐私扫描(PEP 723 scan/ab/rules + 参考 + 用例)
+│   │       └── office-pro/      # OfficeCLI 专业面(which/smoke 脚本 + 四篇参考)
 ├── .tools/              # uv 运行时门禁脚本(md-ref-scan:断链扫描)
 ├── githooks/            # git 提交钩子(pre-commit 挡板,形态三;git config core.hooksPath githooks)
 ├── tests/               # pytest(脚本行为 + 清单一致性守卫 + 仓内禁字回归)
@@ -66,7 +62,7 @@ ProjectEvo/
 ├── README.md            # 标准入口
 ```
 
-> 文档体系 skill 在 `plugins/project-evo/skills/docs-evo/`；资料检索 skill 在 `plugins/super-research/skills/research/`；密钥扫描 skill 在 `plugins/secret-scan/skills/secrets/`；Office 文件 skill 在 `plugins/office-pro/skills/office/`。分发走插件市场（根双清单 + 各插件双 manifest）。
+> 四个 skill 同属一个插件 `project-evo`：文档体系 `skills/docs-evo/`、资料检索 `skills/super-research/`、密钥扫描 `skills/secret-scan/`、Office 文件 `skills/office-pro/`。分发走插件市场（根双清单 + 插件双 manifest），客户端显示 `project-evo:<skill>`。
 
 ## 三、文档索引
 
@@ -77,8 +73,9 @@ ProjectEvo/
 | `plugins/project-evo/skills/docs-evo/SKILL.md` | skill 本体概览 | 使用/修改 skill 前 |
 | `plugins/project-evo/skills/docs-evo/references/README.md` | 参考知识体系渐进索引（快速路由到场景到全量） | 找参考文档时 |
 | `plugins/project-evo/skills/docs-evo/verification/command-test-cases.md` | 规范检查命令 | 验证某项目是否符合骨架 |
-| `plugins/secret-scan/skills/secrets/SKILL.md` | 密钥与隐私扫描 | 扫本地 git 或 GitHub 泄露时 |
-| `plugins/office-pro/skills/office/SKILL.md` | OfficeCLI 专业面 | 改 docx/xlsx/pptx、幻灯片偏位、稿面事实核查时 |
+| `plugins/project-evo/skills/super-research/SKILL.md` | 资料检索管线 | 搜论文/网页/X/GitHub/电子书/下载时 |
+| `plugins/project-evo/skills/secret-scan/SKILL.md` | 密钥与隐私扫描 | 扫本地 git 或 GitHub 泄露时 |
+| `plugins/project-evo/skills/office-pro/SKILL.md` | OfficeCLI 专业面 | 改 docx/xlsx/pptx、幻灯片偏位、稿面事实核查时 |
 | `docs/README.md` | 文档地图 | 找文档时 |
 | `ROADMAP.md` | 阶段与里程碑状态 | 看进度时 |
 | `CHANGELOG.md` | 变更日志 | 查历史时 |
@@ -87,7 +84,7 @@ ProjectEvo/
 
 > 每条硬规则带六态来源标注。
 
-1. **单一权威源**：文档体系只在 `plugins/project-evo/skills/docs-evo/`；资料检索只在 `plugins/super-research/skills/research/`；密钥扫描只在 `plugins/secret-scan/skills/secrets/`；Office 文件只在 `plugins/office-pro/skills/office/`。本文件不重复。[经验： 双份漂移踩坑]
+1. **单一权威源**：四个 skill 都只在 `plugins/project-evo/skills/` 下（docs-evo / super-research / secret-scan / office-pro），插件只有 `project-evo` 一个；本文件不重复。[经验： 双份漂移踩坑]
 2. **proven 语义**：proven = **完全成功的 plan 方案归档**（立项建方案、完成回填），不是里程碑/成果列表，用户 2026-09-03 明确裁定，写入 skill。[经验： 用户纠正]
 3. **双层机器可读**：目录与文件名以 rg 检索为先（类别前缀+主题词）；文档内部结构以 mq 提取为先（标题层级/代码块/表格）。[经验： 用户裁定 2026-09-03]
 4. **变更完整性**：只改 skill 不同步 SKILL.md 索引/references/CHANGELOG = 变更不完整。[经验]
@@ -99,5 +96,5 @@ ProjectEvo/
 
 - 平台：Windows · PowerShell 7（禁 powershell.exe 5.1 与 cmd）
 - skill 提炼源：D：\reader 仓、D：\PVE 仓、浏览器工具仓、D：\browser-harness-ts（家族骨架，TS 栈合同见 tool-typescript.md）
-- 当前阶段：v0.2.3 插件市场形态（2026-09-04 转型 v0.2.0，第二十八批；SpecterOps/skills 组织形式既证模式）；部署 = Claude Code `/plugin marketplace add raystyle/ProjectEvo`、Codex `codex plugin marketplace add raystyle/ProjectEvo` 或 Grok `grok plugin install <插件>@projectevo`（读 Claude manifest 面）；Kimi 无市场，拷 `plugins/*/skills/*` 至 `~/.kimi/skills`；旧 `uv tool install` 通道已退役
+- 当前阶段：v0.3.0 单插件四 skill 形态（2026-09-10 第四十七批收敛；此前是四插件各一 skill）；部署 = Claude Code `/plugin marketplace add raystyle/ProjectEvo`、Codex `codex plugin marketplace add raystyle/ProjectEvo` 或 Grok `grok plugin install project-evo@projectevo`（读 Claude manifest 面）；Kimi 无市场，拷 `plugins/project-evo/skills/*` 至 `~/.kimi/skills`；旧 `uv tool install` 通道已退役
 - 项目状态与待办见 `ROADMAP.md`，不再在本文维护

@@ -30,7 +30,7 @@
 
 ### GitHub 通道（评估质量与找真实用法，与注册中心通道互补）
 
-`gh search repos`（星数与 pushedAt 并看，新秀加 created 限定）到 `gh repo view` 定点核证（isArchived/license/issues）到 releases 看发布节奏 到 `gh search code` 找签名片段的真实用法 到 深读用 `--filter=blob:none --no-checkout` 先行。细则见市场技能 `super-research:research` 的 gh 篇。
+`gh search repos`（星数与 pushedAt 并看，新秀加 created 限定）到 `gh repo view` 定点核证（isArchived/license/issues）到 releases 看发布节奏 到 `gh search code` 找签名片段的真实用法 到 深读用 `--filter=blob:none --no-checkout` 先行。细则见同插件 skill `project-evo:super-research` 的 gh 篇。
 
 ## 三、发现层：awesome 清单与官方库搜索
 

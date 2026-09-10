@@ -1,7 +1,7 @@
 {
   "name": "project-evo",
-  "version": "0.2.3",
-  "description": "项目进化:建立需求驱动、留痕沉淀、持续进化的文档体系(根原语+docs 六目录+五步工作流+六态标记);渐进知识库型 skill,含 init/check/scan 零依赖脚本",
+  "version": "0.3.0",
+  "description": "项目进化:一个插件四个 skill —— docs-evo(文档骨架与治理)、super-research(资料检索管线)、secret-scan(密钥与隐私扫描)、office-pro(OfficeCLI 专业面);含 init/check/scan 零依赖脚本与 md 禁字挡板",
   "author": {
     "name": "raystyle"
   },
@@ -15,13 +15,16 @@
     "scaffold",
     "workflow",
     "markdown",
+    "research",
+    "security",
+    "office",
     "llm"
   ],
   "skills": "./skills/",
   "interface": {
     "displayName": "Project Evo",
-    "shortDescription": "项目进化:文档体系的建立与治理。",
-    "longDescription": "指导为项目建立需求驱动、留痕沉淀、持续进化的文档体系:根原语(AGENTS/PRD/GOAL/PLAN/TODO/INDEX)与 docs 六目录骨架、P/S/R/G/M/D 编号、五步工作流、六态事实标记;附 init/check/scan 零依赖脚本与 markdown 禁字挡板。",
+    "shortDescription": "项目进化:文档体系、资料检索、密钥扫描、Office 专业面。",
+    "longDescription": "一个插件四个 skill:docs-evo 指导为项目建立需求驱动、留痕沉淀、持续进化的文档体系(根原语 AGENTS/PRD/GOAL/PLAN/TODO/INDEX 与 docs 六目录、P/S/R/G/M/D 编号、五步工作流、六态事实标记,附 init/check/scan 零依赖脚本与 markdown 禁字挡板);super-research 把资料检索做成可复用管线(gh/Google/Medium/X 发现,aria2c 获取,reader 研读);secret-scan 扫本地 git 与 GitHub 历史的密钥与隐私;office-pro 用 OfficeCLI 读写 docx/xlsx/pptx。",
     "developerName": "raystyle",
     "category": "Productivity",
     "capabilities": [
@@ -29,7 +32,8 @@
       "Write"
     ],
     "defaultPrompt": [
-      "用 project-evo 为这个项目初始化文档骨架。"
+      "用 project-evo 的 docs-evo 为这个项目初始化文档骨架。",
+      "用 secret-scan 扫一下这个仓的密钥泄露。"
     ]
   }
 }

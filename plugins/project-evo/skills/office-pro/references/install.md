@@ -28,7 +28,7 @@ $env:OFFICECLI_SKIP_UPDATE = '1'
 
 User PATH 追加 `$dstDir`。已启动的 agent 会话不会立刻看到裸命令 `officecli`，用绝对路径或新开终端。[实证: 2026-09-08]
 
-定位：`uv run plugins/office-pro/skills/office/scripts/which.py`
+定位：`uv run plugins/project-evo/skills/office-pro/scripts/which.py`
 
 ## 禁止
 

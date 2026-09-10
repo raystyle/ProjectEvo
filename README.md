@@ -1,28 +1,25 @@
 # ProjectEvo
 
-> 一句话定位：ProjectEvo 插件市场仓。四插件：`project-evo`（文档骨架 skill `docs-evo`）、`super-research`（资料检索 skill `research`）、`secret-scan`（密钥隐私扫描 skill `secrets`）、`office-pro`（OfficeCLI 专业面 skill `office`）。
+> 一句话定位：ProjectEvo 插件市场仓。一个插件 `project-evo`，四个 skill：`docs-evo`（文档骨架与治理）、`super-research`（资料检索管线）、`secret-scan`（密钥与隐私扫描）、`office-pro`（OfficeCLI 专业面）。客户端显示 `project-evo:<skill>`。
 
 ## 安装
 
-市场名 `projectevo`，源 `raystyle/ProjectEvo`；四个插件在任意客户端同名安装：`project-evo` / `super-research` / `secret-scan` / `office-pro`。
+市场名 `projectevo`，源 `raystyle/ProjectEvo`；市场内只有一个插件 `project-evo`，装它即得四个 skill。
 
 ### Claude Code（推荐）
 
 ```text
 /plugin marketplace add raystyle/ProjectEvo
 /plugin install project-evo@projectevo
-/plugin install super-research@projectevo
-/plugin install secret-scan@projectevo
-/plugin install office-pro@projectevo
 ```
 
-得到 skill 本体、斜杠命令与 PostToolUse md 禁字挡板。
+得到四个 skill 本体、斜杠命令与 PostToolUse md 禁字挡板。
 
 ### Codex
 
 ```bash
 codex plugin marketplace add raystyle/ProjectEvo
-codex plugin add project-evo@projectevo        # 其余插件同名替换
+codex plugin add project-evo@projectevo
 ```
 
 也可在 Codex 的 `/plugins` 界面安装。
@@ -31,17 +28,17 @@ codex plugin add project-evo@projectevo        # 其余插件同名替换
 
 ```bash
 grok plugin marketplace add raystyle/ProjectEvo
-grok plugin install project-evo@projectevo --trust    # 其余插件同名替换
+grok plugin install project-evo@projectevo --trust
 ```
 
-升级：`grok plugin marketplace update` 后 `grok plugin update`。读 Claude manifest 面，无需单独 manifest [实证: 2026-09-09 本机 grok 1.0.13 四插件装齐]。
+升级：`grok plugin marketplace update` 后 `grok plugin update`。读 Claude manifest 面，无需单独 manifest [实证: 2026-09-09 本机 grok 1.0.13 装齐并同步]。
 
 ### Kimi（无插件市场）
 
-Kimi 只认 skills 目录（`~/.kimi-code/config.toml` 的 `extra_skill_dirs` 指向 `~/.kimi/skills`），把仓内 `plugins\<插件>\skills\<skill>` 整目录拷进去：
+Kimi 只认 skills 目录（`~/.kimi-code/config.toml` 的 `extra_skill_dirs` 指向 `~/.kimi/skills`），把仓内 `plugins\project-evo\skills\<skill>` 整目录拷进去：
 
 ```powershell
-Copy-Item D:\ProjectEvo\plugins\*\skills\* ~\.kimi\skills\ -Recurse
+Copy-Item D:\ProjectEvo\plugins\project-evo\skills\* ~\.kimi\skills\ -Recurse
 ```
 
 只有 skill 本体；斜杠命令与 hooks 不随行，插件改版后手动重拷。
@@ -73,31 +70,31 @@ uv run plugins/project-evo/skills/docs-evo/scripts/scan.py <目标项目> [--no-
 
 Claude Code 斜杠命令：`/project-evo:init`、`/project-evo:check`、`/project-evo:scan`。init 后目标项目得到 AGENTS/PRD/GOAL/PLAN/TODO/INDEX 根原语与 docs 六目录；等价用例集见 `plugins\project-evo\skills\docs-evo\verification\command-test-cases.md`。
 
-### 资料检索（super-research:research）
+### 资料检索（project-evo:super-research）
 
 对 agent 说：「搜一下 agent skills 规范的论文和近期文章」「用 aria2c 下这个 pdf 再用 reader 抽要点」。管线覆盖 gh 代码与仓库搜索、Google/Medium 网页、X 本地库、aria2c 下载、reader 抽取；结论落目标项目 `docs/research` 并标六态。
 
-### 密钥扫描（secret-scan:secrets）
+### 密钥扫描（project-evo:secret-scan）
 
 对 agent 说：「扫一下这个仓有没有密钥泄露，含 git 历史」。
 
 ```powershell
-uv run plugins/secret-scan/skills/secrets/scripts/scan.py                               # 工作区 + git 全历史
-uv run plugins/secret-scan/skills/secrets/scripts/scan.py --github owner/repo --no-cwd  # GitHub 告警与 code search
+uv run plugins/project-evo/skills/secret-scan/scripts/scan.py                               # 工作区 + git 全历史
+uv run plugins/project-evo/skills/secret-scan/scripts/scan.py --github owner/repo --no-cwd  # GitHub 告警与 code search
 ```
 
 误报豁免走目标项目环境变量 `PEVO_SCAN_ALLOW`（分号分隔正则，匹配 文件:行）。
 
-### Office 读写（office-pro:office）
+### Office 读写（project-evo:office-pro）
 
 对 agent 说：「把这份 pptx 第 3 页标题改掉并居中」「核对稿面数字与官方页一致再写入」。
 
 ```powershell
-uv run plugins/office-pro/skills/office/scripts/which.py    # 定位本机 officecli
-uv run plugins/office-pro/skills/office/scripts/smoke.py    # docx/xlsx/pptx 三类冒烟
+uv run plugins/project-evo/skills/office-pro/scripts/which.py    # 定位本机 officecli
+uv run plugins/project-evo/skills/office-pro/scripts/smoke.py    # docx/xlsx/pptx 三类冒烟
 ```
 
-Claude Code 斜杠命令：`/office-pro:office-cli [which|smoke]`。
+Claude Code 斜杠命令：`/project-evo:office-cli [which|smoke]`。
 
 ## 环境前提
 

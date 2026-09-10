@@ -1,5 +1,5 @@
 ---
-name: research
+name: super-research
 description: >-
   超级研究技能:把资料检索做成一条可复用管线。发现用 gh 搜代码与仓库、bh google-search / medium-search 搜网页与文章、bh x-intel search 查 X 本地库;
   获取用 aria2c 下论文 PDF、官方种子文件与大资产;研读用 reader 抽 PDF/EPUB。工位复用、HTTP 优先、结论落 docs/research 标六态。
@@ -7,7 +7,7 @@ description: >-
 compatibility: 需本机 PATH 上的 gh、reader、aria2c、bh(可选)
 ---
 
-# research - 超级研究管线
+# super-research - 超级研究管线
 
 本文件只做**意图路由 + 管线速览**。命令细节在 `references/`。研究结论写进目标项目 `docs/research/` 并标六态；本技能不替代 docs-evo 的文档骨架。
 

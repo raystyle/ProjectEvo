@@ -135,7 +135,7 @@ def test_check_script_exit_codes(tmp_path: Path):
 
 
 def test_marketplace_catalog_consistency():
-    """清单守卫:双市场收录一致、source 路径可达、双 manifest 与市场版本同步、skill/命令面在位。"""
+    """清单守卫:市场只收一个插件、双清单一致、双 manifest 与市场版本同步、四 skill 与命令面在位。"""
     claude_mkt = json.loads((REPO / ".claude-plugin" / "marketplace.json").read_text(encoding="utf-8"))
     codex_mkt = json.loads((REPO / ".agents" / "plugins" / "marketplace.json").read_text(encoding="utf-8"))
     claude_man = json.loads((PLUGIN / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8"))
@@ -143,8 +143,7 @@ def test_marketplace_catalog_consistency():
 
     names_c = {p["name"] for p in claude_mkt["plugins"]}
     names_x = {p["name"] for p in codex_mkt["plugins"]}
-    assert names_c == names_x, "双市场收录集须一致"
-    assert "project-evo" in names_c and "super-research" in names_c and "secret-scan" in names_c and "office-pro" in names_c, "须收录文档/研究/密钥扫描/Office 四插件"
+    assert names_c == names_x == {"project-evo"}, "市场只收一个插件 project-evo(四 skill 同装同版)"
     for p in claude_mkt["plugins"]:
         assert (REPO / p["source"].removeprefix("./")).is_dir(), f"Claude source 不可达: {p['source']}"
     for p in codex_mkt["plugins"]:
@@ -155,46 +154,29 @@ def test_marketplace_catalog_consistency():
     entry = next(p for p in claude_mkt["plugins"] if p["name"] == "project-evo")
     assert entry["version"] == claude_man["version"], "市场清单版本与 manifest 漂移"
 
-    skill = PLUGIN / "skills" / "docs-evo"
-    assert (skill / "SKILL.md").is_file()
-    assert (skill / "references").is_dir() and (skill / "assets" / "templates").is_dir()
+    skills = PLUGIN / "skills"
+    dirs = sorted(d.name for d in skills.iterdir() if d.is_dir())
+    assert dirs == ["docs-evo", "office-pro", "secret-scan", "super-research"], f"四 skill 须齐备: {dirs}"
+    for name in dirs:
+        text = (skills / name / "SKILL.md").read_text(encoding="utf-8")
+        assert text.startswith("---\n"), f"{name}/SKILL.md 缺 frontmatter"
+        head = text.split("---")[1]
+        declared = next(l.split(":", 1)[1].strip() for l in head.splitlines() if l.startswith("name:"))
+        assert declared == name, f"frontmatter name({declared}) 须与目录名({name})一致"
+
+    docs = skills / "docs-evo"
+    assert (docs / "references").is_dir() and (docs / "assets" / "templates").is_dir()
     for s in ("init.py", "check.py", "scan.py", "mdrules.py", "md-guard.py"):
-        assert (skill / "scripts" / s).is_file(), f"脚本缺失: {s}"
-    for c in ("init.md", "check.md", "scan.md"):
+        assert (docs / "scripts" / s).is_file(), f"脚本缺失: {s}"
+    for name in dirs:
+        assert (skills / name / "references").is_dir(), f"参考目录缺失: {name}"
+    assert (skills / "secret-scan" / "scripts" / "scan.py").is_file()
+    assert (skills / "secret-scan" / "scripts" / "ab.py").is_file()
+    assert (skills / "office-pro" / "scripts" / "which.py").is_file()
+    assert (skills / "office-pro" / "scripts" / "smoke.py").is_file()
+    for c in ("init.md", "check.md", "scan.md", "secret-scan-cli.md", "office-cli.md"):
         assert (PLUGIN / "commands" / c).is_file(), f"斜杠命令缺失: {c}"
     json.loads((PLUGIN / "hooks" / "hooks.json").read_text(encoding="utf-8")), "hooks.json 须为合法 JSON"
-
-    research = REPO / "plugins" / "super-research"
-    r_claude = json.loads((research / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8"))
-    r_codex = json.loads((research / ".codex-plugin" / "plugin.json").read_text(encoding="utf-8"))
-    for k in ("name", "version", "description"):
-        assert r_claude[k] == r_codex[k], f"super-research {k} 双 manifest 漂移"
-    r_entry = next(p for p in claude_mkt["plugins"] if p["name"] == "super-research")
-    assert r_entry["version"] == r_claude["version"]
-    assert (research / "skills" / "research" / "SKILL.md").is_file()
-
-    leaks = REPO / "plugins" / "secret-scan"
-    s_claude = json.loads((leaks / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8"))
-    s_codex = json.loads((leaks / ".codex-plugin" / "plugin.json").read_text(encoding="utf-8"))
-    for k in ("name", "version", "description"):
-        assert s_claude[k] == s_codex[k], f"secret-scan {k} 双 manifest 漂移"
-    s_entry = next(p for p in claude_mkt["plugins"] if p["name"] == "secret-scan")
-    assert s_entry["version"] == s_claude["version"]
-    assert (leaks / "skills" / "secrets" / "SKILL.md").is_file()
-    assert (leaks / "skills" / "secrets" / "scripts" / "scan.py").is_file()
-    assert (leaks / "commands" / "scan.md").is_file()
-
-    office = REPO / "plugins" / "office-pro"
-    o_claude = json.loads((office / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8"))
-    o_codex = json.loads((office / ".codex-plugin" / "plugin.json").read_text(encoding="utf-8"))
-    for k in ("name", "version", "description"):
-        assert o_claude[k] == o_codex[k], f"office-pro {k} 双 manifest 漂移"
-    o_entry = next(p for p in claude_mkt["plugins"] if p["name"] == "office-pro")
-    assert o_entry["version"] == o_claude["version"]
-    assert (office / "skills" / "office" / "SKILL.md").is_file()
-    assert (office / "skills" / "office" / "scripts" / "which.py").is_file()
-    assert (office / "skills" / "office" / "scripts" / "smoke.py").is_file()
-    assert (office / "commands" / "office-cli.md").is_file()
 
 
 def _run_md_guard(payload: str) -> subprocess.CompletedProcess:

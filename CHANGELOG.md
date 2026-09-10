@@ -4,6 +4,17 @@
 
 ## [Unreleased]
 
+### 变更（2026-09-10，第四十七批:四插件收敛为单插件四 skill）
+
+> 用户裁定:市场应是一个前缀下挂不同 skill 名,而不是四个前缀各挂一个同名域词的 skill。显示目标:`project-evo:docs-evo`、`project-evo:super-research`、`project-evo:secret-scan`、`project-evo:office-pro`。
+
+- 目录:三插件 skill 迁入唯一插件 `plugins/project-evo/skills/`(research 到 super-research、secrets 到 secret-scan、office 到 office-pro,均 git mv 保沿革);`plugins/{super-research,secret-scan,office-pro}` 目录下线
+- skill 名与 frontmatter 同步目录名(硬规则);测试新增守卫:四 skill 目录齐备且每个 frontmatter `name` 与目录名一致
+- 命令面并入 project-evo:secret-scan 的 `scan` 与原 docs `scan` 同名,按避让规则改 `secret-scan-cli`;office-cli 原名保留(避开与 skill 同名)
+- 清单面:双市场清单只留 `project-evo` 一条;插件双 manifest 版本 0.3.0,description 覆盖四 skill;Codex 面 interface 长描述与默认提示词同步
+- 引用全量同步:AGENTS 地图与索引与硬规则、README 定位与安装节(Kimi 拷贝路径)、docs/README 索引、S005/S006/S007 底稿、插件 README、四个 skill 内交叉引用(原「市场另一插件」改「同插件 skill」)、githooks 断链三路并一路、tests 两处脚本根
+- 已装用户:市场更新后卸旧三个插件、装 project-evo 即得四 skill;Kimi 面重拷 `plugins/project-evo/skills/*`
+
 ### 修复（2026-09-10，第四十六批:Codex 面 hook 的 Windows 修法纠错,改用花括号变量）
 
 > 现象:第四十二批发版后,Codex 会话编辑 markdown 仍报 `PostToolUse hook (failed) error: hook exited with code 1`。第四十二批的根因判断有误,本轮纠正。

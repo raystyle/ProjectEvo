@@ -55,7 +55,7 @@ if __name__ == "__main__":
 
 ## 二、外部检索不在本篇
 
-搜代码、搜网页、读电子书、下论文与种子，走市场技能 `super-research:research`。本篇只约定项目仓内 `.tools/`。
+搜代码、搜网页、读电子书、下论文与种子，走同插件 skill `project-evo:super-research`。本篇只约定项目仓内 `.tools/`。
 
 ## 三、登记与维护
 

@@ -99,7 +99,7 @@ EOF
 
 设计要点：
 
-- **内置库函数零 import**：运行时预导入 helper 面（导航/页面读写/抓取等），函数名即 API；agent 不猜模块路径 [实证: browser-harness helpers.py def 清单；现役检索见 super-research:research]
+- **内置库函数零 import**：运行时预导入 helper 面（导航/页面读写/抓取等），函数名即 API；agent 不猜模块路径 [实证: browser-harness helpers.py def 清单；现役检索见 project-evo:super-research]
 - **直接集成运行时**：代码跑在 CLI 常驻上下文（daemon 连接、tab 状态、配置），不是每次起冷进程；helper 双通道（全量命名空间 + 顶层解包常用名）兼顾全量与顺手 [经验: 云 CLI 仓 omc 同款 TS 片段管道]
 - **产品化形态是 Code Mode**（incurs）：codemode_execute 启动 JS 执行、直接调 tool catalog，配审批生命周期（codemode_decide 逐动作批/拒、codemode_cancel 取消）；本地只读工具免批、远程与破坏性工具须批 [实证: 信源 README]
 - 分工：固定命令管高频与稳定（schema 保障），自由代码管长尾与组合（逃生舱保障）；两者同源一个运行时，脚本产物归档见「九、脚本 workspace」
