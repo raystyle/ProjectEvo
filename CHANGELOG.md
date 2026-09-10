@@ -13,6 +13,7 @@
 - 命令面并入 project-evo:secret-scan 的 `scan` 与原 docs `scan` 同名,按避让规则改 `secret-scan-cli`;office-cli 原名保留(避开与 skill 同名)
 - 清单面:双市场清单只留 `project-evo` 一条;插件双 manifest 版本 0.3.0,description 覆盖四 skill;Codex 面 interface 长描述与默认提示词同步
 - 引用全量同步:AGENTS 地图与索引与硬规则、README 定位与安装节(Kimi 拷贝路径)、docs/README 索引、S005/S006/S007 底稿、插件 README、四个 skill 内交叉引用(原「市场另一插件」改「同插件 skill」)、githooks 断链三路并一路、tests 两处脚本根
+- README 精简重写:收成安装(四客户端一表)、升级(命令面与缓存归位)、配置(协议与钉版与禁字挡板与扫描豁免)、SKILL 介绍(四 skill 表)四节,115 行到 65 行;删掉的裸脚本示例由各 skill 的 SKILL.md 与插件 README 承担
 - 已装用户:市场更新后卸旧三个插件、装 project-evo 即得四 skill;Kimi 面重拷 `plugins/project-evo/skills/*`
 
 ### 修复（2026-09-10，第四十六批:Codex 面 hook 的 Windows 修法纠错,改用花括号变量）
