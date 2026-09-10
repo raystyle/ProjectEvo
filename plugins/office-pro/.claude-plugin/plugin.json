@@ -1,6 +1,6 @@
 {
   "name": "office-pro",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "OfficeCLI 专业面:钉 GitHub 资产装二进制,DOM 路径读写 docx/xlsx/pptx,既有稿纠偏与写入前事实核查",
   "author": {
     "name": "raystyle"

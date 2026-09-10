@@ -1,6 +1,6 @@
 {
   "name": "secret-scan",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "密钥与隐私扫描:uv 零依赖脚本扫本地 git 工作区/全历史,以及 GitHub alerts 与提交史",
   "author": {
     "name": "raystyle"

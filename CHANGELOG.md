@@ -4,7 +4,13 @@
 
 ## [Unreleased]
 
-（本段暂空:下一轮新条目接在下方,封版时整段转版本号。）
+### 变更（2026-09-10，第四十五批:三兄弟插件补版 0.1.1,同步改名引用）
+
+> 缘由:第四十四批改名动了 secret-scan、super-research、office-pro 三插件内的引用文字(A/B 脚本路径、SKILL 与 README 交叉引用、office 六态措辞),但三插件版本未动,市场按版本号判定无更新,Claude 面装到的仍是改名前的文本。
+
+- 版本面:`.claude-plugin/marketplace.json` 三插件条目与六份双 manifest 同步 0.1.0 到 0.1.1
+- 内容:本轮刷新即第四十四批同步后的文本(secret-scan `DOCS_EVO_SCAN` 路径与用例表、super-research SKILL 与 README 交叉引用、office facts 六态措辞)
+- 已装用户:`/plugin marketplace update projectevo` 后重装对应插件即得;Codex 与 Grok 面市场升级会整体重拷,但版本号仍须前进才触发刷新
 
 ## [0.2.2] - 2026-09-10
 
