@@ -2,7 +2,7 @@
 
 超级研究插件。核心 skill 为 `research`（显示 `super-research:research`）。
 
-把 gh、Google、Medium、X 本地库、reader、aria2c 串成一条资料检索管线。evo 只管项目文档骨架，本插件管检索与下载。
+把 gh、Google、Medium、X 本地库、reader、aria2c 串成一条资料检索管线。docs-evo 只管项目文档骨架，本插件管检索与下载。
 
 ## 安装
 

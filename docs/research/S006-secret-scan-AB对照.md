@@ -1,10 +1,10 @@
-# secret-scan 与 evo scan A/B 对照
+# secret-scan 与 docs-evo scan A/B 对照
 
 - 状态:已完成
 - 日期:2026-09-08
 - 关联:[S005](S005-git密钥隐私扫描skill选型.md)；夹具 `plugins/secret-scan/skills/secrets/verification/ab-cases.md`
 
-> 对照不是门禁。A = `secret-scan` `scan.py`；B = `evo` `scan.py` 的 secrets 部分。人裁决。伪造密钥，无真实凭据。
+> 对照不是门禁。A = `secret-scan` `scan.py`；B = `docs-evo` `scan.py` 的 secrets 部分。人裁决。伪造密钥，无真实凭据。
 
 ## 背景
 
@@ -37,6 +37,6 @@ S005 只做了文献对照，没有同夹具实跑。`flow-testing` 规定 A/B �
 
 ## 裁决
 
-继续用 A 做密钥/隐私深挖，B 留在 evo 做浅密钥加 markdown 禁字。不把 gitleaks 绑进运行时。GitHub alerts/`--clone-history` 本轮夹具未覆盖，仍是 S005 的推断，不算本对照实证。
+继续用 A 做密钥/隐私深挖，B 留在 docs-evo 做浅密钥加 markdown 禁字。不把 gitleaks 绑进运行时。GitHub alerts/`--clone-history` 本轮夹具未覆盖，仍是 S005 的推断，不算本对照实证。
 
 复跑：`uv run plugins/secret-scan/skills/secrets/scripts/ab.py`

@@ -4,7 +4,13 @@
 
 ## [Unreleased]
 
-（本段暂空:下一轮新条目接在下方,封版时整段转版本号。）
+### 变更（2026-09-10，第四十四批:skill 改名 docs-evo,消除指代含糊）
+
+> 用户裁定(2026-09-10):skill 名 `evo` 指代含糊,改为 `docs-evo`,与插件 `project-evo` 并读为「文档进化」。同第三十一批口径:插件名与市场安装标识不动,客户端显示收敛为 `project-evo:docs-evo`。
+
+- 目录:`plugins/project-evo/skills/evo` git mv 至 `plugins/project-evo/skills/docs-evo`;SKILL.md frontmatter `name` 与标题同步(硬规则:name 与目录名一致)
+- 仓内引用全量同步:仓根 `.claude/settings.json` 钩子、`.github/workflows/test.yml` 冒烟、`githooks/pre-commit`、`.tools/md-ref-scan.py` 默认根与 `.tools/README.md`、AGENTS 地图与索引、README、docs/README、S005/S006/S007 研究底稿、project-evo 插件 README 与三斜杠命令、`hooks/hooks.json` 双面路径、super-research 与 office 交叉引用、secret-scan A/B 脚本(`DOCS_EVO_SCAN`、`_docs_evo_has`、`B_docs_evo`)、tests 两处脚本根;CHANGELOG 历史批次记载保留原样
+- 已装用户:`/plugin marketplace update projectevo` 后重装 project-evo 即得新 skill 名(0.2.1 缓存按版本归位);Kimi 面无市场,重拷 `plugins/project-evo/skills/docs-evo/` 整目录
 
 ## [0.2.1] - 2026-09-10
 

@@ -1,5 +1,5 @@
 ---
-name: evo
+name: docs-evo
 description: >-
   项目进化(project evolution)渐进知识库:指导建立与治理项目的文档结构和规则(家族骨架),
   并以需求驱动的循环推动项目持续进化。根原语 AGENTS/PRD/GOAL/PLAN/TODO/INDEX + docs 六目录
@@ -10,7 +10,7 @@ description: >-
 compatibility: 通用(不限语言/平台);提炼自 Rust CLI、Python 基础设施 harness、Python CLI+daemon、TypeScript Node CLI+daemon 四类仓实践。
 ---
 
-# evo - project-evo 项目进化指南
+# docs-evo - project-evo 项目进化指南
 
 **渐进知识库型 skill**：本文件只做两件事，**意图路由**（你要做的事 到 该查哪篇参考）与**体系速览**（一层概览）；完整知识在 `references/` 分类扁平目录（前缀 base/flow/env/tool/exp 分组，17 篇自包含），按「rg 定位文件 + mq 提取结构」渐进检索，不要求一次读完。资料检索（gh/Google/Medium/X/reader/aria2c）在市场另一插件 `super-research` 的 `research` 技能。
 
@@ -134,4 +134,4 @@ reader query references\flow-release.md ".code"       # 只要命令
 
 完整渐进索引（快速路由到场景到全量）见 `references/README.md`；姊妹件：`verification/command-test-cases.md`（骨架规范检查命令）。
 
-配套脚本（`scripts/`，PEP 723 零依赖，uv run 或系统 python 直跑；模板在 `assets/templates/`）：`init.py <path> [--name 名]` 安装文档骨架（幂等）/ `check.py [path]` 诊断合规（PE-01 至 PE-13)/ `scan.py [path] [--no-history]` 安全与规范扫描；禁字规则唯一权威 `scripts/mdrules.py`（check 的 PE-12、scan、md-guard 三面同源）。安装通道：Claude Code `/plugin marketplace add raystyle/ProjectEvo` 后装 project-evo 插件（`/project-evo:*` 斜杠命令与 PostToolUse 禁字挡板随插件生效）；Codex `codex plugin marketplace add raystyle/ProjectEvo`；Grok `grok plugin install project-evo@projectevo --trust`；Kimi 无市场，拷 `skills/evo/` 至 `~/.kimi/skills`（命令与 hook 不随行）。
+配套脚本（`scripts/`，PEP 723 零依赖，uv run 或系统 python 直跑；模板在 `assets/templates/`）：`init.py <path> [--name 名]` 安装文档骨架（幂等）/ `check.py [path]` 诊断合规（PE-01 至 PE-13)/ `scan.py [path] [--no-history]` 安全与规范扫描；禁字规则唯一权威 `scripts/mdrules.py`（check 的 PE-12、scan、md-guard 三面同源）。安装通道：Claude Code `/plugin marketplace add raystyle/ProjectEvo` 后装 project-evo 插件（`/project-evo:*` 斜杠命令与 PostToolUse 禁字挡板随插件生效）；Codex `codex plugin marketplace add raystyle/ProjectEvo`；Grok `grok plugin install project-evo@projectevo --trust`；Kimi 无市场，拷 `skills/docs-evo/` 至 `~/.kimi/skills`（命令与 hook 不随行）。

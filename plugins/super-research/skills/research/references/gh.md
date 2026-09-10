@@ -33,7 +33,7 @@
 | `--json` 字段硬校验 | `--json nope` 到 exit 1 | 用 `--help` 列出的字段 |
 | search 与 view 字段名不同 | `stargazerCount`(view)/`stargazersCount`(search） | 区分命令 |
 
-选型双通道口径：gh search（code 实证）+ crates.io/PyPI 元数据，结论标六态。项目内依赖稳度见 evo 选型篇。定位后 clone 深读见 git.md。
+选型双通道口径：gh search（code 实证）+ crates.io/PyPI 元数据，结论标六态。项目内依赖稳度见 docs-evo 选型篇。定位后 clone 深读见 git.md。
 
 ## 一、认证与状态
 

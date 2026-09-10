@@ -79,7 +79,7 @@ xlsx 公式写法对照（同一会话）：
 | 看见版面 | 内置 HTML/PNG（自称；本轮未跑 screenshot/watch） | 一般看不到排版 |
 | 依赖 | 无 Office、无 Python | 视技能/库而定 |
 
-它不是 ProjectEvo 的替代品：evo 管文档骨架，OfficeCLI 管 Office 文件。不进 evo `references/`（第三方工具调研，不是本仓工作流）。2026-09-08 用户裁定吸收为独立市场插件 `office-pro`（skill `office`）。操作面在 `plugins/office-pro/`；本文件仍是选型与烟测底稿，不复述改稿纪律。未与 python-pptx 做 A/B，未跑 `watch`。[经验: 既有稿纠偏、native 截图核、事实核查进稿面已在同日实弹]
+它不是 ProjectEvo 的替代品：docs-evo 管文档骨架，OfficeCLI 管 Office 文件。不进 docs-evo `references/`（第三方工具调研，不是本仓工作流）。2026-09-08 用户裁定吸收为独立市场插件 `office-pro`（skill `office`）。操作面在 `plugins/office-pro/`；本文件仍是选型与烟测底稿，不复述改稿纪律。未与 python-pptx 做 A/B，未跑 `watch`。[经验: 既有稿纠偏、native 截图核、事实核查进稿面已在同日实弹]
 
 ## 风险与坑
 

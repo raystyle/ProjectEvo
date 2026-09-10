@@ -1,6 +1,6 @@
 # ProjectEvo
 
-> 一句话定位：ProjectEvo 插件市场仓。四插件：`project-evo`（文档骨架 skill `evo`）、`super-research`（资料检索 skill `research`）、`secret-scan`（密钥隐私扫描 skill `secrets`）、`office-pro`（OfficeCLI 专业面 skill `office`）。
+> 一句话定位：ProjectEvo 插件市场仓。四插件：`project-evo`（文档骨架 skill `docs-evo`）、`super-research`（资料检索 skill `research`）、`secret-scan`（密钥隐私扫描 skill `secrets`）、`office-pro`（OfficeCLI 专业面 skill `office`）。
 
 ## 安装
 
@@ -61,17 +61,17 @@ Copy-Item D:\ProjectEvo\plugins\*\skills\* ~\.kimi\skills\ -Recurse
 
 安装后 skill 按意图路由自动触发；斜杠命令与裸脚本为等价入口（裸脚本在仓根运行，路径按需替换）。
 
-### 文档骨架（project-evo:evo）
+### 文档骨架（project-evo:docs-evo）
 
 对 agent 说：「用 project-evo 为这个项目初始化文档骨架」「check 一下这个项目符不符合骨架」。
 
 ```powershell
-uv run plugins/project-evo/skills/evo/scripts/init.py <目标项目> --name <项目名>   # 安装骨架(幂等,不覆盖已有)
-uv run plugins/project-evo/skills/evo/scripts/check.py <目标项目>                  # 诊断 PE-01 至 PE-13(只读)
-uv run plugins/project-evo/skills/evo/scripts/scan.py <目标项目> [--no-history]    # secrets + md 禁字扫描
+uv run plugins/project-evo/skills/docs-evo/scripts/init.py <目标项目> --name <项目名>   # 安装骨架(幂等,不覆盖已有)
+uv run plugins/project-evo/skills/docs-evo/scripts/check.py <目标项目>                  # 诊断 PE-01 至 PE-13(只读)
+uv run plugins/project-evo/skills/docs-evo/scripts/scan.py <目标项目> [--no-history]    # secrets + md 禁字扫描
 ```
 
-Claude Code 斜杠命令：`/project-evo:init`、`/project-evo:check`、`/project-evo:scan`。init 后目标项目得到 AGENTS/PRD/GOAL/PLAN/TODO/INDEX 根原语与 docs 六目录；等价用例集见 `plugins\project-evo\skills\evo\verification\command-test-cases.md`。
+Claude Code 斜杠命令：`/project-evo:init`、`/project-evo:check`、`/project-evo:scan`。init 后目标项目得到 AGENTS/PRD/GOAL/PLAN/TODO/INDEX 根原语与 docs 六目录；等价用例集见 `plugins\project-evo\skills\docs-evo\verification\command-test-cases.md`。
 
 ### 资料检索（super-research:research）
 
@@ -103,7 +103,7 @@ Claude Code 斜杠命令：`/office-pro:office-cli [which|smoke]`。
 
 - skill 本体纯 Markdown；脚本零第三方依赖（PEP 723，>=3.12，`uv run` 或系统 python）
 - 检索与验证命令按 PowerShell 7、ripgrep、reader 实测
-- 平台：Windows 主开发；文档与用例按三平台适配撰写（`plugins/project-evo/skills/evo/references/env-platform.md`）
+- 平台：Windows 主开发；文档与用例按三平台适配撰写（`plugins/project-evo/skills/docs-evo/references/env-platform.md`）
 
 ## 文档导航
 
@@ -111,7 +111,7 @@ Claude Code 斜杠命令：`/office-pro:office-cli [which|smoke]`。
 |------|--------|--------|
 | `AGENTS.md` | 开发协作规则唯一权威源 | 写/改任何文件前 |
 | `plugins/<插件>/README.md` | 各插件说明与安装 | 安装/分发单个插件时 |
-| `plugins/project-evo/skills/evo/SKILL.md` | evo skill 本体（意图路由） | 使用/修改 skill 前 |
+| `plugins/project-evo/skills/docs-evo/SKILL.md` | docs-evo skill 本体（意图路由） | 使用/修改 skill 前 |
 | `docs/README.md` | 全仓文档地图 | 找任何文档时 |
 | `ROADMAP.md` | 阶段与里程碑状态 | 看进度时 |
 | `CHANGELOG.md` | 变更日志 | 查历史时 |

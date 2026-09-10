@@ -9,7 +9,7 @@ compatibility: 需本机 PATH 上的 gh、reader、aria2c、bh(可选)
 
 # research - 超级研究管线
 
-本文件只做**意图路由 + 管线速览**。命令细节在 `references/`。研究结论写进目标项目 `docs/research/` 并标六态；本技能不替代 evo 的文档骨架。
+本文件只做**意图路由 + 管线速览**。命令细节在 `references/`。研究结论写进目标项目 `docs/research/` 并标六态；本技能不替代 docs-evo 的文档骨架。
 
 ## 一、意图路由
 

@@ -32,13 +32,13 @@ grok plugin marketplace add raystyle/ProjectEvo
 grok plugin install project-evo@projectevo --trust
 ```
 
-Kimi(无市场):拷 `skills/evo/` 整目录至 `~/.kimi/skills/`;斜杠命令与 hook 不随行。
+Kimi(无市场):拷 `skills/docs-evo/` 整目录至 `~/.kimi/skills/`;斜杠命令与 hook 不随行。
 
 本地开发(三客户端同款,路径换本地仓根)。
 
 ## 用法
 
-安装插件后,skill `evo`(客户端显示 project-evo:evo)按意图路由自动触发;也可用斜杠命令(Claude Code 面):
+安装插件后,skill `docs-evo`(客户端显示 project-evo:docs-evo)按意图路由自动触发;也可用斜杠命令(Claude Code 面):
 
 - `/project-evo:init <目标项目> [--name 项目名]` 安装文档骨架(幂等,不覆盖已有)
 - `/project-evo:check [目标项目]` 诊断骨架合规 PE-01 至 PE-13(只读,退出码 0/1/2)
@@ -47,9 +47,9 @@ Kimi(无市场):拷 `skills/evo/` 整目录至 `~/.kimi/skills/`;斜杠命令与
 脚本可独立调用(免插件):
 
 ```bash
-uv run skills/evo/scripts/init.py <目标项目> --name <项目名>
-uv run skills/evo/scripts/check.py [目标项目]
-uv run skills/evo/scripts/scan.py [目标项目] --no-history
+uv run skills/docs-evo/scripts/init.py <目标项目> --name <项目名>
+uv run skills/docs-evo/scripts/check.py [目标项目]
+uv run skills/docs-evo/scripts/scan.py [目标项目] --no-history
 ```
 
 示例提示词:「用 project-evo 为这个项目初始化文档骨架」「check 一下这个项目符不符合骨架」。
@@ -62,7 +62,7 @@ uv run skills/evo/scripts/scan.py [目标项目] --no-history
 
 ## 架构
 
-skill 为渐进知识库:SKILL.md 只做意图路由与体系速览,完整知识在 `skills/evo/references/`(分类扁平,前缀 base/flow/env/tool/exp 分组,rg 定位 + 结构提取渐进检索)。可执行面在 `skills/evo/scripts/`(规则唯一权威 `mdrules.py`,check 的 PE-12 与 scan、md-guard 同源);模板在 `assets/templates/`。PostToolUse hook(`hooks/hooks.json`)对编辑中的 markdown 做四类禁字会话内提醒。
+skill 为渐进知识库:SKILL.md 只做意图路由与体系速览,完整知识在 `skills/docs-evo/references/`(分类扁平,前缀 base/flow/env/tool/exp 分组,rg 定位 + 结构提取渐进检索)。可执行面在 `skills/docs-evo/scripts/`(规则唯一权威 `mdrules.py`,check 的 PE-12 与 scan、md-guard 同源);模板在 `assets/templates/`。PostToolUse hook(`hooks/hooks.json`)对编辑中的 markdown 做四类禁字会话内提醒。
 
 ## 敏感产物
 

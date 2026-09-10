@@ -4,7 +4,7 @@
 
 夹具全是伪造值，禁止换成真实密钥。
 
-| id | 位置 | 种入 | 期望 A secret-scan | 期望 B evo scan |
+| id | 位置 | 种入 | 期望 A secret-scan | 期望 B docs-evo scan |
 | --- | --- | --- | --- | --- |
 | ghp-work | 工作区 `ghp.txt` | `ghp_` + 36 字母 | 命中 GitHub token | 命中 GitHub token |
 | stripe-work | 工作区 `stripe.txt` | `sk_live_` + 24 字母 | 命中 Stripe key | 不命中密钥规则 |

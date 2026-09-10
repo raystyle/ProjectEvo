@@ -2,7 +2,7 @@
 # requires-python = ">=3.12"
 # dependencies = []
 # ///
-"""A/B 对照:secret-scan(A) vs evo scan(B)。对照不是门禁,退出码 0。
+"""A/B 对照:secret-scan(A) vs docs-evo scan(B)。对照不是门禁,退出码 0。
 
 用法: uv run ab.py
 在临时 git 仓种伪造密钥,跑两侧,stdout 打 JSON 对照表。
@@ -20,7 +20,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[4]
-EVO_SCAN = REPO / "plugins" / "project-evo" / "skills" / "evo" / "scripts" / "scan.py"
+DOCS_EVO_SCAN = REPO / "plugins" / "project-evo" / "skills" / "docs-evo" / "scripts" / "scan.py"
 GHP = "ghp_" + ("A" * 36)
 STRIPE = "sk_live_" + ("B" * 24)
 GLPAT = "glpat-" + ("C" * 20)
@@ -87,7 +87,7 @@ def _has(finds: list[dict], file: str, rule_sub: str, source: str | None = None)
     return False
 
 
-def _evo_has(finds: list[dict], file: str, rule_sub: str, history: bool | None = None) -> bool:
+def _docs_evo_has(finds: list[dict], file: str, rule_sub: str, history: bool | None = None) -> bool:
     for f in finds:
         if file not in str(f.get("file", "")):
             continue
@@ -105,7 +105,7 @@ def _evo_has(finds: list[dict], file: str, rule_sub: str, history: bool | None =
 
 def main() -> int:
     a_mod = _load(HERE / "scan.py", "ab_a")
-    b_mod = _load(EVO_SCAN, "ab_b")
+    b_mod = _load(DOCS_EVO_SCAN, "ab_b")
     with tempfile.TemporaryDirectory(prefix="pevo-ab-") as td:
         root = Path(td)
         _plant(root)
@@ -113,22 +113,22 @@ def main() -> int:
         b_finds = b_mod.scan_worktree_secrets(root) + b_mod.scan_history_secrets(root)
 
         cases = [
-            ("ghp-work", _has(a_finds, "ghp.txt", "GitHub token", "worktree"), _evo_has(b_finds, "ghp.txt", "GitHub token", False), True, True),
-            ("stripe-work", _has(a_finds, "stripe.txt", "Stripe", "worktree"), _evo_has(b_finds, "stripe.txt", "Stripe", False), True, False),
-            ("gitlab-work", _has(a_finds, "gitlab.txt", "GitLab", "worktree"), _evo_has(b_finds, "gitlab.txt", "GitLab", False), True, False),
-            ("hist-ghp", _has(a_finds, "old.txt", "GitHub token", "history"), _evo_has(b_finds, "old.txt", "GitHub token", True), True, True),
-            ("hist-stripe", _has(a_finds, "old-stripe.txt", "Stripe", "history"), _evo_has(b_finds, "old-stripe.txt", "Stripe", True), True, False),
-            ("placeholder", _has(a_finds, "ph.txt", "assigned", "worktree"), _evo_has(b_finds, "ph.txt", "assigned", False), False, False),
-            ("aws-example", _has(a_finds, "aws.txt", "AWS", "worktree"), _evo_has(b_finds, "aws.txt", "AWS", False), True, True),
-            ("env-file", _has(a_finds, ".env", "sensitive file", "worktree"), _evo_has(b_finds, ".env", "sensitive file", False), True, True),
-            ("email-pii", _has(a_finds, "mail.txt", "email", "worktree"), _evo_has(b_finds, "mail.txt", "email", False), True, False),
+            ("ghp-work", _has(a_finds, "ghp.txt", "GitHub token", "worktree"), _docs_evo_has(b_finds, "ghp.txt", "GitHub token", False), True, True),
+            ("stripe-work", _has(a_finds, "stripe.txt", "Stripe", "worktree"), _docs_evo_has(b_finds, "stripe.txt", "Stripe", False), True, False),
+            ("gitlab-work", _has(a_finds, "gitlab.txt", "GitLab", "worktree"), _docs_evo_has(b_finds, "gitlab.txt", "GitLab", False), True, False),
+            ("hist-ghp", _has(a_finds, "old.txt", "GitHub token", "history"), _docs_evo_has(b_finds, "old.txt", "GitHub token", True), True, True),
+            ("hist-stripe", _has(a_finds, "old-stripe.txt", "Stripe", "history"), _docs_evo_has(b_finds, "old-stripe.txt", "Stripe", True), True, False),
+            ("placeholder", _has(a_finds, "ph.txt", "assigned", "worktree"), _docs_evo_has(b_finds, "ph.txt", "assigned", False), False, False),
+            ("aws-example", _has(a_finds, "aws.txt", "AWS", "worktree"), _docs_evo_has(b_finds, "aws.txt", "AWS", False), True, True),
+            ("env-file", _has(a_finds, ".env", "sensitive file", "worktree"), _docs_evo_has(b_finds, ".env", "sensitive file", False), True, True),
+            ("email-pii", _has(a_finds, "mail.txt", "email", "worktree"), _docs_evo_has(b_finds, "mail.txt", "email", False), True, False),
         ]
         rows = []
         for cid, a_hit, b_hit, exp_a, exp_b in cases:
             rows.append({
                 "id": cid,
                 "A": a_hit,
-                "B_evo": b_hit,
+                "B_docs_evo": b_hit,
                 "exp_A": exp_a,
                 "exp_B": exp_b,
                 "A_match_exp": a_hit is exp_a,
@@ -139,7 +139,7 @@ def main() -> int:
         b2 = "SKIP:gitleaks/trufflehog 未装;detect-secrets 可选 uvx 未在本脚本默认拉取"
         report = {
             "A": "secret-scan scan.py",
-            "B": "evo scan.py secrets 部分",
+            "B": "docs-evo scan.py secrets 部分",
             "B2": b2,
             "A_count": len(a_finds),
             "B_count": len(b_finds),
