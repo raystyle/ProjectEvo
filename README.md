@@ -54,7 +54,7 @@ Copy-Item D:\ProjectEvo\plugins\*\skills\* ~\.kimi\skills\ -Recurse
 ### 协议与钉版
 
 - 市场客户端都收 HTTPS 与 SSH git URL；GitHub 简写默认协议相反：Claude Code 走 SSH（`CLAUDE_CODE_PLUGIN_PREFER_HTTPS=1` 切 HTTPS），Codex 走 HTTPS；Grok install 另收本地路径，支持 `@ref` 与 `#subdir`
-- 钉版：Claude Code `raystyle/ProjectEvo@v0.2.1` 或 URL 尾 `#v0.2.1`；Codex `--ref v0.2.1`
+- 钉版：Claude Code `raystyle/ProjectEvo@v0.2.2` 或 URL 尾 `#v0.2.2`；Codex `--ref v0.2.2`
 - 私有仓认证走标准 git 凭据（credential helper 或 ssh-agent），与终端 git 行为一致
 
 ## 使用示例
