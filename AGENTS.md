@@ -96,5 +96,5 @@ ProjectEvo/
 
 - 平台：Windows · PowerShell 7（禁 powershell.exe 5.1 与 cmd）
 - skill 提炼源：D：\reader 仓、D：\PVE 仓、浏览器工具仓、D：\browser-harness-ts（家族骨架，TS 栈合同见 tool-typescript.md）
-- 当前阶段：v0.3.0 单插件四 skill 形态（2026-09-10 第四十七批收敛；此前是四插件各一 skill）；部署 = Claude Code `/plugin marketplace add raystyle/ProjectEvo`、Codex `codex plugin marketplace add raystyle/ProjectEvo` 或 Grok `grok plugin install project-evo@projectevo`（读 Claude manifest 面）；Kimi 无市场，拷 `plugins/project-evo/skills/*` 至 `~/.kimi/skills`；旧 `uv tool install` 通道已退役
+- 当前阶段：v0.3.1 单插件四 skill 形态（2026-09-10 第四十七批收敛；此前是四插件各一 skill）；部署 = Claude Code `/plugin marketplace add raystyle/ProjectEvo`、Codex `codex plugin marketplace add raystyle/ProjectEvo` 或 Grok `grok plugin install project-evo@projectevo`（读 Claude manifest 面）；Kimi 无市场，拷 `plugins/project-evo/skills/*` 至 `~/.kimi/skills`；旧 `uv tool install` 通道已退役
 - 项目状态与待办见 `ROADMAP.md`，不再在本文维护

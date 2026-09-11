@@ -12,7 +12,7 @@
       "name": "project-evo",
       "source": "./plugins/project-evo",
       "description": "项目进化:一个插件四个 skill —— docs-evo(文档骨架与治理)、super-research(资料检索管线)、secret-scan(密钥与隐私扫描)、office-pro(OfficeCLI 专业面);含 init/check/scan 零依赖脚本与 md 禁字挡板",
-      "version": "0.3.0",
+      "version": "0.3.1",
       "category": "productivity"
     }
   ]

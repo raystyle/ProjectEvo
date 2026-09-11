@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+## [0.3.1] - 2026-09-11
+
 ### 变更（2026-09-11，第四十八批:aria2c 下载必关 IPv6 入库）
 
 - super-research `references/aria2c.md` 三处落地:标准下载命令带上 `--disable-ipv6=true`、参数表补该行、坑表补「本机网络 IPv6 到镜像站有坑」条目(用户裁定;实证:TUNA 镜像 Ubuntu ISO 关后 16 连接 21MiB/s)
