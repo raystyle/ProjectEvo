@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+### 变更（2026-09-11，第四十八批:aria2c 下载必关 IPv6 入库）
+
+- super-research `references/aria2c.md` 三处落地:标准下载命令带上 `--disable-ipv6=true`、参数表补该行、坑表补「本机网络 IPv6 到镜像站有坑」条目(用户裁定;实证:TUNA 镜像 Ubuntu ISO 关后 16 连接 21MiB/s)
+
 ### 变更（2026-09-10，第四十七批:四插件收敛为单插件四 skill）
 
 > 用户裁定:市场应是一个前缀下挂不同 skill 名,而不是四个前缀各挂一个同名域词的 skill。显示目标:`project-evo:docs-evo`、`project-evo:super-research`、`project-evo:secret-scan`、`project-evo:office-pro`。

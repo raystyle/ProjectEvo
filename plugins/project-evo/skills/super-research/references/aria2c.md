@@ -14,8 +14,8 @@
 ## 二、核心用法
 
 ```powershell
-# 标准下载:多连接 + 断点续传 + 指定目录与文件名
-aria2c -x 16 -s 16 -c -d D:\downloads -o model.zip "https://example.com/model.zip"
+# 标准下载:关 IPv6 + 多连接 + 断点续传 + 指定目录与文件名
+aria2c --disable-ipv6=true -x 16 -s 16 -c -d D:\downloads -o model.zip "https://example.com/model.zip"
 
 # 校验和验证(下载完自动核对,不匹配即失败)
 aria2c --checksum=sha-256=<hash> -d . -o asset.zip "https://.../asset.zip"
@@ -52,6 +52,7 @@ aria2c -S ubuntu.torrent
 | `--all-proxy=PROXY` | 全协议代理 | - |
 | `--allow-overwrite` / `--auto-file-renaming` | 同名覆盖 / 自动改名（配合 `-c` 幂等：关改名开覆盖） | false / true |
 | `--check-certificate` | 证书校验 | true |
+| `--disable-ipv6[=true\|false]` | 禁 IPv6,本机网络必开(见「坑」) | false |
 | `-i, --input-file=FILE` / `-j, --max-concurrent-downloads=N` | URL 清单批量 / 并行数 | - / 5 |
 | `--file-allocation=METHOD` | 预分配（none/prealloc/falloc) | prealloc |
 | `--summary-interval=SEC` / `--console-log-level=LEVEL` | 进度输出频率 / 日志级别 | 60 / notice |
@@ -74,6 +75,7 @@ aria2c -S ubuntu.torrent
 | GitHub release 私有资产 401 | `--header="Authorization: Bearer $(gh auth token)"` | [记忆] |
 | `-k 1M` 默认值导致小文件不分片 | 大文件显式 `-s 16 -k 1M` 以上 | [实证： 默认值出自 --help=#all] |
 | HTTP 下 `.torrent` 默认 `follow-torrent` 并预分配载荷 | 加 `--follow-torrent=false`；先 `-S` 看体积；多 GB 须用户点头再下 | [实证： 2026-09-08 Ubuntu 24.04.4 desktop 种子 508KB，未关 follow 时 prealloc 6.1GiB] |
+| 本机网络 IPv6 到镜像站有坑,不关会连不上或龟速 | 命令一律带 `--disable-ipv6=true` | [经验： 用户裁定 2026-09-11；实证： 关后 TUNA 镜像 16 连接 21MiB/s] |
 
 ## 六、复验命令
 
